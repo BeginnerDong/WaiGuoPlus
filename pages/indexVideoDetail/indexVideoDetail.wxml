@@ -26,7 +26,7 @@
     <view class="tlt_left"></view>
 </view>
 <view class="w670">
-	<view class="comment bg1">
+	<view class="comment bg1"  bindtap="intoPath" data-path="/pages/indexVideoComment/indexVideoComment">
 		<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
@@ -64,7 +64,7 @@
             </view>
         </view>
     </view>
-    <view class="comment bg1">
+    <view class="comment bg1"  bindtap="intoPath" data-path="/pages/indexVideoComment/indexVideoComment">
 		<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
@@ -90,6 +90,15 @@
 	        </view>
         </view>
     </view>
+</view>
+<view class="big_title flexRowBetween">
+    <view class="tlt_left"></view>
+    <view class="tlt_center font28 color96">全部评论(0条)</view>
+    <view class="tlt_left"></view>
+</view>
+<view class="no_comment">
+	<image src="/images/no_comment.png"></image>
+	<view class="font24"style="color:#c9c9c9">还没有有人评论，你当是第一个吧~</view>
 </view>
 <view style="width:100%;height:120rpx;"></view>
 <view class="w670 comment_bottom bg1 flex">

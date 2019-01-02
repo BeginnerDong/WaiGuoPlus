@@ -29,7 +29,7 @@
     <view class="tlt_left"></view>
 </view>
 <view class="w670">
-	<view class="comment bg1">
+	<view class="comment bg1" bindtap="intoPath" data-path="/pages/indexStateDetail/indexStateDetail">
 		<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
@@ -67,7 +67,7 @@
             </view>
         </view>
     </view>
-    <view class="comment bg1">
+    <view class="comment bg1"  bindtap="intoPath" data-path="/pages/indexStateDetail/indexStateDetail">
 		<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">

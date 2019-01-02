@@ -4,7 +4,7 @@
     	<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="/images/user.png"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">
@@ -27,7 +27,7 @@
         <view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="/images/user.png"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">

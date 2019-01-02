@@ -261,3 +261,7 @@
 	width:100%;
 	height:450rpx;
 }
+.user_img image{
+	width:100%;
+	height:100%;
+}

@@ -2,7 +2,7 @@
 	<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="/images/user.png"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">
@@ -29,11 +29,11 @@
     <view class="tlt_left"></view>
 </view>
 <view class="w670">
-	<view class="comment bg1">
+	<view class="comment bg1" bindtap="intoPath" data-path="/pages/indexTeasingComment/indexTeasingComment">
 		<view class="information_tlt w690 flex" style="border:0">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="/images/user.png"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">
@@ -67,11 +67,11 @@
             </view>
         </view>
     </view>
-    <view class="comment bg1">
+    <view class="comment bg1"  bindtap="intoPath" data-path="/pages/indexTeasingComment/indexTeasingComment">
 		<view class="information_tlt w690 flex"  style="border:0">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="/images/user.png"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">

@@ -1,0 +1,143 @@
+<!--index.wxml-->
+<view class="user w690 bg1">
+    <view class="w710">
+        <view class="user_top flex">
+            <view class="user_left">
+                <view class="user_img shadow2">
+                    <open-data type="userAvatarUrl"></open-data>
+                </view>
+                <view class="user_icon">
+                    <image src="/images/user_banner_icon1.png"></image>
+                </view>
+                <view class="font24 color96" style="text-align:center;">
+                    <text class="font30 color3" style="margin-right:20rpx;">0</text>条通知
+                </view>
+            </view>
+            <view class="user_right" bindtap="intoPath" data-path="/pages/userInfor/userInfor">
+                <view class="user_infor">
+                    <view class="user_name color3">
+                        于果果
+                    </view>
+                    <view class="user_city color3 font28">
+                        于果果
+                    </view>
+                    <view class="user_record flex">
+                        <view class="user_record_left">
+                            <view class="user_icon" style="margin-top:0">
+                                <image src="/images/user_banner_icon2.png"></image>
+                            </view>
+                        </view>
+                        <view class="user_record_right font28 color96 avoidOverflow2">
+                            简单记录一下你自己
+                            让更多人关注你
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="user_sort flex bg1">
+    <view class="user_item" bindtap="intoPath" data-path="/pages/userGreat/userGreat">
+        <image src="/images/user_icon1.png"></image>
+        <view class="font24 color3">
+            我的点赞
+        </view>
+    </view>
+    <span></span>
+    <view class="user_item" bindtap="intoPath" data-path="/pages/userFocus/userFocus">
+        <image src="/images/user_icon2.png"></image>
+        <view class="font24 color3">
+            我的关注
+        </view>
+    </view>
+    <span></span>
+    <view class="user_item" bindtap="intoPath" data-path="/pages/userAnswer/userAnswer">
+        <image src="/images/user_icon3.png"></image>
+        <view class="font24 color3">
+            我的回答
+        </view>
+    </view>
+    <span></span>
+    <view class="user_item" bindtap="intoPath" data-path="/pages/userComment/userComment">
+        <image src="/images/user_icon4.png"></image>
+        <view class="font24 color3">
+            我的评论
+        </view>
+    </view>
+    <span></span>
+    <view class="user_item" bindtap="intoPath" data-path="/pages/userAbout/userAbout">
+        <image src="/images/user_icon5.png"></image>
+        <view class="font24 color3">
+            关于我们
+        </view>
+    </view>
+</view>
+<view class="w670">
+    <view class="index_title flexRowBetween"  style="font-size:46rpx;height:156rpx;line-height:156rpx;">
+        <view class=" font36 color3">我的发布</view>
+        <view class="font28" style="color:#9f9f9f">更多</view>
+    </view>
+    <view class="user_list flex shadow1">
+        <view class="user_time">
+            <view class="time_cont">
+                <view class="font24 color6">2018</view>
+                <view class="font32 color3">11月21日</view>
+            </view>
+        </view>
+        <view class="user_list_left bg1">
+            <image src="/images/user1.png"></image>
+        </view>
+        <view class="user_list_right bg1">
+            <view class="font28 color3 avoidOverflow list_tlt">我在国外做博士后我在国外做博士后</view>
+            <view class="font24 color6 avoidOverflow2">我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后</view>
+        </view>
+    </view>
+    <view class="user_list flex shadow1">
+        <view class="user_time">
+            <view class="time_cont">
+                <view class="font24 color6">2018</view>
+                <view class="font32 color3">11月21日</view>
+            </view>
+        </view>
+        <view class="user_list_right bg1" style="width:69.5%">
+            <view class="font28 color3 avoidOverflow list_tlt">我在国外做博士后我在国外做博士后</view>
+            <view class="font24 color6 avoidOverflow2">我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后</view>
+        </view>
+    </view>
+    <view class="user_list flex shadow1">
+        <view class="user_time">
+            <view class="time_cont">
+                <view class="font24 color6">2018</view>
+                <view class="font32 color3">11月21日</view>
+            </view>
+        </view>
+        <view class="user_list_left bg1">
+            <video src="/media/video.mp4"></video>
+        </view>
+        <view class="user_list_right bg1">
+            <view class="font28 color3 avoidOverflow list_tlt">我在国外做博士后我在国外做博士后</view>
+            <view class="font24 color6 avoidOverflow2">我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后</view>
+        </view>
+    </view>
+</view>
+<view style="width:100%;height:150rpx;"></view>
+<view class="navbar flex">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+        <view class="nav_img bg1">
+          <image src="/images/navbar1.png"></image>
+        </view>
+        <view class="text">首页</view>
+    </view>
+    <view class="navbar_add">
+        <view class="nav_img">
+           <image src="/images/navbar_add.png" style="border:solid 8rpx #fff;border-radius:50%;"></image>
+        </view>   
+    </view>
+    <view class="navbar_item  bg1">
+        <view class="nav_img">
+           <image src="/images/navbar2-a.png"></image>
+        </view>
+        <view class="text this-text">我的</view>
+    </view>
+</view>

@@ -1,0 +1,127 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+.information_title{
+	width:100%;
+	height:78rpx;
+	line-height:90rpx;
+	overflow: hidden;
+}
+.information_title span{
+	font-size:28rpx;
+	color:#333;
+	margin:0 10rpx;
+}
+.information_cont{
+	height:66rpx;
+}
+.sender image{
+	width:34rpx;
+	height:26rpx;
+	margin-left:10rpx;
+}
+.sender>view{
+	width:33.33%;
+}
+.detail{
+	overflow:hidden;
+}
+.detail image{
+	width:100%;
+	height:400rpx;
+	margin:20rpx auto;
+}
+.big_title{
+	width:100%;
+	height:116rpx;
+	text-align:center;
+	line-height:116rpx;
+}
+.user_img{
+	width:96rpx;
+	height:96rpx;
+	border-radius:50%;
+	overflow:hidden;
+}
+.user_left{
+	width:20%;
+}
+.user_center{
+	width:80%;
+}
+.comment{
+	border-radius:20rpx;
+	padding:40rpx 0 26rpx 0;
+	margin-top:24rpx;
+}
+.information_tlt{
+	height:180rpx;
+}
+.comment_list{
+	padding:20rpx 0;
+}
+.comment_left{
+	width:30%;
+}
+.comment_right{
+	width:70%;
+}
+.more_icon{
+	text-align:center;
+}
+.quesition_number>view{
+	text-align:center;
+}
+.more_icon image{
+	width:24rpx;
+	height:14rpx;
+}
+.handle{
+	width:100%;
+	height:96rpx;
+}
+.handle_browse{
+	width:33.33%;
+}
+.handle_browse image{
+	width:34rpx;
+	height:28rpx;
+	margin-right:14rpx;
+
+}
+.handle_browse button{
+	width:60rpx;
+	height:40rpx;
+	line-height:40rpx;
+	border:none;
+	padding:0;
+	margin:0;
+	background:none;
+}
+/**************问答****************/
+.quesition_user{
+	height:90rpx;
+	border-bottom:solid 1px #b0b0b0;
+}
+.quesition_user text{
+	margin-right:56rpx;
+}
+.quesition_handle{
+	height:112rpx;
+}
+.quesition_item{
+	width:50%;
+	height:40rpx;
+}
+.quesition_item image{
+	width:30rpx;
+	height:30rpx;
+	margin-right:14rpx;
+}
+.quesition_number{
+	text-align: center;
+	padding-bottom:24rpx;
+}
+.more_icon image{
+	width:26rpx;
+	height:14rpx;
+}

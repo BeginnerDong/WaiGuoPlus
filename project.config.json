@@ -1,0 +1,112 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.2",
+	"appid": "wx212611f012b9cf1d",
+	"projectname": "%E6%AD%AA%E6%9E%9C",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 11,
+			"list": [
+				{
+					"id": -1,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分类",
+					"pathName": "pages/index1/index1",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/user/user",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布图文",
+					"pathName": "pages/sendGraphic/sendGraphic",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布视频",
+					"pathName": "pages/sendVideo/sendVideo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "回答问题",
+					"pathName": "pages/indexAnswer/indexAnswer",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "他的主页",
+					"pathName": "pages/indexPage/indexPage",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "动态详情",
+					"pathName": "pages/indexDetail/indexDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的关注",
+					"pathName": "pages/userFocus/userFocus",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/userAbout/userAbout",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的信息",
+					"pathName": "pages/userInfor/userInfor",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "动态评论",
+					"pathName": "pages/indexStateDetail/indexStateDetail"
+				}
+			]
+		}
+	}
+}

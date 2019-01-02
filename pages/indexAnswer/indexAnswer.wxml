@@ -1,0 +1,33 @@
+<view class="send w670 bg1">
+    <view style="height:160rpx;" class="flex">
+        <view class="send_title avoidOverflow2 font28 color6">
+           这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法这一刻的想法
+        </view>
+    </view>
+</view>
+<view class="send">
+        <textarea placeholder="这一刻的想法" placeholder-class="placeholder"></textarea>
+    </view>
+<view class="w670 bg1" style="padding-top:36rpx;">   
+    <text class="answer_tlt font30 color3">回答秘籍</text>
+    <view class="font26 color" style="margin:24rpx 0">在文案中添加图片可以让回复更清晰，并获得更多的点赞。</view>
+    <view class="upload flex" style="margin-top:60rpx;">
+        <view class="upload_left flex flex_wrap">
+            <view class="upload_item">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_item">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_item">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_item">
+                <image src="/images/upload.png"></image>
+            </view>
+        </view>
+    </view>
+</view>
+<form style="margin-top:80rpx">
+    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;">立即回答</button>
+</form>

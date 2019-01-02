@@ -1,0 +1,58 @@
+<view class="logo">
+    <view class="logo_top flex bg1">
+        <view style="width:100%;">
+            <view class="user_img shadow2">
+                <open-data type="userAvatarUrl"></open-data>
+            </view>
+        </view>
+    </view>
+    <view class="flex w670 bg1">
+        <view class="main" style="width:100%;">
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">昵称:</view>
+                <input placeholder="雨木木" class="color9"></input>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">性别:</view>
+                <input placeholder="男" class="color9"></input>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">地区:</view>
+                <view class="color9 input avoidOverflow">西安</view>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">语言:</view>
+                <input class="color9" placeholder="中文"></input>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">生日:</view>
+                <view class="input flex">
+                    <view class="data_item flexCenter">
+                        <input placeholder="年份" placeholder-class="placeholder"></input>
+                        <text class="color3">年</text>
+                    </view>
+                    <view class="data_item flexCenter">
+                        <input placeholder="月份" placeholder-class="placeholder"></input>
+                        <text class="color3">月</text>
+                    </view>
+                    <view class="data_item flexCenter">
+                        <input placeholder="日期" placeholder-class="placeholder"></input>
+                        <text class="color3">日</text>
+                    </view>
+                </view>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">电话:</view>
+                <input class="color9" placeholder="1564651111113"></input>
+            </view>
+            <view class="input_list1 font28 flex" style="border:none;">
+                <view class="input_before color6">电话:</view>
+                <textarea height="auto" class="color9" placeholder="简单描述一下你自己，让更多人记住你"></textarea>
+            </view>
+        </view>
+    </view> 
+    <form>
+        <button class="submit_info" bindtap="intoPath" data-path="/pages/user/user">保存资料</button>
+    </form>
+</view>
+

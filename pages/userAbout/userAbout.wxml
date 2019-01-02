@@ -1,0 +1,36 @@
+
+<view class="logo">
+    <view class="logo_top flex">
+        <view style="width:100%;">
+            <view style="width:100%;text-align:center;margin-bottom:40rpx;"><image src="/images/about.png"></image></view>
+            <view class="font32 color3" style="text-align: center;">歪果Plus</view>
+            <view class="font24 color9" style="text-align: center;">V1.0.1</view>
+        </view>
+    </view>
+    <view class="w670 bg1" style="border-top: solid 1px #c9c9c9;border-bottom: solid 1px #c9c9c9">
+        <view class="about_list flex" bindtap="intoPath" data-path="/pages/userBack/userBack">
+            <view class="about_left font28" style="color:#251718;">
+                意见反馈
+            </view>
+            <view class="about_right">
+                <image src="/images/next.png"></image>
+            </view>
+        </view>
+        <view class="about_list flex" bindtap="intoPath" data-path="/pages/userAboutManual/userAboutManual">
+            <view class="about_left font28" style="color:#251718;">
+                使用手册
+            </view>
+            <view class="about_right">
+                <image src="/images/next.png"></image>
+            </view>
+        </view>
+        <view class="about_list flex" style="border:none;" bindtap="intoPath" data-path="/pages/userAboutAgreement/userAboutAgreement">
+            <view class="about_left font28" style="color:#251718;">
+                用户使用协议
+            </view>
+            <view class="about_right">
+                <image src="/images/next.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

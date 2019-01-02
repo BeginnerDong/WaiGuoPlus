@@ -1,0 +1,89 @@
+<!--index.wxml-->
+<view class="user w690 bg1">
+    <view class="w710">
+        <view class="user_top flex">
+            <view class="user_left">
+                <view class="user_img shadow2">
+                    <open-data type="userAvatarUrl"></open-data>
+                </view>
+                <view class="font24 submit_info" style="text-align:center;width:182rpx;height:60rpx;line-height:60rpx;margin:0 auto;">
+                    关注
+                </view>
+            </view>
+            <view class="user_right">
+                <view class="user_infor">
+                    <view class="user_name color3">
+                        于果果
+                    </view>
+                    <view class="user_city color3 font28">
+                        于果果
+                    </view>
+                    <view class="user_record flex">
+                        <view class="user_record_left">
+                            <view class="user_icon" style="margin-top:0">
+                                <image src="/images/user_banner_icon2.png"></image>
+                            </view>
+                        </view>
+                        <view class="user_record_right font28 color96  avoidOverflow">
+                            简单记录一下你自己
+                            让更多人关注你
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="user_sort flex bg1">
+    <view class="user_item">
+        <view class="font30 color96">62.5W</view>
+        <view class="font24 color3" style="color:#251718;font-weight:700">
+            我的问答
+        </view>
+    </view>
+    <view class="user_item" style="border-left:solid 1px #c9c9c9;border-right:solid 1px #c9c9c9">
+        <view class="font30 color96">62.5W</view>
+        <view class="font24 color3" style="color:#251718;font-weight:700">
+            我的评论
+        </view>
+    </view>
+    <view class="user_item">
+        <view class="font30 color96">62.5W</view>
+        <view class="font24 color3" style="color:#251718;font-weight:700">
+            关于我们
+        </view>
+    </view>
+</view>
+<view class="w670">
+    <view class="index_title flexRowBetween"  style="font-size:46rpx;height:156rpx;line-height:156rpx;">
+        <view class=" font36 color3">我的发布</view>
+        <view class="font28" style="color:#9f9f9f">更多</view>
+    </view>
+    <view class="user_list flex shadow1">
+        <view class="user_time">
+            <view class="time_cont">
+                <view class="font24 color6">2018</view>
+                <view class="font32 color3">11月21日</view>
+            </view>
+        </view>
+        <view class="user_list_left bg1">
+            <image src="/images/user1.png"></image>
+        </view>
+        <view class="user_list_right bg1">
+            <view class="font28 color3 avoidOverflow list_tlt">我在国外做博士后我在国外做博士后</view>
+            <view class="font24 color6 avoidOverflow2">我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后</view>
+        </view>
+    </view>
+    <view class="user_list flex shadow1">
+        <view class="user_time">
+            <view class="time_cont">
+                <view class="font24 color6">2018</view>
+                <view class="font32 color3">11月21日</view>
+            </view>
+        </view>
+        <view class="user_list_right bg1" style="width:69.5%">
+            <view class="font28 color3 avoidOverflow list_tlt">我在国外做博士后我在国外做博士后</view>
+            <view class="font24 color6 avoidOverflow2">我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后</view>
+        </view>
+    </view>
+</view>

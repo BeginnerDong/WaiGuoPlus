@@ -1,0 +1,124 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+.tab{
+	height:80rpx;
+	background:#fff;
+}
+.tab_item{
+	width:25%;
+	text-align:center;
+	height:80rpx;
+	line-height:80rpx;
+	transition:all 0.2s;
+	-webkit-transition:all 0.2s;
+	border-bottom:solid 2px #eee;
+	color:#333;
+}
+.tab_this{
+	color:#38bca4;
+	border-bottom:solid 2px #38bca4;
+	font-weight:700;
+}
+.user_top{
+	width:100%;
+	height:406rpx;
+	border-bottom:solid 1px #d6d6d6;
+}
+.user_left{
+	width:26%;
+	te-align:center;
+}
+.user_right{
+	width:74%;
+	text-align:right;
+}
+.user_img{
+	width:150rpx;
+	height:150rpx;
+	border-radius:50%;
+	overflow:hidden;
+	border:solid 6rpx #fff;
+	margin:0 auto 20rpx auto;
+}
+.user_icon{
+	text-align:center;
+	margin-top:30rpx;
+}
+.user_icon image{
+	width:32rpx;
+	height:24rpx;
+}
+.user_name{
+	font-size:60rpx;
+}
+.user_city{
+	margin:30rpx 0;
+}
+.user_record{
+	height:100rpx;
+}
+.user_record_left{
+	width:8%;
+	height:100%
+}
+.user_record_right{
+	width:92%;
+}
+.user_record{
+	width:60%;
+	float:right;
+}
+.user_sort{
+	height:172rpx;
+}
+.user_sort span{
+	width:1rpx;
+	height:68rpx;
+	background:#c9c9c9;
+}
+.user_item image{
+	width:40rpx;
+	height:38rpx;
+	margin-bottom:20rpx;
+}
+.user_item{
+	width:33.3333%;
+	text-align:center;
+}
+.user_time{
+	width:22%;
+	padding-right:3%;
+	height:100%;
+}
+.user_list{
+	margin-bottom:30rpx;
+}
+.user_list_left{
+	width:30%;
+	height:100%;
+}
+.user_list_right{
+	width:39.5%;
+	height:100%;
+	padding-left:2.5%;
+	padding-right:3%;
+}
+.time_cont{
+	text-align:right;
+}
+.time_cont .font32{
+	font-weight:bold;
+}
+.user_list{
+	width:100%;
+	height:150rpx;
+}
+.user_list_left image{
+	width:200rpx;
+	height:100%;
+}
+.list_tlt{
+	width:100%;
+	height:68rpx;
+	line-height:68rpx;
+}

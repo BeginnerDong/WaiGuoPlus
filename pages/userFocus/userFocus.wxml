@@ -1,0 +1,46 @@
+<view class="search bg1" style="border:0" catchtouchmove="true">
+    <view class="search_cont bg1">
+        <image src="/images/search3.png"></image>
+        <view class="font26 color6" style="width:100%;position:absolute;left:0;top:10%;text-align:center">还没有关注，快去关注吧~</view>
+    </view>
+</view>
+<view style="margin-top:14rpx;">
+    <view class="status bg1" style="border-bottom:solid 1px #ccc;">
+        <view class="information bg1"  bindtap="intoPath" data-path="/pages/indexPage/indexPage">
+            <view class="information_tlt w690 flex">
+                <view class="user_left">
+                    <view class="user_img">
+                      <open-data type="userAvatarUrl"></open-data>
+                    </view>
+                </view>
+                <view class="user_center font32 avoidOverflow">
+                    <view class="font32 color3">世界大师摄影</view>
+                    <view class="font28 color96">中国 ● 西安</view>
+                </view>
+                <view class="user_right font30 color6">
+                    <text class="font28 color96">62.1W 获赞</text>
+                    <image src="/images/next1.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="status bg1" style="border-bottom:solid 1px #ccc;">
+        <view class="information bg1"  bindtap="intoPath" data-path="/pages/indexPage/indexPage">
+            <view class="information_tlt w690 flex">
+                <view class="user_left">
+                    <view class="user_img">
+                      <open-data type="userAvatarUrl"></open-data>
+                    </view>
+                </view>
+                <view class="user_center font32 avoidOverflow">
+                    <view class="font32 color3">世界大师摄影</view>
+                    <view class="font28 color96">中国 ● 西安</view>
+                </view>
+                <view class="user_right font30 color6">
+                    <text class="font28 color96">62.1W 获赞</text>
+                    <image src="/images/next1.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

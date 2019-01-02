@@ -1,0 +1,35 @@
+<view class="send w670 bg1">
+    <textarea placeholder="请描述你遇到的问题或者给我提建议..." placeholder-class="placeholder"></textarea>
+    <view class="upload flex">
+        <view class="upload_left flex flex_wrap">
+            <view class="upload_item">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_item">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_item">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_item">
+                <image src="/images/upload.png"></image>
+            </view>
+        </view>
+        <view class="upload_right">
+            <view class="limit_number font24">
+                0/999
+            </view>
+        </view>
+    </view>
+</view>
+<view class="position bg1 flex w670">
+    <view class="position_img font28 color6">
+        联系方式
+    </view>
+    <view class="position_right">
+        <input type="" name="" placeholder="工作人员会与你取得联系" placeholder-class="placeholder" class="font28 color96"></input>
+    </view>
+</view>
+<form>
+    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;">发布</button>
+</form>

@@ -1,0 +1,38 @@
+<view class="send w670 bg1">
+    <view class="send_title flex">
+        <view class="send_left font28 color3">标题</view>
+        <view class="send_right">
+            <input class="font26" name="" placeholder="输入标题内容" placeholder-class="placeholder"></input>
+        </view>
+    </view>
+    <textarea placeholder="这一刻的想法" placeholder-class="placeholder" style="height:240rpx"></textarea>
+    <view class="upload flex">
+        <view class="upload_left flex flex_wrap">
+            <view class="upload_video">
+                <image src="/images/user1.png"></image>
+            </view>
+            <view class="upload_video">
+                <image src="/images/upload.png"></image>
+            </view>
+        </view>
+        <view class="upload_right">
+            <view class="limit_number font24">
+                0/999
+            </view>
+        </view>
+    </view>
+</view>
+<view class="position bg1 flex w670">
+    <view class="position_img flex">
+        <image src="/images/position.png"></image>
+    </view>
+    <view class="position_left avoidOverflow font28 color6">
+        当前位置
+    </view>
+    <view class="position_right">
+        <image src="/images/next.png"></image>
+    </view>
+</view>
+<form>
+    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;">发布</button>
+</form>

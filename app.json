@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/entrance/entrance",
+    "pages/index/index",
+    "pages/user/user",
+    "pages/sendGraphic/sendGraphic",
+    "pages/sendVideo/sendVideo",
+    "pages/search/search",
+    "pages/indexTeasing/indexTeasing",
+    "pages/indexAnswer/indexAnswer",
+    "pages/indexPage/indexPage",
+    "pages/sendTeasing/sendTeasing",
+    "pages/sendAnswer/sendAnswer",
+    "pages/sendSmallVideo/sendSmallVideo",
+    "pages/indexDetail/indexDetail",
+    "pages/userGreat/userGreat",
+    "pages/userFocus/userFocus",
+    "pages/userAnswer/userAnswer",
+    "pages/userComment/userComment",
+    "pages/userAbout/userAbout",
+    "pages/userInfor/userInfor",
+    "pages/indexStateDetail/indexStateDetail",
+    "pages/indexAnswerDetail/indexAnswerDetail",
+    "pages/indexAnswerComment/indexAnswerComment",
+    "pages/indexTeasingDetail/indexTeasingDetail",
+    "pages/indexTeasingComment/indexTeasingComment",
+    "pages/TeasingDetail/TeasingDetail",
+    "pages/anwserDetail/anwserDetail",
+    "pages/statusDetail/statusDetail",
+    "pages/userBack/userBack",
+    "pages/userAboutManual/userAboutManual",
+    "pages/userAboutAgreement/userAboutAgreement",
+    "pages/indexVideoDetail/indexVideoDetail"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "歪果Plus",
+    "navigationBarTextStyle": "black"
+  }
+}

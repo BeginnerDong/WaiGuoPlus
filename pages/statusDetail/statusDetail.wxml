@@ -1,0 +1,40 @@
+<view class="w670 bg1">
+	<view class="information_title flex">
+        <view class="title1 font30 color3">我在国外做博士后</view>
+        <span> | </span>
+        <view  class="title2 font30 color3">瑞典</view>
+        <span> ●</span>
+        <view  class="title3 font32 color3"> 工作篇</view>
+    </view>
+    <view class="font24 color96 sender flexRowBetween">
+    	<view>2019-10-10</view>
+		<view>发布人:世界大师摄影</view>
+		<view class="flex"  style="width:20%;">
+			<view style="float:right;text-align:right;width:100%;">
+				<image src="/images/handle1.png" style="float:right;"></image>
+				<view style="float:right;">2564</view>
+			</view>
+		</view>
+    </view>
+    <view class="detail">
+	    <view class="font28 color3" style="margin-top:70rpx;">
+	    	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
+	    </view>
+	    <image src="/images/index1.png"></image>
+	</view>
+</view>
+<view style="width:100%;height:120rpx;"></view>
+<view class="w670 comment_bottom bg1 flex">
+	<view class="search1">
+	    <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder"></input>
+	</view>
+	<view class="comment_great flexCenter">
+		<image src="/images/handle2.png"></image>
+		<text class="font24 color96">587466</text>
+	</view>
+	<view class="comment_share">
+		<button open-data="share">
+			<image src="/images/handle4.png"></image>
+		</button>
+	</view>
+</view>

@@ -1,0 +1,34 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+page{
+	min-height:100%;
+	overflow:hidden;
+}
+.logo{
+	width:100%;
+	height:100vh;
+}
+.logo_top{
+	width:100%;
+	height:53%;
+}
+.logo_top image{
+	width:200rpx;
+	height:200rpx;
+	margin:0 auto;
+}
+.about_list{
+	height:104rpx;
+	border-bottom:solid 1px #c9c9c9;
+}
+.about_left{
+	width:50%;
+}
+.about_right{
+	width:50%;
+	text-align:right;
+}
+.about_right image{
+	width:14rpx;
+	height:24rpx;
+}

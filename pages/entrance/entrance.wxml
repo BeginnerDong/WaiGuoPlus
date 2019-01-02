@@ -1,0 +1,15 @@
+<view class="entrance bg1">
+    <view class="entrance_tlt">
+        我在国内还是国外？
+    </view>
+    <view class="china flexRowBetween">
+        <view class="china_item" bindtap="intoPath" data-path="/pages/index/index">
+            <image src="/images/china.png"></image>
+            <view class="font32 color96">我在国内</view>
+        </view>
+        <view class="china_item" bindtap="intoPath" data-path="/pages/index/index">
+            <image src="/images/foreign.png"></image>
+            <view class="font32 color96">我在国外</view>
+        </view>
+    </view>
+</view>

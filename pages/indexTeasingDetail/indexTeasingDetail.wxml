@@ -1,0 +1,120 @@
+<view class="w670 bg1">
+	<view class="information_tlt w690 flex">
+            <view class="user_left">
+                <view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+            </view>
+            <view class="user_center font32 avoidOverflow">
+            	<view>世界大师摄影</view>
+            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            </view>
+            <view class="flex user_number"  style="width:20%;">
+				<view style="float:right;text-align:right;width:100%;">
+					<view style="float:right;" class="font24 color96">2564</view>
+					<image src="/images/handle1.png" style="float:right;"></image>
+				</view>
+			</view>
+    </view>
+    <view class="detail">
+	    <view class="font28 color3" style="margin-top:20rpx;">
+	    	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
+	    </view>
+	    <image src="/images/index1.png"></image>
+	</view>
+</view>
+<view class="big_title flexRowBetween">
+    <view class="tlt_left"></view>
+    <view class="tlt_center font28 color96">全部评论(16条)</view>
+    <view class="tlt_left"></view>
+</view>
+<view class="w670">
+	<view class="comment bg1">
+		<view class="information_tlt w690 flex" style="border:0">
+            <view class="user_left">
+                <view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+            </view>
+            <view class="user_center font32 avoidOverflow">
+            	<view>世界大师摄影</view>
+            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            </view>
+        </view>
+        <view class="font28 color3 w690">
+        	<view style="border-bottom:solid 1px #c9c9c9;padding-bottom:32rpx">
+	        	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
+	        </view>
+	        <view class="comment_list font28 color6 flex">
+	        	<view class="comment_left avoidOverflow">
+	        		我叫王小二:
+	        	</view>
+	        	<view class="comment_right">
+	        		我叫王小二我叫王小二
+	        	</view>
+	        </view>
+	        <view class="comment_list font28 color6 flex1">
+	        	<view class="comment_left avoidOverflow">
+	        		我叫王小二:
+	        	</view>
+	        	<view class="comment_right">
+	        		我叫王小我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二二我叫王小二
+	        	</view>
+	        </view>
+	        <view class="quesition_number font28 color9">
+                <view class="font28 color">查看全部</view>
+                <view class="more_icon"><image src="/images/down1.png"></image></view>
+            </view>
+        </view>
+    </view>
+    <view class="comment bg1">
+		<view class="information_tlt w690 flex"  style="border:0">
+            <view class="user_left">
+                <view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+            </view>
+            <view class="user_center font32 avoidOverflow">
+            	<view>世界大师摄影</view>
+            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            </view>
+        </view>
+        <view class="font28 color3 w690">
+        	<view style="border-bottom:solid 1px #c9c9c9;padding-bottom:32rpx">
+	        	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
+	        </view>  
+	        <view class="comment_list font28 color6 flex1">
+	        	<view class="comment_left avoidOverflow">
+	        		我叫王小二:
+	        	</view>
+	        	<view class="comment_right">
+	        		我叫王小我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二我叫王小二二我叫王小二
+	        	</view>
+	        </view>
+        </view>
+    </view>
+</view>
+<view class="big_title flexRowBetween">
+    <view class="tlt_left"></view>
+    <view class="tlt_center font28 color96">全部评论(0条)</view>
+    <view class="tlt_left"></view>
+</view>
+<view class="no_comment">
+	<image src="/images/no_comment.png"></image>
+	<view class="font24"style="color:#c9c9c9">还没有有人评论，你当是第一个吧~</view>
+</view>
+<view style="width:100%;height:120rpx;"></view>
+<view class="w670 comment_bottom bg1 flex">
+	<view class="search1">
+	    <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder"></input>
+	</view>
+	<view class="comment_great flexCenter">
+		<image src="/images/handle2.png"></image>
+		<text class="font24 color96">587466</text>
+	</view>
+	<view class="comment_share">
+		<button open-data="share">
+			<image src="/images/handle4.png"></image>
+		</button>
+	</view>
+</view>

@@ -1,0 +1,85 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+page{
+	background:#fff;
+}
+.send{
+	padding-bottom:10rpx;
+	border-top:solid 14rpx #efefef;
+}
+.send_left{
+	width:22%;
+}
+.send_right{
+	width:78%;
+}
+.placeholder{
+	color:#c9c9c9;
+}
+.send_title{
+	margin-top:14rpx;
+	height:80rpx;
+	overflow:hidden;
+}
+.send_right input{
+	color:#c9c9c9;
+}
+.send textarea{
+padding:3%;
+	width:94%;
+	height:340rpx;
+	font-size:26rpx;
+	color:#999999;
+	background:#efefef;
+}
+.placeholder{
+	color:#999;
+}
+.upload_item{
+	width:18%;
+	height:120rpx;
+	margin-right:16rpx;
+	margin-bottom:20rpx;
+}
+.upload_item image{
+	width:100%;
+	height:100%;
+}
+.upload_left{
+	width:100%;
+}
+.limit_number{
+	color:#c9c9c9;
+	width:100%;
+	height:100%;
+	line-height:160rpx;
+	text-align:right;
+}
+.position{
+	height:100rpx;
+}
+.position_img{
+	width:10%;
+}
+.position_img image{
+	width:34rpx;
+	height:38rpx;
+	margin-right:30rpx;
+}
+.position{
+	margin-top:10rpx;
+}
+.position_left{
+	width:80%;
+}
+.position_right{
+	width:10%;
+	text-align:right;
+}
+.position_right image{
+	width:14rpx;
+	height:24rpx;
+}
+.answer_tlt{
+	border-bottom:solid 1px #333;
+}

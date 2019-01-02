@@ -1,0 +1,81 @@
+<!--index.wxml-->
+<view class="quesition w670">
+    <view class="information bg1 shadow1">
+        <view class="information_tlt w690 flex">
+            <view class="user_left">
+                <view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+            </view>
+            <view class="user_center font32 avoidOverflow">世界大师摄影</view>
+            <view class="user_right font30 colorc9">9分钟前</view>
+        </view>
+        <view class="w690">
+            <view class="information_title flex">
+                <view class="title1 font30 color3">我在国外做博士后</view>
+                <span> | </span>
+                <view  class="title2 font30 color3">瑞典</view>
+                <span> ●</span>
+                <view  class="title3 font32 color3"> 工作篇</view>
+            </view>
+            <view class="information_cont font26 color6 quesition_cont" style="height:auto;">
+                我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
+                 我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
+            </view>
+            <view class="quesition_handle flex">
+                <view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0" >
+                    <image src="/images/index_icon1.png"></image>
+                    <text class="font28 color3">邀请回答</text>
+                </view>
+                <span></span>
+                <view class="quesition_item flexCenter">
+                    <image src="/images/index_icon2.png"></image>
+                    <text class="font28 color3">立即回答</text>
+                </view>
+            </view>
+            <view class="quesition_number font28 color9" bindtap="show_more" style="{{is_more?'display:none':'display:block'}}">
+                <view><text class="color" style="margin-right:20rpx;">10</text>条回答</view>
+                <view class="more_icon"><image src="/images/up1.png"></image></view>
+            </view>
+            <view class="more_question" style="{{is_more?'display:block':'display:none'}}">
+                <view class="flex1" style="border-top:solid 1px #c9c9c9;width:100%">
+                    <view class="question_left flex">
+                        <view class="user_img">
+                          <open-data type="userAvatarUrl"></open-data>
+                        </view>
+                    </view>
+                    <view class="question_right">
+                        <view class="quesition_title flexRowBetween">
+                            <view class="font30 color3 avoidOverflow" style="width:60%;">我在国外做博士后</view>
+                            <view class="user_right font30 colorc9">9分钟前</view>
+                        </view>
+                        <view class="font26 color6 quesition_cont" style="border:none">
+                            我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后博士后我在国外做博士后我在国外做博士后
+                        </view>
+                    </view>
+                </view>
+                <view class="flex1" style="border-top:solid 1px #c9c9c9;width:100%">
+                    <view class="question_left flex">
+                        <view class="user_img">
+                          <open-data type="userAvatarUrl"></open-data>
+                        </view>
+                    </view>
+                    <view class="question_right">
+                        <view class="quesition_title flexRowBetween">
+                            <view class="font30 color3 avoidOverflow" style="width:60%;">我在国外做博士后</view>
+                            <view class="user_right font30 colorc9">9分钟前</view>
+                        </view>
+                        <view class="font26 color6 quesition_cont" style="border:none">
+                            我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后博士后我在国外做博士后我在国外做博士后
+                        </view>
+                    </view>
+                </view>
+                <view class="quesition_number font28 color9" bindtap="show_more">
+                    <view>收起回答</view>
+                    <view class="more_icon"><image src="/images/up2.png"></image></view>
+                </view>
+            </view>
+             
+        </view>
+    </view>
+</view>

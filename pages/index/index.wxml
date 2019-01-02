@@ -302,7 +302,7 @@
                     <image src="/images/handle2.png"></image>
                     <text class="color96 font24">1234</text>
                 </view>
-                <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexStateDetail/indexStateDetail">
+                <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexVideoComment/indexVideoComment">
                     <image src="/images/handle3.png"></image>
                     <text class="color96 font24">1234</text>
                 </view>

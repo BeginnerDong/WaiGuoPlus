@@ -1,0 +1,59 @@
+
+<view class="w670">
+	<view class="comment bg1">
+		<view class="information_tlt w690 flex">
+            <view class="user_left">
+                <view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+            </view>
+            <view class="user_center font32 avoidOverflow">
+            	<view>世界大师摄影</view>
+            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            </view>
+        </view>
+        <view class="font28 color3 w690">
+        	<view style="padding-bottom:32rpx">
+	        	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
+	        </view>
+	    </view>
+    </view>
+	<view class="big_title flexRowBetween" bindtap="show_all">
+	    <view class="tlt_left"></view>
+	    <view class="tlt_center font28 color96">全部评论(16条)</view>
+	    <view class="tlt_left"></view>
+	</view>
+    <view class="comment bg1">
+		<view class="information_tlt w690 flex">
+            <view class="user_left">
+                <view class="user_img">
+                  <open-data type="userAvatarUrl"></open-data>
+                </view>
+            </view>
+            <view class="user_center font32 avoidOverflow">
+            	<view>世界大师摄影</view>
+            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            </view>
+        </view>
+        <view class="font28 color3 w690">
+        	<view style="padding-bottom:32rpx">
+	        	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
+	        </view>  
+        </view>
+    </view>
+</view>
+<view style="width:100%;height:120rpx;"></view>
+<view class="w670 comment_bottom bg1 flex">
+	<view class="search1">
+	    <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder"></input>
+	</view>
+	<view class="comment_great flexCenter">
+		<image src="/images/handle2.png"></image>
+		<text class="font24 color96">587466</text>
+	</view>
+	<view class="comment_share">
+		<button open-data="share">
+			<image src="/images/handle4.png"></image>
+		</button>
+	</view>
+</view>

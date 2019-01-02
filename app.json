@@ -30,7 +30,8 @@
     "pages/userBack/userBack",
     "pages/userAboutManual/userAboutManual",
     "pages/userAboutAgreement/userAboutAgreement",
-    "pages/indexVideoDetail/indexVideoDetail"
+    "pages/indexVideoDetail/indexVideoDetail",
+    "pages/indexVideoComment/indexVideoComment"
 
   ],
   "window": {

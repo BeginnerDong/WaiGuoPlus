@@ -104,7 +104,7 @@
     </view>
 </view>
 <view class="status" style="{{currentId == 1?'display:block;':'display:none'}}">
-    <view class="w670">
+    <view class="w670" bindtap="intoPath" data-path="/pages/detail/detail">
         <view class="record bg">
             <view class="record_cont flex">
                 <view class="record_left flex">

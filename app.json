@@ -31,7 +31,9 @@
     "pages/userAboutManual/userAboutManual",
     "pages/userAboutAgreement/userAboutAgreement",
     "pages/indexVideoDetail/indexVideoDetail",
-    "pages/indexVideoComment/indexVideoComment"
+    "pages/indexVideoComment/indexVideoComment",
+    "pages/detail/detail",
+    "pages/userMessage/userMessage"
 
   ],
   "window": {

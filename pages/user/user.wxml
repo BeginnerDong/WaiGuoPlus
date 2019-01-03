@@ -6,10 +6,10 @@
                 <view class="user_img shadow2">
                     <open-data type="userAvatarUrl"></open-data>
                 </view>
-                <view class="user_icon">
+                <view class="user_icon"  bindtap="intoPath" data-path="/pages/userMessage/userMessage">
                     <image src="/images/user_banner_icon1.png"></image>
                 </view>
-                <view class="font24 color96" style="text-align:center;">
+                <view class="font24 color96" style="text-align:center;" bindtap="intoPath" data-path="/pages/userMessage/userMessage">
                     <text class="font30 color3" style="margin-right:20rpx;">0</text>条通知
                 </view>
             </view>

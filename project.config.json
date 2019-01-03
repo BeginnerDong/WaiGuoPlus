@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -104,7 +104,19 @@
 				{
 					"id": -1,
 					"name": "动态评论",
-					"pathName": "pages/indexStateDetail/indexStateDetail"
+					"pathName": "pages/indexStateDetail/indexStateDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息通知哦",
+					"pathName": "pages/userMessage/userMessage"
 				}
 			]
 		}

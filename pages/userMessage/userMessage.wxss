@@ -1,0 +1,42 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+page{
+	background:#fff;
+}
+.system_message{
+	height:340rpx;
+	border-bottom:solid 1px #c9c9c9;
+}
+.message{
+	width:100%;
+	height:278rpx;
+}
+.message_left{
+	width:12%;
+	height:100%;
+}
+.message_right{
+	width:88%;
+}
+.user_img{
+	width:60rpx;
+	height:60rpx;
+	border-radius:50%;
+	overflow:hidden;
+}
+.notice{
+	height:60rpx;
+}
+.message_list{
+	height:100%;
+}
+.message_cont{
+	
+	overflow:hidden;
+	height:76rpx;
+}
+.message_box{
+	height:134rpx;
+	background:#efefef;
+	margin-top:34rpx;
+}

@@ -1,0 +1,30 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"
+page{
+	background:#fff;
+}
+.detail_tlt{
+	font-size:50rpx;
+}
+.small{
+	margin-top:60rpx;
+}
+.small text{
+	font-size:36rpx;
+	color:#b2b2b2;
+	margin-right:34rpx;
+}
+.detail_cont{
+	width:86%;
+	padding:6% 7%;
+	background:linear-gradient(to bottom,rgba(241,241,241,1.00),rgba(247,247,247,0.2));
+	line-height:48rpx;
+	margin:80rpx 0;
+}
+.detail_title{
+	text-align:center;
+	color:#b5b2b3;
+}
+.content{
+	margin-top:70rpx;
+}

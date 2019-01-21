@@ -1,4 +1,3 @@
-
 /**
  * Created by jimmy-jiang on 2016/11/21.
  */
@@ -6,16 +5,35 @@
 import { Token } from 'token.js';
 var token = new Token();
 var WxParse = require('../wxParse/wxParse.js');
+var QQMapWX = require('qqmap-wx-jssdk.min.js');
+var wxMap = new QQMapWX({
+  key: '4BEBZ-ZM43U-U6SVY-BZ5X3-44T35-4ZFD6' // 必填
+});
 
 class Base{
    
     //http 请求类, 当noRefech为true时，不做未授权重试机制
     request(params) {
         var that = this;
-        var baseRestUrl = 'https://liubin.yisuiyanghuoguo.com/liubin/public/index.php/api/v1/';
+        getApp().globalData.buttonClick = true;
+        var baseRestUrl = 'http://www.waiguoplus.com/api/public/index.php/api/v1/';
         var url=baseRestUrl + params.url;
-        
-        
+        const callback = (res)=>{
+            that.request(params);
+        };
+
+        if(params.data.tokenFuncName){
+            console.log('params.data.token');
+            if(params.data.refreshToken){
+                token[params.data.tokenFuncName](callback,{refreshToken:true});
+            }else{
+                params.data.token = token[params.data.tokenFuncName](callback);
+            };
+            if(!params.data.token){
+                return;
+            };
+            console.log('params.data.token',params.data.token);
+        };
         
         wx.request({
             url: url,
@@ -30,26 +48,59 @@ class Base{
                 // 异常不要返回到回调中，就在request中处理，记录日志并showToast一个统一的错误即可
                 var code = res.data.solely_code;
                 if (res.data.solely_code == '200000') {
-                    const callback = (data)=>{
-                        that.request(data);
-                    };
-                    if(wx.getStorageSync('threeToken')&&params.data.token == wx.getStorageSync('threeToken')){
-                        that.logOff();
-                    }else{
-                       token.getUserInfo(params,callback); 
-                    };
-                    
-                    
-                    
+                    console.log('params.data.tokenFuncName',params)
+                    token[params.data.tokenFuncName](callback,{refreshToken:true});
                 } else {
                     params.sCallback && params.sCallback(res.data);
-                }
+                };
+                getApp().globalData.buttonClick = false;
             },
             fail: function (err) {
-                console.log(err)
-                //wx.hideNavigationBarLoading();
-                //that._processError(err);
-                // params.eCallback && params.eCallback(err);
+                
+                wx.showToast({
+                    title:'网络故障',
+                    icon:'fail',
+                    duration:2000,
+                    mask:true,
+                });
+                getApp().globalData.buttonClick = false;
+            }
+        });  
+    }
+
+    uploadFile(filePath,name,formData,callback){
+
+        var that = this;
+        const c_callback = (res)=>{
+            that.uploadFile(filePath,name,formData,callback);
+        };
+        console.log('uploadFile',formData)
+        if(formData.tokenFuncName){
+            if(formData.refreshTokn){
+                token[formData.tokenFuncName](c_callback,{refreshToken:true});
+            }else{
+                formData.token = token[formData.tokenFuncName](c_callback);
+            };
+            if(!formData.token){
+                return;
+            };
+        };
+        wx.uploadFile({
+            url: 'http://www.waiguoplus.com/api/public/index.php/api/v1/Base/FtpFile/upload',
+            filePath:filePath,
+            name:name,
+            formData:formData,
+            success: function (res) {
+                if(res.data){
+                    res.data = JSON.parse(res.data);
+                };
+                if (res.data.solely_code == '200000') {
+                    token[formData.tokenFuncName](c_callback,{refreshToken:true});
+                }else{
+                    callback&&callback(res.data);
+                };
+            },
+            fail: function(err){
                 wx.showToast({
                     title:'网络故障',
                     icon:'fail',
@@ -57,13 +108,75 @@ class Base{
                     mask:true,
                 });
             }
-        });
-
-       
-        
+        })
     }
 
-    _processError(err){
+    parentAdd(tokenFuncName,parent_no,callback,passage1){
+       var token = new Token({parent_no:parent_no,passage1:passage1});
+       token[tokenFuncName](callback,{refreshToken:true});
+    }
+
+
+    getLocation(type,callback){
+        wx.getLocation({
+          type: 'gcj02',
+          success: function (res) {
+            var latitude = res.latitude
+            var longitude = res.longitude
+            
+            if(type=='getGeocoder'){
+                callback&&callback(res)
+                return;
+            };
+            if(type=='reverseGeocoder'){
+                wxMap.reverseGeocoder({
+                  location: {
+                    latitude: latitude,
+                    longitude: longitude
+                  },
+                  success: function (res) {
+                    callback&&callback(res.result)
+                  },
+                  fail(res){
+                    wx.showToast({
+                        title:'获取位置失败',
+                        icon:'none',
+                        duration:2000,
+                        mask:true,
+                    });
+                  }
+                });  
+            }
+          },
+          fail(res) {
+            wx.showToast({
+                title:'获取经纬度失败',
+                icon:'none',
+                duration:2000,
+                mask:true,
+            }); 
+          }
+        })
+    }
+
+
+
+    commonInit(self){
+        wx.showLoading();
+        self.data.buttonCanClick = false;
+        self.data.mainData = [];
+        self.data.paginate = this.cloneForm(getApp().globalData.paginate);
+        self.data.isLoadAll = false;
+        self.setData({
+          fonts:getApp().globalData.font,
+        });
+        wx.removeStorageSync('checkLoadAll');
+    }
+
+
+
+
+    _processError(err){ 
         console.log(err);
     }
 
@@ -77,6 +190,16 @@ class Base{
     /*获得元素上的绑定的值*/
     getDataSet(event, key) {
         return event.currentTarget.dataset[key];
+    };
+
+    checkArrayEqual(array1,array2){
+        
+        if(array1.sort().toString() == array2.sort().toString()){
+            return true;
+        }else{
+            return false;
+        }
+        
     };
 
 
@@ -96,9 +219,31 @@ class Base{
             if(pform[key]){
                 form[key] = pform[key];
             }
-            
         };   
         return form;           
+    };
+
+    buttonCanClick(self,type){
+        if(type){
+            self.data.buttonCanClick = type;
+            self.setData({
+                web_buttonCanClick:self.data.buttonCanClick
+            });
+            if(type){
+                wx.hideLoading();
+            };
+            return type;
+        }else if(self.data.buttonCanClick){
+            self.data.buttonCanClick = false;
+            self.setData({
+                web_buttonCanClick:self.data.buttonCanClick
+            });
+            wx.showLoading();
+            return self.data.buttonCanClick;
+        }else{
+            wx.showLoading();
+            return false;
+        };
     };
 
     dealRes(res){
@@ -155,15 +300,118 @@ class Base{
             //result.push(key);
             if(type=='push'){
                 result.push(obj[key]);
-            }
-
+            };
             if(type=='unshift'){
                 result.unshift(obj[key]);
-            }
-            
-            
-        }
+            };
+        };
         return result;
+    };
+
+
+    getStorageArray(storageName,key,value){
+        const self = this;
+        if(wx.getStorageSync(storageName)){
+            var array = JSON.parse(wx.getStorageSync(storageName));
+            if(key&&value&&array){
+                var index = self.findItemInArray(array,key,value)[0];
+                return array[index];
+            }else if(array){
+                return array;
+            }else{
+                return false;
+            };
+        }else{
+            return [];
+        };
+    };
+
+    setStorageArray(storageName,item,key,limit,type='unshift'){
+
+        const self = this;
+        if(wx.getStorageSync(storageName)){
+            var array = JSON.parse(wx.getStorageSync(storageName));
+            if(array.length<limit){
+                self.setItemInArray(array,item,key,type);
+            }else{
+                if(type=='unshift'){
+                    array.splice(array.length-1,1);
+                }else{
+                    array.splice(0,1);
+                };
+                self.setItemInArray(array,item,key,type);
+            };
+        }else{
+            var array = [];
+            array[type](item);
+        };
+        array = JSON.stringify(array);
+        wx.setStorageSync(storageName,array);
+        return true;
+
+    };
+
+    delStorageArray(storageName,item,key){
+
+        const self = this;
+        var array = JSON.parse(wx.getStorageSync(storageName));
+        var index = self.findItemInArray(array,key,item[key])[0];
+        array.splice(index,1);
+        array = JSON.stringify(array);
+        wx.setStorageSync(storageName,array);
+        return true;
+
+    };
+
+
+
+    findItemInArray(array,fieldName,field){
+
+        for(var i=0;i<array.length;i++){
+            if(array[i][fieldName] == field){
+                return [i,array[i]];
+            }
+        };
+        return false;
+    };
+
+    findItemsInArray(array,fieldName,field){
+        var array = [];
+        for(var i=0;i<array.length;i++){
+            if(array[i][fieldName] == field){
+                array.push({
+                    index:i,
+                    data:array[i]
+                });
+            }
+        };
+        return array;
+    };
+
+
+    addItemInArray(array,fieldName){
+        var count = 0;
+        for(var i=0;i<array.length;i++){
+            if(array[i][fieldName]){
+                count += parseFloat(array[i][fieldName])
+            };
+        };
+        return count.toFixed(2);
+    };
+
+    setItemInArray(array,item,fieldName,type='push'){
+        var findI = -1;
+        for(var i=0;i<array.length;i++){
+            if(array[i][fieldName] == item[fieldName]){
+                findI = i;
+            };
+        };
+        if(findI>=0){
+            array[findI] = item;
+        }else{
+            array[type](item);
+        };
+        return array;
     };
 
     footOne(res,name,limit,objName){
@@ -186,7 +434,6 @@ class Base{
               var history = {};
               for(var i=0;i<historyArray.length;i++){
                 history[historyArray[i][name]] = historyArray[i];
-                
               };
             }
             wx.setStorageSync(objName,history);
@@ -249,6 +496,61 @@ class Base{
         }
     };
 
+    skuChoose(skuData,choosed_sku_item){
+        const self = this;
+
+        var can_choose_sku_item = [];
+        var choosed_skuData = {};
+
+        for(var i=0;i<skuData.length;i++){ 
+          if(JSON.stringify(skuData[i].sku_item.sort())==JSON.stringify(choosed_sku_item.sort())){
+            choosed_skuData = self.cloneForm(skuData[i]);
+            can_choose_sku_item = choosed_sku_item;
+            break;
+          }else{
+            if(choosed_sku_item.length>0){
+                var all = true;
+                for(var c_i=0;c_i<choosed_sku_item.length;c_i++){ 
+                    if(skuData[i].sku_item.indexOf(choosed_sku_item[c_i])==-1){
+                        all = false;
+                    };
+                };
+                if(all){
+                    can_choose_sku_item.push.apply(can_choose_sku_item,skuData[i].sku_item);
+                };
+            }else{
+                can_choose_sku_item.push.apply(can_choose_sku_item,skuData[i].sku_item);
+            };
+          };   
+        };
+
+        return {
+            choosed_skuData:choosed_skuData,
+            can_choose_sku_item:this.uniqueArray(can_choose_sku_item)
+        };
+    };
+
+    uniqueArray(array) {
+        array.sort();
+        var re = [array[0]];
+        for (var i = 1; i < array.length; i++) {
+            if (array[i] !== re[re.length - 1]) {
+                re.push(array[i]);
+            }
+        }
+        return re;
+    };
+
+    intersectionInArray(array,array1){
+        var newArray = [];
+        for(var i=0;i<array.length;i++){ 
+            if(array1.indexOf(array[i])!=-1){
+                newArray.push(array[i])
+            };   
+        };
+        return newArray;
+    };
+
 
     clearPageIndex(self){
         self.data.paginate.currentPage = 1;
@@ -266,17 +568,70 @@ class Base{
     };
 
 
-    checkComplete(obj){
 
+/*    checkComplete(obj){
         var pass = true;
         for(var key in obj){
-          if(!obj[key]||JSON.stringify(obj[key])=='[]'){
+          if(!obj[key]||obj[key]=='0'){
+            console.log(obj[key]);
             pass = false;
           };
         };
         return pass;
+        console.log(pass);
+    };*/
 
+    checkComplete(obj){
+        var pass = true;
+        for(var key in obj){
+
+          if(!obj[key]){
+            if(obj[key]===0){
+                pass = true;
+            }else{
+                pass = false;
+            };
+          };
+        };
+        return pass;
+        console.log(pass);
     };
+
+    getcurrentPage(){
+        var pages = getCurrentPages();
+        var currentPage = pages[pages.length-1];
+        return currentPage;
+    };
+
+    checkLoadAll(array,item,self){
+
+        var path = this.getcurrentPage().route
+        if(wx.getStorageSync('checkLoadAll')&&wx.getStorageSync('checkLoadAll').path==path){
+            var testArray = wx.getStorageSync('checkLoadAll').testArray;
+        }else{
+            var testArray = [];
+        };
+        testArray.push(item);
+        if(this.checkArrayEqual(array,testArray)){
+            wx.hideLoading();
+            wx.removeStorageSync('checkLoadAll');
+            if(self){
+                self.data.buttonCanClick = true;
+                self.setData({
+                    web_buttonCanClick:self.data.buttonCanClick
+                });
+            };
+            wx.hideNavigationBarLoading();
+            wx.stopPullDownRefresh();
+            return true;
+        }else{
+            wx.setStorageSync('checkLoadAll',{path:path,testArray:testArray});
+            return false
+        };
+        
+    };
+
+
 
 
     showToast(title,type,duration,func){
@@ -289,26 +644,32 @@ class Base{
         })
     };
 
-    pathTo(path,type){
-
+    pathTo(path,type,callback){
         if(type=='nav'){
             wx.navigateTo({
-                url:path
+                url:path,
+                success:callback
             });
         }else if(type=='tab'){
             wx.switchTab({
-                url:path
+                url:path,
+                success:callback
             });
         }else if(type=='redi'){
             wx.redirectTo({
-                url:path
+                url:path,
+                success:callback
             });
         }else if(type=='rela'){
             wx.reLaunch({
-                url:path
+                url:path,
+                success:callback
             });
         }
+        
     };
+
+    
 
     arrayByItem(field,fieldName,array){
 
@@ -326,13 +687,7 @@ class Base{
                 wx.hideLoading();
                 this.showToast('授权请点击同意','fail');
               }else{
-                token.getUserInfo();
-                wx.getUserInfo({
-                    success: function(user) {
-                        callback&&callback(user.userInfo,setting);  
-                    }
-                });
-                
+                callback&&callback();
               };
             }
         });
@@ -444,10 +799,10 @@ class Base{
     logOff(){
         const self = this;
         wx.removeStorageSync('login');
-        wx.removeStorageSync('threeInfo');
-        wx.removeStorageSync('threeToken');
+        wx.removeStorageSync('employeeToken');
+        wx.removeStorageSync('employeeInfo');
         if(!wx.getStorageSync('login')){
-            self.pathTo('/pages/User/user','tab')
+            self.pathTo('/pages/entrance/user/user','rela')
         }else{
             self.showToast('系统故障','fail')
         }

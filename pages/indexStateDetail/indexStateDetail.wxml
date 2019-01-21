@@ -1,7 +1,7 @@
 
 <view class="w670">
 	<view class="comment bg1">
-		<view class="information_tlt w690 flex">
+		<view class="information_tlt w690 flex" >
             <view class="user_left">
                 <view class="user_img">
                   <open-data type="userAvatarUrl"></open-data>

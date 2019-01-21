@@ -1,8 +1,10 @@
 <view class="w690">
     <view class="manual bg1 w690">
         <view class=" font28 color6">
-            用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册用户手册
+            <view class="content ql-editor">
+                <import src="../../wxParse/wxParse.wxml"/>
+                <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+            </view> 
         </view>
-        <image src="/images/index1.png"></image>
     </view>
 </view>

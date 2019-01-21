@@ -10,49 +10,66 @@
         <view class="main" style="width:100%;">
             <view class="input_list1 font28 flex">
                 <view class="input_before color6">昵称:</view>
-                <input placeholder="雨木木" class="color9"></input>
+                <view  class="color9">{{web_mainData.nickname}}</view>
             </view>
-            <view class="input_list1 font28 flex">
-                <view class="input_before color6">性别:</view>
-                <input placeholder="男" class="color9"></input>
-            </view>
-            <view class="input_list1 font28 flex">
-                <view class="input_before color6">地区:</view>
-                <view class="color9 input avoidOverflow">西安</view>
-            </view>
-            <view class="input_list1 font28 flex">
-                <view class="input_before color6">语言:</view>
-                <input class="color9" placeholder="中文"></input>
-            </view>
-            <view class="input_list1 font28 flex">
-                <view class="input_before color6">生日:</view>
-                <view class="input flex">
-                    <view class="data_item flexCenter">
-                        <input placeholder="年份" placeholder-class="placeholder"></input>
-                        <text class="color3">年</text>
-                    </view>
-                    <view class="data_item flexCenter">
-                        <input placeholder="月份" placeholder-class="placeholder"></input>
-                        <text class="color3">月</text>
-                    </view>
-                    <view class="data_item flexCenter">
-                        <input placeholder="日期" placeholder-class="placeholder"></input>
-                        <text class="color3">日</text>
-                    </view>
+            <view class="input_list1 font28 flex" style="justify-content:flex-start">
+                <text class="font30 input_before1">性别:</text>
+                <view data-value="1" data-key="gender" bindtap="changeBind" style="display:flex;margin-left:100rpx;align-items:center">
+                    <image src="{{web_sForm.gender=='1'?'/images/male_a.png':'/images/male.jpg'}}" style="width:40rpx;height:40rpx;margin-right:10rpx;" ></image>
+                    <view class="font28" style="{{web_sForm.gender=='1'?'color:#21c3d4':''}}">男</view>
+                </view>
+                
+                <view data-value="2" data-key="gender" bindtap="changeBind" style="display:flex;margin-left:80rpx;align-items:center">
+                    <image src="{{web_sForm.gender=='2'?'/images/female_a.jpg':'/images/female.jpg'}}" style="width:40rpx;height:40rpx;margin-right:10rpx" ></image>
+                    <view class="font28" style="{{web_sForm.gender=='2'?'color:#21c3d4':''}}">女</view>
                 </view>
             </view>
             <view class="input_list1 font28 flex">
+                <view class="input_before color6">国家:</view>
+                <input class="color9 input avoidOverflow"  data-key="level" bindblur="changeBind" value="{{web_sForm.level}}"></input>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">城市:</view>
+                <input class="color9 input avoidOverflow"  data-key="address" bindblur="changeBind" value="{{web_sForm.address}}"></input>
+            </view>
+            <view class="input_list1 font28 flex">
+                <view class="input_before color6">语言:</view>
+                <input class="color9"  data-key="language" bindblur="changeBind" value="{{web_sForm.language}}"></input>
+            </view>
+            <view class="input_list1 font28 flex">
+                <picker mode="date"  start="2000-01-01" end="2050-01-01" bindchange="bindDateChange" style="width:100%;">
+                  <view class="picker flex">
+                      <view class="input_before1 font28 flex" style="width:22%;">
+                          生日:
+                      </view>
+                      <view class="things_right flexRowBetween font28" style="width:50%;">
+                          <view class="thing1  flexRowBetween" style="width:24%;text-align: center;">
+                              <view class="font28"  style="text-align: center;width:100%;">{{web_sForm.passage_array[0]}}</view>
+                          </view>
+                          <view class="years font28 ">年</view>
+                          <view class="thing1  flexRowBetween"  style="width:24%;text-align: center;">
+                              <view class="font28"  style="text-align: center;width:100%;">{{web_sForm.passage_array[1]}}</view>
+                          </view>
+                           <view class="years font28">月</view>
+                          <view class="thing1  flexRowBetween"  style="width:24%;text-align: center;">
+                              <view class="font28" style="text-align: center;width:100%;">{{web_sForm.passage_array[2]}}</view>
+                          </view>
+                           <view class="years font28 ">日</view>
+                      </view>
+                  </view>
+                </picker>
+              </view>
+            <view class="input_list1 font28 flex">
                 <view class="input_before color6">电话:</view>
-                <input class="color9" placeholder="1564651111113"></input>
+                <input class="color9"  data-key="phone" bindblur="changeBind" value="{{web_sForm.phone}}"></input>
             </view>
             <view class="input_list1 font28 flex" style="border:none;">
-                <view class="input_before color6">电话:</view>
-                <textarea height="auto" class="color9" placeholder="简单描述一下你自己，让更多人记住你"></textarea>
+                <view class="input_before color6">个人签名:</view>
+                <textarea height="auto" class="color9" placeholder="简单描述一下你自己，让更多人记住你" data-key="passage1" bindblur="changeBind" value="{{web_sForm.passage1}}"></textarea>
             </view>
         </view>
     </view> 
-    <form>
-        <button class="submit_info" bindtap="intoPath" data-path="/pages/user/user">保存资料</button>
-    </form>
+
+    <button class="submit_info" open-type="getUserInfo" bindgetuserinfo="{{web_buttonCanClick?'submit':''}}">保存资料</button>
 </view>
 

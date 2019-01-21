@@ -1,12 +1,11 @@
 
 <view class="w670 bg1">
     <view class="font26 color6">
-        我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
-         我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
+        {{web_originData.content}}
     </view>
     <view class="quesition_user flex">
-        <text class="font22 color96">2018-9-9</text>
-        <text class="font22 color96">发布人:世界大师摄影</text>
+        <text class="font22 color96">{{web_originData.create_time}}</text>
+        <text class="font22 color96">发布人:{{web_originData.user.nickname}}</text>
     </view>
     <view class="quesition_handle flex">
         <view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0">
@@ -16,87 +15,62 @@
             </button>
         </view>
         <span></span>
-        <view class="quesition_item flexCenter" bindtap="intoPath" data-path="/pages/indexAnswer/indexAnswer">
+        <view class="quesition_item flexCenter" bindtap="intoPath" data-path="{{'/pages/indexAnswer/indexAnswer?id='+ web_originData.id}}">
             <image src="/images/index_icon2.png"></image>
             <text class="font28 color3">立即回答</text>
         </view>
     </view>
 </view>
- <view class="big_title font28 color96">
-    全部回答(16条)
-</view>
-<view class="w670">
-    <view class="comment bg1">
-    	<view class="information_tlt w690 flex">
-            <view class="user_left">
-                <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
-                </view>
-            </view>
-            <view class="user_center font32 avoidOverflow">
-            	<view>世界大师摄影</view>
-            	<view class="font22 color96">2018-9-9 12:23:00</view>
-            </view>
-        </view>
-        <view class="font28 color3 w690">
-        	<view style="padding-bottom:32rpx">
-            	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
-            </view>
-        </view>
-        <view class="handle flex">
-                    <view class="handle_browse flexCenter">
-                        <image src="/images/handle2.png"></image>
-                        <text class="color96 font24">1234</text>
-                    </view>
-                    <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexAnswerComment/indexAnswerComment">
-                        <image src="/images/handle3.png"></image>
-                        <text class="color96 font24">1234</text>
-                    </view>
-                    <view class="handle_browse flexCenter">
-                        <image src="/images/handle4.png"></image>
-                        <button open-type="share" class="font24 color96">分享</button>
-                    </view>
-                </view>
+
+
+<view wx:if="{{web_mainData.length>0}}" class="w670">
+     <view class="big_title font28 color96">
+        全部回答({{web_total}}条)
     </view>
-    <view class="comment bg1">
-        <view class="information_tlt w690 flex">
-            <view class="user_left">
-                <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="comment bg1">
+            <view class="information_tlt w690 flex">
+                <view class="user_left">
+                    <view class="user_img">
+                      <image src="{{item.user.headImgUrl}}" class="user_img"></image>
+                    </view>
+                </view>
+                <view class="user_center font32 avoidOverflow">
+                    <view>{{item.user.nickname}}</view>
+                    <view class="font22 color96">{{item.create_time}}</view>
                 </view>
             </view>
-            <view class="user_center font32 avoidOverflow">
-                <view>世界大师摄影</view>
-                <view class="font22 color96">2018-9-9 12:23:00</view>
+            <view class="font28 color3 w690">
+                <view style="padding-bottom:32rpx">
+                    {{item.content}}
+                </view>
+            </view>
+            <view class="handle flex">
+                <view class="handle_browse flexCenter">
+                    <image src="/images/handle2.png"></image>
+                    <text class="color96 font24">{{web_mainData.goodData.length?web_mainData.goodData.length:0}}</text>
+                </view>
+                <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexAnswerComment/indexAnswerComment?id={{item.id}}">
+                    <image src="/images/handle3.png"></image>
+                    <text class="color96 font24">{{item.remarkData.length?item.remarkData.length:0}}</text>
+                </view>
+                <view class="handle_browse flexCenter">
+                    <image src="/images/handle4.png"></image>
+                    <button open-type="share" class="font24 color96">分享</button>
+                </view>
             </view>
         </view>
-        <view class="font28 color3 w690">
-            <view style="padding-bottom:32rpx">
-                世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
-            </view>
-        </view>
-        <view class="handle flex">
-            <view class="handle_browse flexCenter">
-                <image src="/images/handle2.png"></image>
-                <text class="color96 font24">1234</text>
-            </view>
-            <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexAnswerComment/indexAnswerComment">
-                <image src="/images/handle3.png"></image>
-                <text class="color96 font24">1234</text>
-            </view>
-            <view class="handle_browse flexCenter">
-                <image src="/images/handle4.png"></image>
-                <button open-type="share" class="font24 color96">分享</button>
-            </view>
-        </view>
+    </block> 
+</view>
+
+<view wx:if="{{!web_mainData.length>0}}">
+    <view class="big_title flexRowBetween">
+        <view class="tlt_left"></view>
+        <view class="tlt_center font28 color96">全部问答(0条)</view>
+        <view class="tlt_left"></view>
     </view>
-</view>
-<view class="big_title flexRowBetween">
-    <view class="tlt_left"></view>
-    <view class="tlt_center font28 color96">全部问答(0条)</view>
-    <view class="tlt_left"></view>
-</view>
-<view class="no_comment">
-    <image src="/images/no_comment.png"></image>
-    <view class="font24"style="color:#c9c9c9">还没有有人评论，你当是第一个吧~</view>
+    <view class="no_comment">
+        <image src="/images/no_comment.png"></image>
+        <view class="font24"style="color:#c9c9c9">还没有有人评论，你当是第一个吧~</view>
+    </view>
 </view>

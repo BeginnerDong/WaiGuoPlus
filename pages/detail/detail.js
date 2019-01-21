@@ -4,69 +4,51 @@ const app = getApp();
 
 
 Page({
+
   data: {
-    currentId:1,
-    menu_show:false,
-    is_choose:false,
-    is_more:false,
+    isFirstLoadAllStandard:['getMainData']
   },
   //事件处理函数
  
   onLoad(options) {
     const self = this;
+    api.commonInit(self);
+    self.getMainData();
+  },
 
+  getMainData(){
+    const self= this;
+    const postData = {};
+    postData.searchItem ={
+      thirdapp_id:getApp().globalData.thirdapp_id
+    };
+    postData.getBefore ={
+     caseData:{
+        tableName:'Label',
+        searchItem:{
+          title:['=',['小记录']],
+        },
+        middleKey:'menu_id',
+        key:'id',
+        condition:'in',
+      },
+    };
+    const callback = (res)=>{
+      self.data.mainData = {};
+      if(res.info.data.length>0){
+        self.data.mainData = res.info.data[0];
+        self.data.mainData.content = api.wxParseReturn(res.info.data[0].content).nodes;
+      };
+      console.log(self.data.mainData);
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
+      self.setData({
+        web_mainData:self.data.mainData,
+      });  
+    };
+    api.articleGet(postData,callback);
   },
-  tab(e){
-   this.setData({
-      currentId:e.currentTarget.dataset.id
-    })
-  },
-  menu(){
-    const self =this;
-    self.menu_show = !self.menu_show;
-    this.setData({
-      menu_show:self.menu_show
-    })
-  }, 
-  close(){
-     const self =this;
-    self.menu_show = false;
-    this.setData({
-      menu_show:self.menu_show
-    })
-  },
-  choose(){
-     const self =this;
-    self.is_choose = true;
-    self.menu_show = false;
-    this.setData({
-      is_choose:self.is_choose,
-      menu_show:self.menu_show
-    })
-  },
-  choose_close(){
-     const self =this;
-    self.is_choose = false;
-    this.setData({
-      is_choose:self.is_choose
-    })
-  },
-  /*******展示更多评论*********/
-  show_more(){
-    const self =this;
-    self.is_more = !self.is_more;
-    this.setData({
-      is_more:self.is_more
-    })
-  },
-  intoPath(e){
-    const self = this;
-    api.pathTo(api.getDataSet(e,'path'),'nav');
-  },
-  intoPathRedirect(e){
-    const self = this;
-    api.pathTo(api.getDataSet(e,'path'),'redi');
-  }, 
+
+
 })
 
   

@@ -1,23 +1,19 @@
 <view class="send w670 bg1">
-    <textarea placeholder="请描述你遇到的问题或者给我提建议..." placeholder-class="placeholder"></textarea>
+    <textarea placeholder="请描述你遇到的问题或者给我提建议..." placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
-            <view class="upload_item">
-                <image src="/images/user1.png"></image>
-            </view>
-            <view class="upload_item">
-                <image src="/images/user1.png"></image>
-            </view>
-            <view class="upload_item">
-                <image src="/images/user1.png"></image>
-            </view>
-            <view class="upload_item">
+            <block wx:for="{{web_submitData.mainImg}}" wx:key="index">
+                <view class="upload_item">
+                    <image src="{{item.url}}"></image>
+                </view>
+            </block>
+            <view class="upload_item" bindtap="upLoadImg">
                 <image src="/images/upload.png"></image>
             </view>
         </view>
         <view class="upload_right">
             <view class="limit_number font24">
-                0/999
+                {{web_submitData.mainImg.length}}/3
             </view>
         </view>
     </view>
@@ -27,9 +23,9 @@
         联系方式
     </view>
     <view class="position_right">
-        <input type="" name="" placeholder="工作人员会与你取得联系" placeholder-class="placeholder" class="font28 color96"></input>
+        <input type="" name="" placeholder="工作人员会与你取得联系" placeholder-class="placeholder" class="font28 color96" data-key="phone" bindblur="changeBind"  value="{{web_submitData.phone}}"></input>
     </view>
 </view>
 <form>
-    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;">发布</button>
+    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;" open-type="getUserInfo" bindgetuserinfo="{{web_buttonCanClick?'submit':''}}">发布</button>
 </form>

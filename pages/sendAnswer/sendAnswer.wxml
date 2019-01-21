@@ -1,5 +1,5 @@
 <view class="send w670 bg1">
-    <textarea placeholder="你想问什么？" placeholder-class="placeholder"></textarea>
+    <textarea placeholder="你想问什么？" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
         </view>
@@ -22,5 +22,5 @@
     </view>
 </view>
 <form>
-    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;">发布</button>
+    <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;" open-type="getUserInfo" bindgetuserinfo="{{web_buttonCanClick?'submit':''}}">发布</button>
 </form>

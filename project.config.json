@@ -4,15 +4,16 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.2.2",
-	"appid": "wx212611f012b9cf1d",
+	"appid": "wx68b0d5b13c1d9ebb",
 	"projectname": "%E6%AD%AA%E6%9E%9C",
 	"isGameTourist": false,
 	"condition": {
@@ -33,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 20,
 			"list": [
 				{
 					"id": -1,
@@ -116,7 +117,49 @@
 				{
 					"id": -1,
 					"name": "消息通知哦",
-					"pathName": "pages/userMessage/userMessage"
+					"pathName": "pages/userMessage/userMessage",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "动态发布图文",
+					"pathName": "pages/sendGraphic/sendGraphic",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "动态发布视频",
+					"pathName": "pages/sendVideo/sendVideo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布吐槽",
+					"pathName": "pages/sendTeasing/sendTeasing",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布小视频",
+					"pathName": "pages/sendSmallVideo/sendSmallVideo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "问答详情",
+					"pathName": "pages/indexAnswerDetail/indexAnswerDetail",
+					"query": "id=4"
+				},
+				{
+					"id": -1,
+					"name": "完善信息",
+					"pathName": "pages/userInfor/userInfor",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/user/user"
 				}
 			]
 		}

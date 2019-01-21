@@ -1,39 +1,38 @@
-<view class="search bg1" style="border:0" catchtouchmove="true">
+
+<!-- 当没有回答时，显示的内容 -->
+<view class="search bg1" style="border:0" catchtouchmove="true" wx:if="{{web_mainData.length==0}}">
     <view class="search_cont bg1">
-        <image src="/images/search5.png"></image>
-        <view class="font26 color6" style="width:100%;position:absolute;left:0;top:10%;text-align:center">还没有评论，快去发布吧~</view>
+        <image src="/images/search4.png"></image>
+        <view class="font26 color6" style="width:100%;position:absolute;left:0;top:10%;text-align:center">还没有回答，快去回答吧~</view>
     </view>
 </view>
+
 <view class="status">
-    <view class="w670">
-        <view class="information bg1 shadow1" >
-            <view class="w690">
-                <view class="information_title font30 color3  avoidOverflow2">
-                    我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
-                    我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
-                </view>
-                <view class="information_cont font26 color6 avoidOverflow2">
-                    我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
-                </view>
-                <view class="handle font24 color96" style="text-align:right">       
-                    7分钟前
-                </view>
-            </view>
-        </view>
-    </view>
-   <view class="w670">
-        <view class="information bg1 shadow1" >
-            <view class="w690">
-                <view class="information_title font30 color3  avoidOverflow2">
-                    我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
-                </view>
-                <view class="information_cont font26 color6 avoidOverflow2">
-                    我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后我在国外做博士后
-                </view>
-                <view class="handle font24 color96" style="text-align:right">       
-                    7分钟前
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="w670">
+            <view class="information bg1 shadow1" >
+                <view class="w690">
+                    <view class="information_title font30 color3  avoidOverflow2">
+                        {{item.quesition[0].title}}
+                    </view>
+                    <view class="information_cont font26 color6 avoidOverflow2">
+                        {{item.content}}
+                    </view>
+                    <view class="handle flex">
+                        <view class="handle_browse flex">
+                            <image src="/images/handle2.png"></image>
+                            <text class="color96 font24">{{item.goodData.length}}</text>
+                        </view>
+                        <view class="handle_browse flex">
+                            <image src="/images/handle3.png"></image>
+                            <text class="color96 font24">{{item.comment.length}}</text>
+                        </view>
+                        <view class="handle_browse font24 color96" style="text-align:right;">
+                           7分钟前
+                        </view>
+                    </view>
                 </view>
             </view>
         </view>
-    </view>
+    </block>
 </view>

@@ -16,10 +16,10 @@
             <view class="user_right" bindtap="intoPath" data-path="/pages/userInfor/userInfor">
                 <view class="user_infor">
                     <view class="user_name color3">
-                        于果果
+                        {{web_mainData.nickname}}
                     </view>
                     <view class="user_city color3 font28">
-                        于果果
+                        {{web_mainData.info.level!=''?web_mainData.info.level:'未知'}}·{{web_mainData.info.address!=''?web_mainData.info.address:'未知'}}·{{web_mainData.info.gender==1?'男生':'女生'}}
                     </view>
                     <view class="user_record flex">
                         <view class="user_record_left">
@@ -28,8 +28,7 @@
                             </view>
                         </view>
                         <view class="user_record_right font28 color96 avoidOverflow2">
-                            简单记录一下你自己
-                            让更多人关注你
+                            {{web_mainData.info.passage1!=''?web_mainData.info.passage1:'简单记录一下你自己让更多人关注你'}}
                         </view>
                     </view>
                 </view>

@@ -15,7 +15,8 @@ class Api extends Base{
             'package': param.package,
             'signType': param.signType,
             'paySign': param.paySign,
-            success: function () {
+            success: function (res) {
+                console.log(res);
                 wx.showToast({
                     title: '支付成功',
                     icon: 'success',
@@ -25,7 +26,8 @@ class Api extends Base{
                   
                 callback && callback(1);
             },
-            fail: function () {
+            fail: function (res) {
+                console.log(res);
                 wx.showToast({
                     title: '支付失败',
                     icon: 'success',
@@ -35,7 +37,6 @@ class Api extends Base{
                 callback && callback(0);
             }
         });
-
     }
   
 
@@ -44,12 +45,28 @@ class Api extends Base{
         var allParams ={
             url:'Common/Label/get',
             type:'post',
+            noToken:true,
             data:param,
             sCallback: function(data) {
                 callback && callback(data);
             }
         };
         this.request(allParams);
+    }
+
+
+
+    WxFormIdAdd(form_id,end_time){
+        var allParams ={
+            url:'Common/WxFormId/add',
+            type:'post',
+            data:{
+                tokenFuncName:'getEntranceToken',
+                form_id:form_id,
+                end_time:end_time,
+            },
+        };
+        this.request(allParams);       
     }
 
     upload(param,callback){
@@ -62,6 +79,151 @@ class Api extends Base{
             }
         };
         this.request(allParams);
+    }
+
+    skuGet(param,callback){
+        var allParams ={
+            url:'Common/Sku/get',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    skuAdd(param,callback){
+        var allParams ={
+            url:'Common/Sku/add',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    skuDelete(param,callback){
+        var allParams ={
+            url:'Common/Sku/delete',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    skuUpdate(param,callback){
+        var allParams ={
+            url:'Common/Sku/update',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    projectGet(param,callback){
+        var allParams ={
+            url:'Common/Project/get',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    projectDelete(param,callback){
+        var allParams ={
+            url:'Common/Project/delete',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    projectAdd(param,callback){
+        var allParams ={
+            url:'Common/Project/add',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    projectUpdate(param,callback){
+        var allParams ={
+            url:'Common/Project/update',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }    
+
+
+    processGet(param,callback){
+        var allParams ={
+            url:'Common/Process/get',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    processDelete(param,callback){
+        var allParams ={
+            url:'Common/Process/delete',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    processAdd(param,callback){
+        var allParams ={
+            url:'Common/Process/add',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    }
+
+    processUpdate(param,callback){
+        var allParams ={
+            url:'Common/Process/update',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
     }
 
     logGet(param,callback){
@@ -212,7 +374,21 @@ class Api extends Base{
             }
         };
         this.request(allParams);
+    }      
+
+    decryptWxInfo(param,callback){
+        var allParams ={
+            url:'Func/Common/decryptWxInfo',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
     }  
+
+
 
     pay(param,callback){
         var allParams ={
@@ -436,6 +612,7 @@ class Api extends Base{
             url:'Common/Product/get',
             type:'post',
             data:param,
+            noToken:true,
             sCallback: function(data) {
                 callback && callback(data);
             }
@@ -499,6 +676,7 @@ class Api extends Base{
             url:'Common/Sku/get',
             type:'post',
             data:param,
+            noToken:true,
             sCallback: function(data) {
                 callback && callback(data);
             }
@@ -539,6 +717,7 @@ class Api extends Base{
             url:'Common/Article/get',
             type:'post',
             data:param,
+            noToken:true,
             sCallback: function(data) {
                 callback && callback(data);
             }
@@ -719,6 +898,30 @@ class Api extends Base{
         };
         this.request(allParams);
     }
+
+    directPay(param,callback){
+        var allParams ={
+            url:'Base/Pay/directPay',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
+    }
+
+    addVirtualOrder(param,callback){
+        var allParams ={
+            url:'Func/Order/addVirtualOrder',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);       
+    } 
 
 
 

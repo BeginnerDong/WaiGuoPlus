@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/entrance/entrance",
     "pages/index/index",
+    "pages/entrance/entrance", 
     "pages/user/user",
     "pages/sendGraphic/sendGraphic",
     "pages/sendVideo/sendVideo",

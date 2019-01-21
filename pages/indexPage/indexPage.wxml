@@ -4,7 +4,7 @@
         <view class="user_top flex">
             <view class="user_left">
                 <view class="user_img shadow2">
-                    <open-data type="userAvatarUrl"></open-data>
+                    <image src="{{web_mainData.people[0].headImgUrl}}" class="user_img shadow2"></image>
                 </view>
                 <view class="font24 submit_info" style="text-align:center;width:182rpx;height:60rpx;line-height:60rpx;margin:0 auto;">
                     关注
@@ -13,20 +13,15 @@
             <view class="user_right">
                 <view class="user_infor">
                     <view class="user_name color3">
-                        于果果
+                        {{web_mainData.nickname}}
                     </view>
                     <view class="user_city color3 font28">
-                        于果果
+                         {{web_mainData.info.level!=''?web_mainData.info.level:'未知'}}·{{web_mainData.info.address!=''?web_mainData.info.address:'未知'}}·{{web_mainData.info.gender==1?'男生':'女生'}}
                     </view>
                     <view class="user_record flex">
-                        <view class="user_record_left">
-                            <view class="user_icon" style="margin-top:0">
-                                <image src="/images/user_banner_icon2.png"></image>
-                            </view>
-                        </view>
+                        
                         <view class="user_record_right font28 color96  avoidOverflow">
-                            简单记录一下你自己
-                            让更多人关注你
+                            {{web_mainData.info.passage1!=''?web_mainData.info.passage1:'这个人很懒，什么都没留下'}}
                         </view>
                     </view>
                 </view>
@@ -36,24 +31,25 @@
 </view>
 <view class="user_sort flex bg1">
     <view class="user_item">
-        <view class="font30 color96">62.5W</view>
+        <view class="font30 color96">{{web_mainData.goodDataNum.num>10000?web_mainData.goodDataNum.num/10000+W:web_mainData.goodDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
-            我的问答
+            ta收到的点赞
         </view>
     </view>
     <view class="user_item" style="border-left:solid 1px #c9c9c9;border-right:solid 1px #c9c9c9">
-        <view class="font30 color96">62.5W</view>
+        <view class="font30 color96">{{web_mainData.followDataNum.num>10000?web_mainData.followDataNum.num/10000+W:web_mainData.followDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
-            我的评论
+            ta的关注
         </view>
     </view>
     <view class="user_item">
-        <view class="font30 color96">62.5W</view>
+        <view class="font30 color96">{{web_mainData.AnswerDataNum.num>10000?web_mainData.AnswerDataNum.num/10000+W:web_mainData.AnswerDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
-            关于我们
+            ta的回答
         </view>
     </view>
 </view>
+
 <view class="w670">
     <view class="index_title flexRowBetween"  style="font-size:46rpx;height:156rpx;line-height:156rpx;">
         <view class=" font36 color3">我的发布</view>

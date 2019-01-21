@@ -1,23 +1,20 @@
 <view class="detail_tlt color3 w690">
-    美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程
+    {{web_mainData.title}}
 </view>
 <view class="w690 small">
-    <text>小歪</text><text style="color:#545583">歪果plus</text><text>1周期</text>
+    <text>小歪</text><text style="color:#545583">歪果plus</text><text>{{web_mainData.create_time}}</text>
 </view>
 <view class="w690">
     <view class="detail_cont shadow1">
         <view class="font22 detail_title">
-            Hi,歪果第一次和大家见面
+            {{web_mainData.description}}
         </view>
-        <view class="font22 detail_title">
-            Hi,歪果第一次和大家见面
+        
+        <view class="font24 color6  content">
+            <view class="content ql-editor">
+                <import src="../../wxParse/wxParse.wxml"/>
+                <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+            </view> 
         </view>
-        <view class="font22 detail_title">
-            Hi,歪果第一次和大家见面
-        </view>
-        <view class="font22 detail_title">
-            Hi,歪果第一次和大家见面
-        </view>
-        <view class="font24 color6  content">美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程美丽中国说，记录中国大地，从南到北，人文，自然，一段奇妙的旅程</view>
     </view>
 </view>

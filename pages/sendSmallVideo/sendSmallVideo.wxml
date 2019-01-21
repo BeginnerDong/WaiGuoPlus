@@ -9,7 +9,7 @@
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.video}}" wx:key="index">
-                <view class="upload_video">
+                <view class="upload_box">
                     <video src="{{item.url}}"></video>
                 </view>
             </block>

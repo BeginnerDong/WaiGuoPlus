@@ -88,7 +88,6 @@
 .information_title{
 	width:100%;
 	height:78rpx;
-	line-height:90rpx;
 	overflow: hidden;
 }
 .information_title span{
@@ -97,6 +96,7 @@
 }
 .information_cont{
 	height:66rpx;
+	margin-top:16rpx;
 }
 .handle{
 	width:100%;
@@ -143,7 +143,7 @@
 .mask{
 	width:100%;
 	height:100%;
-	position:absolute;
+	position:fixed;
 	left:0;
 	top:0;
 	z-index:9999;
@@ -264,4 +264,49 @@
 .user_img image{
 	width:100%;
 	height:100%;
+}
+.title1 {
+	width:98%;
+	height:100%;
+	line-height:60rpx;
+}
+.title2{
+	width:98%;
+}
+.title3{
+	width:20%;
+	height:100%;
+}
+.title_left{
+	width:50%;
+	height:100%;
+}
+.title_right{
+	width:30%;
+	height:100%;
+}
+.two_img{
+	width:48%;
+	height:240rpx;
+}
+.two_img image{
+	width:100%;
+	height:100%;
+}
+.three_img{
+	width:31%;
+	height:200rpx;
+}
+.three_img image{
+	width:100%;
+	height:100%;
+}
+video {
+	width:100%;
+	height:450rpx;
+}
+.video_cont{
+	width:100%;
+	height:100%;
+	overflow:hidden;
 }

@@ -219,3 +219,6 @@ button{
 	width:170rpx;
 	height:170rpx;
 }
+input{
+	color:#666;
+}

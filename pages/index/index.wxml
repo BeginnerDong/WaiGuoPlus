@@ -106,9 +106,7 @@
 </view>
 
 <view class="status" style="{{item.type == 2?'display:block;':'display:none'}}">
-   
-    <view class="w670">
-        
+    <view class="w670"> 
         <view class="information bg1 shadow1" >
             <view class="information_tlt w690 flex">
                 <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
@@ -120,24 +118,37 @@
                 <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage">{{item.user[0].nickname}}</view>
                 <view class="user_right avoidOverflow font30 color6">{{item.country}}+{{item.city}}</view>
             </view>
-            <view class="information_img">
-                <view wx:if="{{item.video.length>0}}" class="information_img">
+            <view class="information_img_box">
+                <view wx:if="{{item.video.length>0}}" class="video_cont">
                     <video src="{{item.video[0].url}}"></video>
                 </view>
-                <view wx:else class="information_img">
+                <view wx:else class="flexRowBetween">
                     <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
-                        <image src="{{item.mainImg[0].url}}"></image>
+                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+                    
+                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+
                     </block>
                 </view>
-                
             </view>
-            <view class="w690" >
+            <view class="w690">
                 <view class="information_title flex" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
-                    <view class="title1 font30 color3">{{item.title}}</view>
-                    <span class="font28"> | </span>
-                    <view  class="title2 font30 color3">{{item.city}}</view>
-                    <span class="font22">●</span>
-                    <view  class="title3 font32 color3">{{item.description}}</view>
+                    <view class="title_left flex">
+                        <view class="title1 font30 color3 avoidOverflow flex">{{item.title}}</view>
+                        <span class="font28"> | </span>
+                    </view>
+                    <view class="title_right flex">
+                        <view  class="title2 font30 color3  avoidOverflow">{{item.city}}</view>
+                        <span class="font22">●</span>
+                    </view>
+                    <view  class="title3 font32 color3 flex avoidOverflow">{{item.description}}</view>
                 </view>
                 <view class="information_cont font26 color6 avoidOverflow2">
                     {{item.content}}
@@ -183,11 +194,15 @@
             </view>
             <view class="w690">
                 <view class="information_title flex" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail">
-                    <view class="title1 font30 color3">{{item.title}}</view>
-                    <span> | </span>
-                    <view  class="title2 font30 color3">{{item.city}}</view>
-                    <span> ●</span>
-                    <view  class="title3 font32 color3">{{item.description}}</view>
+                    <view class="title_left flex">
+                        <view class="title1 font30 color3 avoidOverflow flex">{{item.title}}</view>
+                        <span class="font28"> | </span>
+                    </view>
+                    <view class="title_right flex">
+                        <view  class="title2 font30 color3  avoidOverflow">{{item.city}}</view>
+                        <span class="font22">●</span>
+                    </view>
+                    <view  class="title3 font32 color3 flex avoidOverflow">{{item.description}}</view>
                 </view>
                 <view class="information_cont font26 color6 avoidOverflow2">
                     {{item.content}}
@@ -216,7 +231,7 @@
         </view>
     </view>
 </view>
-<view class="status" style="{{item.type == 3?'display:block;':'display:none'}}">
+<view class="status 3232" style="{{item.type == 3?'display:block;':'display:none'}}">
     <view class="w670">
         <view class="information bg1 shadow1" >
             <view class="information_tlt w690 flex">
@@ -229,10 +244,22 @@
                 <view class="user_right avoidOverflow font30 color6">9分钟前</view>
             </view>
             <view >
-                <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
-                    <image src="{{item.mainImg[0].url}}" style="height:20px"></image>
-                </block>
-                <view class="information_cont font26 color6 avoidOverflow2">
+                <view  class="flexRowBetween">
+                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
+                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+                    
+                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+
+                    </block>
+                </view>
+                <view class="information_cont w690 font26 color6 avoidOverflow2">
                     {{item.content}}
                 </view>
             </view>

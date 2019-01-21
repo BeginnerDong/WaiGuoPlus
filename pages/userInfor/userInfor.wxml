@@ -13,7 +13,7 @@
                 <view  class="color9">{{web_mainData.nickname}}</view>
             </view>
             <view class="input_list1 font28 flex" style="justify-content:flex-start">
-                <text class="font30 input_before1">性别:</text>
+                <text class="font30 input_before1 color6">性别:</text>
                 <view data-value="1" data-key="gender" bindtap="changeBind" style="display:flex;margin-left:100rpx;align-items:center">
                     <image src="{{web_sForm.gender=='1'?'/images/male_a.png':'/images/male.jpg'}}" style="width:40rpx;height:40rpx;margin-right:10rpx;" ></image>
                     <view class="font28" style="{{web_sForm.gender=='1'?'color:#21c3d4':''}}">男</view>
@@ -26,20 +26,20 @@
             </view>
             <view class="input_list1 font28 flex">
                 <view class="input_before color6">国家:</view>
-                <input class="color9 input avoidOverflow"  data-key="level" bindblur="changeBind" value="{{web_sForm.level}}"></input>
+                <input class=" input avoidOverflow"  data-key="level" bindblur="changeBind" value="{{web_sForm.level}}"></input>
             </view>
             <view class="input_list1 font28 flex">
                 <view class="input_before color6">城市:</view>
-                <input class="color9 input avoidOverflow"  data-key="address" bindblur="changeBind" value="{{web_sForm.address}}"></input>
+                <input class=" input avoidOverflow"  data-key="address" bindblur="changeBind" value="{{web_sForm.address}}"></input>
             </view>
             <view class="input_list1 font28 flex">
                 <view class="input_before color6">语言:</view>
-                <input class="color9"  data-key="language" bindblur="changeBind" value="{{web_sForm.language}}"></input>
+                <input class=""  data-key="language" bindblur="changeBind" value="{{web_sForm.language}}"></input>
             </view>
             <view class="input_list1 font28 flex">
                 <picker mode="date"  start="2000-01-01" end="2050-01-01" bindchange="bindDateChange" style="width:100%;">
                   <view class="picker flex">
-                      <view class="input_before1 font28 flex" style="width:22%;">
+                      <view class="input_before1 color6 font28 flex" style="width:22%;">
                           生日:
                       </view>
                       <view class="things_right flexRowBetween font28" style="width:50%;">
@@ -61,11 +61,11 @@
               </view>
             <view class="input_list1 font28 flex">
                 <view class="input_before color6">电话:</view>
-                <input class="color9"  data-key="phone" bindblur="changeBind" value="{{web_sForm.phone}}"></input>
+                <input class=""  data-key="phone" bindblur="changeBind" value="{{web_sForm.phone}}"></input>
             </view>
             <view class="input_list1 font28 flex" style="border:none;">
                 <view class="input_before color6">个人签名:</view>
-                <textarea height="auto" class="color9" placeholder="简单描述一下你自己，让更多人记住你" data-key="passage1" bindblur="changeBind" value="{{web_sForm.passage1}}"></textarea>
+                <textarea height="auto" class="color2" placeholder="简单描述一下你自己，让更多人记住你" data-key="passage1" bindblur="changeBind" value="{{web_sForm.passage1}}"></textarea>
             </view>
         </view>
     </view> 

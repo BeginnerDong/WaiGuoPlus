@@ -11,7 +11,7 @@
 .send textarea{
 	height:340rpx;
 	font-size:26rpx;
-	color:#c9c9c9;
+	color:#666;
 	width:100%;
 	padding:3% 0;
 }

@@ -288,7 +288,7 @@ Page({
   choose_close(){
     const self =this;
     self.is_choose = false;
-    this.setData({
+    self.setData({
       is_choose:self.is_choose
     })
   },

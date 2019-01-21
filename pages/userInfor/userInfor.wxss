@@ -45,6 +45,10 @@ page{
 	height:80rpx;
 	line-height:80rpx;
 	border-radius:16rpx;
+	color:#222;
+}
+.input_list1 input{
+	color:#222;
 }
 .placeholder{
 	color:#ccc;

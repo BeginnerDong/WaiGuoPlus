@@ -17,13 +17,13 @@
 	border-bottom:solid 1px #c9c9c9;
 }
 .send_right input{
-	color:#c9c9c9;
+	color:#666;
 }
 .send textarea{
 	margin-top:40rpx;
 	height:340rpx;
 	font-size:26rpx;
-	color:#c9c9c9;
+	color:#666;
 }
 .upload_item{
 	width:20%;

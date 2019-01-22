@@ -12,6 +12,7 @@ Page({
     is_more:false,
     isFirstLoadAllStandard:['getMainData'],
     mainData:[],
+    is_mask:'看谁高'
   },
   //事件处理函数
  
@@ -24,7 +25,12 @@ Page({
     self.init();
 
   },
-
+  playVideo(e){
+    const self=this;
+    self.setData({
+      web_mask:self.data.is_mask
+    })
+  },
   init(){
     const self = this;
     api.commonInit(self);

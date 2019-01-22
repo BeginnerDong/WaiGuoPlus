@@ -121,6 +121,7 @@
             <view class="information_img_box">
                 <view wx:if="{{item.video.length>0}}" class="video_cont">
                     <video src="{{item.video[0].url}}"></video>
+                    <cover-view class="video_mask color1" bindtap="playVideo">视频遮罩{{web_maskh}}</cover-view>
                 </view>
                 <view wx:else class="flexRowBetween">
                     <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >

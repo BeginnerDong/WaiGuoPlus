@@ -3,11 +3,11 @@
         我在国内还是国外？
     </view>
     <view class="china flexRowBetween">
-        <view class="china_item" bindtap="intoPath" data-path="/pages/index/index">
+        <view class="china_item" bindtap="userInfoUpdate" data-id='1'>
             <image src="/images/china.png"></image>
             <view class="font32 color96">我在国内</view>
         </view>
-        <view class="china_item" bindtap="intoPath" data-path="/pages/index/index">
+        <view class="china_item" bindtap="userInfoUpdate" data-id='2'>
             <image src="/images/foreign.png"></image>
             <view class="font32 color96">我在国外</view>
         </view>

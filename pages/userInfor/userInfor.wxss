@@ -1,7 +1,7 @@
 /**index.wxss**/
 @import "../../wxParse/wxParse.wxss"
 page{
-	overflow:hidden;
+	
 }
 .user_img{
 	width:150rpx;

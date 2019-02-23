@@ -65,8 +65,9 @@
             </view>
             <view class="input_list1 font28 flex" style="border:none;">
                 <view class="input_before color6">个人签名:</view>
-                <textarea height="auto" class="color2" placeholder="简单描述一下你自己，让更多人记住你" data-key="passage1" bindblur="changeBind" value="{{web_sForm.passage1}}"></textarea>
+                
             </view>
+			<textarea height="auto" style="width:337.5px;" class="color2 font28" placeholder="简单描述一下你自己，让更多人记住你" data-key="passage1" bindblur="changeBind" value="{{web_sForm.passage1}}"></textarea>
         </view>
     </view> 
 

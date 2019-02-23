@@ -28,12 +28,17 @@ var timeToTimestamp= function(format){
     
 }
 
-var shortString = function(str,i){
+
+
+var playString = function(str,start,end){
    if(str){
-     return str.substring(0,i);
+   console.log('str',str)
+     return str.substring(start,end);
    };
   console.log('str',666)
 }
+
+
 
 var stringToArray= function(str,babel){
     if(str){
@@ -121,7 +126,6 @@ module.exports = {
   integer: integer,
   getArrayByTarget: getArrayByTarget,
   inArray:inArray,
-  shortString:shortString
- 
+  playString:playString
  
 };

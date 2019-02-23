@@ -1,59 +1,92 @@
 
 <view class="w670">
-	<view class="comment bg1">
-		<view class="information_tlt w690 flex">
+    <view  class="comment bg1">
+        <view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="{{web_originData.user.headImgUrl}}" class="user_img"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">
-            	<view>世界大师摄影</view>
-            	<view class="font22 color96">2018-9-9 12:23:00</view>
+                <view>{{web_originData.user.nickname}}</view>
+                <view class="font22 color96">{{web_originData.create_time}}</view>
             </view>
         </view>
+        <view wx:if="web_originData.mainImg.length>0">
+            <block wx:for="{{web_originData.mainImg}}" wx:key="id">
+                <image src="{{item.url}}" ></image>
+            </block>
+        </view>
+        <view wx:if="web_originData.video.length>0">
+            <block wx:for="{{web_originData.video}}" wx:key="id">
+                <video src="{{item.url}}" ></video>
+            </block>
+        </view>
         <view class="font28 color3 w690">
-        	<view style="padding-bottom:32rpx">
-	        	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
-	        </view>
-	    </view>
+            <view style="padding-bottom:32rpx">
+                {{web_originData.content}}
+            </view>
+        </view>
     </view>
-	<view class="big_title flexRowBetween" bindtap="show_all">
-	    <view class="tlt_left"></view>
-	    <view class="tlt_center font28 color96">全部评论(16条)</view>
-	    <view class="tlt_left"></view>
-	</view>
-    <view class="comment bg1">
-		<view class="information_tlt w690 flex">
-            <view class="user_left">
-                <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+    
+
+
+    <view class="big_title flexRowBetween" >
+        <view class="tlt_left"></view>
+        <view class="tlt_center font28 color96">全部评论({{web_total?web_total:0}}条)</view>
+        <view class="tlt_left"></view>
+    </view>
+
+
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="comment bg1">
+            <view class="information_tlt w690 flex">
+                <view class="user_left">
+                    <view class="user_img">
+                      <image src="{{item.user.headImgUrl}}" class="user_img"></image>
+                    </view>
+                </view>
+                <view class="user_center font32 avoidOverflow">
+                    <view>{{item.user.nickname}}</view>
+                    <view class="font22 color96">{{item.create_time}}</view>
+                </view>
+                <view class="handle_browse flexCenter" >
+                    <image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}" data-index="{{index}}" bindtap="clickGood"></image>
+                    <text class="color96 font24">{{item.goodDataNum.num}}</text>
                 </view>
             </view>
-            <view class="user_center font32 avoidOverflow">
-            	<view>世界大师摄影</view>
-            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            <view class="font28 color3 w690">
+                <view style="padding-bottom:32rpx">
+                    {{item.content}}
+                </view>
             </view>
         </view>
-        <view class="font28 color3 w690">
-        	<view style="padding-bottom:32rpx">
-	        	世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影世界大师摄影
-	        </view>  
-        </view>
+
+    </block>
+    
+</view>
+
+<view wx:if="{{!web_mainData.length>0}}">
+   
+    <view class="no_comment">
+        <image src="/images/no_comment.png"></image>
+        <view class="font24"style="color:#c9c9c9">还没有有人评论，你当是第一个吧~</view>
     </view>
 </view>
+
+
 <view style="width:100%;height:120rpx;"></view>
 <view class="w670 comment_bottom bg1 flex">
-	<view class="search1">
-	    <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder"></input>
-	</view>
-	<view class="comment_great flexCenter">
-		<image src="/images/handle2.png"></image>
-		<text class="font24 color96">587466</text>
-	</view>
-	<view class="comment_share">
-		<button open-data="share">
-			<image src="/images/handle4.png"></image>
-		</button>
-	</view>
+    <view class="search1">
+        <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder" data-key="content" bindconfirm="changeBind"  value="{{web_submitData.content}}"></input>
+    </view>
+    <view class="comment_great flexCenter">
+        <image src="/images/handle2.png"></image>
+        <text class="font24 color96">{{web_originData.goodDataNum.num}}</text>
+    </view>
+    <view class="comment_share">
+        <button open-type="share" bindtap="onShareAppMessage" data-type="videoDetail" data-id="{{web_originData.id}}">
+            <image src="/images/handle4.png"></image>
+        </button>
+    </view>
 </view>

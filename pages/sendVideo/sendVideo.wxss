@@ -26,18 +26,27 @@
 	color:#c9c9c9;
 }
 .upload_video{
-	width:40%;
+	width:250rpx;
 	height:360rpx;
 	margin-right:16rpx;
 	margin-bottom:20rpx;
+	position: relative;
 }
-.upload_video image{
+.upload_icon{
 	width:100%;
 	height:100%;
+}
+.delete{
+	width:40rpx;
+	height:40rpx;
+	position:absolute;
+	right:-20rpx;
+	top:-20rpx;
 }
 .upload_left{
 	width:88%;
 }
+
 .upload_right{
 	width:12%;
 	height:360rpx;

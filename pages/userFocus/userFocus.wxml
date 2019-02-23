@@ -1,46 +1,29 @@
-<view class="search bg1" style="border:0" catchtouchmove="true">
+<view class="search bg1" style="border:0" catchtouchmove="true" wx:if="{{web_mainData.length==0}}">
     <view class="search_cont bg1">
         <image src="/images/search3.png"></image>
         <view class="font26 color6" style="width:100%;position:absolute;left:0;top:10%;text-align:center">还没有关注，快去关注吧~</view>
     </view>
 </view>
-<view style="margin-top:14rpx;">
-    <view class="status bg1" style="border-bottom:solid 1px #ccc;">
-        <view class="information bg1"  bindtap="intoPath" data-path="/pages/indexPage/indexPage">
-            <view class="information_tlt w690 flex">
-                <view class="user_left">
-                    <view class="user_img">
-                      <open-data type="userAvatarUrl"></open-data>
-                    </view>
-                </view>
-                <view class="user_center font32 avoidOverflow">
-                    <view class="font32 color3">世界大师摄影</view>
-                    <view class="font28 color96">中国 ● 西安</view>
-                </view>
-                <view class="user_right font30 color6">
-                    <text class="font28 color96">62.1W 获赞</text>
-                    <image src="/images/next1.png"></image>
-                </view>
-            </view>
-        </view>
-    </view>
-    <view class="status bg1" style="border-bottom:solid 1px #ccc;">
-        <view class="information bg1"  bindtap="intoPath" data-path="/pages/indexPage/indexPage">
-            <view class="information_tlt w690 flex">
-                <view class="user_left">
-                    <view class="user_img">
-                      <open-data type="userAvatarUrl"></open-data>
-                    </view>
-                </view>
-                <view class="user_center font32 avoidOverflow">
-                    <view class="font32 color3">世界大师摄影</view>
-                    <view class="font28 color96">中国 ● 西安</view>
-                </view>
-                <view class="user_right font30 color6">
-                    <text class="font28 color96">62.1W 获赞</text>
-                    <image src="/images/next1.png"></image>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
+<block wx:for="{{web_mainData}}" wx:key="id">
+	<view style="margin-top:14rpx;">
+	    <view class="status bg1" style="border-bottom:solid 1px #ccc;">
+	        <view class="information bg1"  bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.forNav[0].id}}">
+	            <view class="information_tlt w690 flex">
+	                <view class="user_left">
+	                    <view class="user_img">
+	                      <image src="{{item.user[0].headImgUrl}}" class="user_img"/> 
+	                    </view>
+	                </view>
+	                <view class="user_center font32 avoidOverflow">
+	                    <view class="font32 color3">{{item.user[0].nickname}}</view>
+	                    <view class="font28 color96">{{item.user[0].info.level!=''?item.user[0].info.level:'未知'}} ● {{item.user[0].info.address!=''?item.user[0].info.address:'未知'}}</view>
+	                </view>
+	                <view class="user_right font30 color6">
+	                    <text class="font28 color96">{{item.goodDataNum.num>10000?item.goodDataNum.num/10000+W:item.goodDataNum.num}} 获赞</text>
+	                    <image src="/images/next1.png"></image>
+	                </view>
+	            </view>
+	        </view>
+	    </view>
+	</view>
+</block>

@@ -10,16 +10,17 @@
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.video}}" wx:key="index">
                 <view class="upload_video">
-                    <video src="{{item.url}}"></video>
+                    <video src="{{item.url}}" class="upload_video"></video>
+					<image src="/images/delete.png" class="delete" bindtap="delete" data-index="{{index}}"></image>
                 </view>
             </block>
-            <view class="upload_video" bindtap="upLoadVideo">
-                <image src="/images/upload.png"></image>
+            <view class="upload_video" bindtap="upLoadVideo" wx:if="{{web_submitData.video.length==0}}">
+                <image src="/images/upload.png" class="upload_icon"></image>
             </view>
         </view>
         <view class="upload_right">
             <view class="limit_number font24">
-                {{web_submitData.video.length}}/999
+                {{web_submitData.video.length}}/1
             </view>
         </view>
     </view>
@@ -28,7 +29,7 @@
     <view class="position_img flex">
         <image src="/images/position.png"></image>
     </view>
-    <view class="position_left avoidOverflow font28 color6">
+    <view class="position_left avoidOverflow font24 color6">
         当前位置
     </view>
     <view class="position_right">

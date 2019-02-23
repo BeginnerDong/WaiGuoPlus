@@ -16,12 +16,12 @@ class Base{
     request(params) {
         var that = this;
         getApp().globalData.buttonClick = true;
-        var baseRestUrl = 'http://www.waiguoplus.com/api/public/index.php/api/v1/';
+        var baseRestUrl = 'https://m.waiguoplus.com/api/public/index.php/api/v1/';
         var url=baseRestUrl + params.url;
         const callback = (res)=>{
             that.request(params);
         };
-
+		
         if(params.data.tokenFuncName){
             console.log('params.data.token');
             if(params.data.refreshToken){
@@ -86,7 +86,7 @@ class Base{
             };
         };
         wx.uploadFile({
-            url: 'http://www.waiguoplus.com/api/public/index.php/api/v1/Base/FtpFile/upload',
+            url: 'https://m.waiguoplus.com/api/public/index.php/api/v1/Base/FtpFile/upload',
             filePath:filePath,
             name:name,
             formData:formData,
@@ -632,7 +632,41 @@ class Base{
     };
 
 
-
+    getDateDiff(dateTimeStamp) {
+        var minute = 1000 * 60;
+        var hour = minute * 60;
+        var day = hour * 24;
+        var halfamonth = day * 15;
+        var month = day * 30;
+        var now = Date.parse(new Date());//有些特殊 不能使用 new Date()
+        var diffValue = now - dateTimeStamp*1000;
+        if(diffValue < 0){return;}
+        var monthC =diffValue/month;
+        var weekC =diffValue/(7*day);
+        var dayC =diffValue/day;
+        var hourC =diffValue/hour;
+        var minC =diffValue/minute;
+       
+        var result = '';
+        if(monthC>=1){
+            result="" + parseInt(monthC) + "月前";
+        }
+        else if(weekC>=1){
+            result="" + parseInt(weekC) + "周前";
+        }
+        else if(dayC>=1){
+            result=""+ parseInt(dayC) +"天前";
+        }
+        else if(hourC>=1){
+            result=""+ parseInt(hourC) +"小时前";
+        }
+        else if(minC>=1){
+            result=""+ parseInt(minC) +"分钟前";
+        }else
+            result="刚刚";
+  
+        return result;
+    };
 
     showToast(title,type,duration,func){
         wx.showToast({

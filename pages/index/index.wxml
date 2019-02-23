@@ -1,357 +1,389 @@
 <!--index.wxml-->
+<wxs src="../../utils/func.wxs" module="func" />
 <view class="tab font32 flexRowBetween">
-    <view class="tab_item {{web_currentType == 1?'tab_this':''}}" data-type="1" bindtap="changeType">
-        问答
-    </view>
-    <view class="tab_item {{web_currentType == 2?'tab_this':''}}" data-type="2"  bindtap="changeType">
-        动态
-    </view>
+	<view class="tab_item {{web_currentType == 1?'tab_this':''}}" data-type="1" bindtap="changeType">
+		问答
+	</view>
+	<view class="tab_item {{web_currentType == 2?'tab_this':''}}" data-type="2" bindtap="changeType">
+		动态
+	</view>
+	<view class="tab_item {{web_currentType == 3?'tab_this':''}}" data-type="3" bindtap="changeType">
+		吐槽
+	</view>
+	<view class="tab_item {{web_currentType ==4?'tab_this':''}}" data-type="4" bindtap="changeType">
+		视频
+	</view>
 
-    <view class="tab_item {{web_currentType == 4?'tab_this':''}}" data-type="4"  bindtap="changeType">
-        视频
-    </view>
-    <view class="tab_item {{web_currentType == 3?'tab_this':''}}" data-type="3"  bindtap="changeType">
-        吐槽
-    </view>
 </view>
 <view class="w670">
-    <view class="search flex bg1"  bindtap="intoPath" data-path="/pages/search/search">
-        <view class="search_btn">
-            <image src="/images/search.png"></image>
-        </view>
-        <input placeholder="输入关键字查询" class="font28 color9" placeholder-class="placeholder"></input>
-    </view>
-</view>
-<view class="status" style="{{web_currentType == 2?'display:block;':'display:none'}}">
-    <view class="w670" bindtap="intoPath" data-path="/pages/detail/detail">
-        <view class="record bg">
-            <view class="record_cont flex">
-                <view class="record_left flex">
-                    <image src="/images/record_icon.png"></image>
-                </view>
-                <view class="record_right">
-                    <view class="record_tit font30 color1">
-                        小记录
-                    </view>
-                    <view class="font30 color1" style="clear:both">记录你在国外的点点滴滴</view>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
-<view class="index_title font36 color3" style="{{web_currentType == 2?'display:block;':'display:none'}}">
-    最新动态
-</view>
-<block wx:for="{{web_mainData}}" wx:key="id">
-<view class="quesition w670" style="{{item.type == 1?'display:block;':'display:none'}}">
-    <view class="information bg1 shadow1">
-        <view class="information_tlt w690 flex">
-            <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
-                <view class="user_img">
-                  <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
-                </view>
-            </view>
-            <view class="user_center avoidOverflow font32 avoidOverflow">{{item.user[0].nickname}}</view>
-            <view class="user_right avoidOverflow font30 colorc9">9分钟前</view>
-        </view>
-        <view class="w690">
-            <view class="information_cont font26 color6 quesition_cont" style="height:auto;"  bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
-                {{item.content}}
-            </view>
-            <view class="quesition_handle flex">
-                <view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0">
-                    <button open-type="share">
-                        <image src="/images/index_icon1.png"></image>
-                        <text class="font28 color3">邀请回答</text>
-                    </button>
-                </view>
-                <span></span>
-                <view class="quesition_item flexCenter" bindtap="intoPath" data-path="/pages/indexAnswer/indexAnswer?id={{item.id}}">
-                    <image src="/images/index_icon2.png"></image>
-                    <text class="font28 color3">立即回答</text>
-                </view>
-            </view>
-
-            <view class="quesition_number font28 color9" data-index="{{index}}" bindtap="show_more" style="{{!item.isShowAnswer?'display:block':'display:none'}}">
-                <view><text class="color" style="margin-right:20rpx;">{{item.answer.length}}</text>条回答</view>
-                <view class="more_icon"><image src="/images/up1.png"></image></view>
-            </view>
-            <view class="more_question" style="{{item.isShowAnswer?'display:block':'display:none'}}">
-                <block wx:for="{{item.answerData}}" wx:key="id" wx:for-item="c_item">
-                    <view class="flex1" style="border-top:solid 1px #c9c9c9;width:100%">
-                        <view class="question_left flex">
-                            <view class="user_img">
-                              <image src="{{c_item.answerUser[0].headImgUrl}}" class="user_img"></image>
-                            </view>
-                        </view>
-                        <view class="question_right">
-                            <view class="quesition_title flexRowBetween">
-                                <view class="font30 color3 avoidOverflow" style="width:60%;">{{c_item.answerUser[0].nickname}}</view>
-                                <view class="user_right avoidOverflow font30 colorc9">9分钟前</view>
-                            </view>
-                            <view class="font26 color6 quesition_cont" style="border:none">
-                                {{c_item.content}}
-                            </view>
-                        </view>
-                    </view>
-                </block>
-                <view class="quesition_number font28 color9"  data-index="{{index}}" style="{{item.isShowAnswer?'display:block':'display:none'}}" bindtap="show_more">
-                    <view>收起回答</view>
-                    <view class="more_icon"><image src="/images/up2.png"></image></view>
-                </view>
-            </view>
-             
-        </view>
-    </view>
+	<view class="search flex bg1">
+		<view class="search_btn">
+			<image src="/images/search.png"></image>
+		</view>
+		<input placeholder="输入关键字查询" class="font28 color9" placeholder-class="placeholder" data-key="item" bindconfirm="changeBind"
+		 value="{{web_submitData.item}}"></input>
+	</view>
 </view>
 
-<view class="status" style="{{item.type == 2?'display:block;':'display:none'}}">
-    <view class="w670"> 
-        <view class="information bg1 shadow1" >
-            <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
-                    <view class="user_img">
-                      <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
-                    </view>
-                </view>
 
-                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage">{{item.user[0].nickname}}</view>
-                <view class="user_right avoidOverflow font30 color6">{{item.country}}+{{item.city}}</view>
-            </view>
-            <view class="information_img_box">
-                <view wx:if="{{item.video.length>0}}" class="video_cont">
-                    <video src="{{item.video[0].url}}"></video>
-                    <cover-view class="video_mask color1" bindtap="playVideo">视频遮罩{{web_maskh}}</cover-view>
-                </view>
-                <view wx:else class="flexRowBetween">
-                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
-                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
-                        </view>
-                    
-                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
-                        </view>
-                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
-                        </view>
+<swiper current="{{web_currentType-1}}" class="swiper-box" duration="300" bindchange="bindChange" style="height:{{winHeight}}rpx">
 
-                    </block>
-                </view>
-            </view>
-            <view class="w690">
-                <view class="information_title flex" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
-                    <view class="title_left flex">
-                        <view class="title1 font30 color3 avoidOverflow flex">{{item.title}}</view>
-                        <span class="font28"> | </span>
-                    </view>
-                    <view class="title_right flex">
-                        <view  class="title2 font30 color3  avoidOverflow">{{item.city}}</view>
-                        <span class="font22">●</span>
-                    </view>
-                    <view  class="title3 font32 color3 flex avoidOverflow">{{item.description}}</view>
-                </view>
-                <view class="information_cont font26 color6 avoidOverflow2">
-                    {{item.content}}
-                </view>
-                <view class="handle flex">
-                    <view class="handle_browse flexCenter">
-                        <image src="/images/handle1.png"></image>
-                        <text class="color96 font24">{{item.view_count}}</text>
-                    </view>
-                    <view class="handle_browse flexCenter" >
-                        <image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}" data-index="{{index}}" bindtap="clickGood"></image>
-                        <text class="color96 font24">{{item.goodDataNum.num}}</text>
-                    </view>
-                    <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexStateDetail/indexStateDetail?id={{item.id}}">
-                        <image src="/images/handle3.png"></image>
-                        <text class="color96 font24">{{item.comment.length}}</text>
-                    </view>
-                    <view class="handle_browse flexCenter">
-                        <image src="/images/handle4.png"></image>
-                        <button open-type="share" class="font24 color96">分享</button>
-                    </view>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
-<view class="w670 teasing"  style="{{item.type == 4?'display:block;':'display:none'}}">
-    <view class="information bg1 shadow1">
-        <view >
-            <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
-                    <view class="user_img">
-                      <image src="{{item.user[0].headImgUrl}}"></image>
-                    </view>
-                </view>
-                <view class="user_center avoidOverflow font32 avoidOverflow">{{item.user[0].nickname}}</view>
-                <view class="user_right avoidOverflow font30 color9">9分钟前</view>
-            </view>
-            <view class="information_three_img flex">
-                <block wx:for="{{item.video}}" wx:for-item="c_item">
-                    <video src="{{c_item.url}}"></video>
-                </block>
-            </view>
-            <view class="w690">
-                <view class="information_title flex" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail">
-                    <view class="title_left flex">
-                        <view class="title1 font30 color3 avoidOverflow flex">{{item.title}}</view>
-                        <span class="font28"> | </span>
-                    </view>
-                    <view class="title_right flex">
-                        <view  class="title2 font30 color3  avoidOverflow">{{item.city}}</view>
-                        <span class="font22">●</span>
-                    </view>
-                    <view  class="title3 font32 color3 flex avoidOverflow">{{item.description}}</view>
-                </view>
-                <view class="information_cont font26 color6 avoidOverflow2">
-                    {{item.content}}
-                </view>
-            </view>
-        </view>
-        <view class="w670">
-            <view class="handle flex">
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle1.png"></image>
-                    <text class="color96 font24">{{item.view_count}}</text>
-                </view>
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle2.png"></image>
-                    <text class="color96 font24">{{item.good.length}}</text>
-                </view>
-                <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexStateDetail/indexStateDetail">
-                    <image src="/images/handle3.png"></image>
-                    <text class="color96 font24">{{item.comment.length}}</text>
-                </view>
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle4.png"></image>
-                    <button open-type="share" class="font24 color96">分享</button>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
-<view class="status 3232" style="{{item.type == 3?'display:block;':'display:none'}}">
-    <view class="w670">
-        <view class="information bg1 shadow1" >
-            <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
-                    <view class="user_img">
-                       <image src="{{item.user[0].headImgUrl}}"></image>
-                    </view>
-                </view>
-                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage">{{item.user[0].nickname}}</view>
-                <view class="user_right avoidOverflow font30 color6">9分钟前</view>
-            </view>
-            <view >
-                <view  class="flexRowBetween">
-                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
-                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
-                        </view>
-                    
-                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
-                        </view>
-                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
-                        </view>
+	<swiper-item>
+		<scroll-view scroll-y="true" class="scoll-h">
+			<block wx:for="{{web_mainData}}" wx:key="id">
+				<view class="quesition w670">
+					<view class="information bg1 shadow1">
+						<view class="information_tlt w690 flex">
+							<view class="user_left" bindtap="{{item.isMe?'intoPathRedi':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
+								<view class="user_img">
+									<image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
+								</view>
+							</view>
+							<view class="user_center avoidOverflow font32 avoidOverflow">{{item.user[0].nickname}}</view>
+							<view class="user_right avoidOverflow font30 colorc9">{{item.create_time}}</view>
+						</view>
+						<view class="w690">
+							<view class="information_cont font26 color6 quesition_cont" style="height:auto;" bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
+								<text>{{item.content}}</text>
+							</view>
+							<view class="quesition_handle flex">
+								<view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0">
+									<button open-type="share" bindtap="onShareAppMessage" data-type="answer" data-id="{{item.id}}">
+										<image src="/images/index_icon1.png"></image>
+										<text class="font28 color3">邀请回答</text>
+									</button>
+								</view>
+								<span></span>
+								<view class="quesition_item flexCenter" bindtap="intoPath" data-path="/pages/indexAnswer/indexAnswer?id={{item.id}}">
+									<image src="/images/index_icon2.png"></image>
+									<text class="font28 color3">立即回答</text>
+								</view>
+							</view>
 
-                    </block>
-                </view>
-                <view class="information_cont w690 font26 color6 avoidOverflow2">
-                    {{item.content}}
-                </view>
-            </view>
-            <view class="handle flex">
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle1.png"></image>
-                    <text class="color96 font24">1234</text>
-                </view>
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle2.png"></image>
-                    <text class="color96 font24">1234</text>
-                </view>
-                <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexVideoComment/indexVideoComment">
-                    <image src="/images/handle3.png"></image>
-                    <text class="color96 font24">1234</text>
-                </view>
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle4.png"></image>
-                    <button open-type="share" class="font24 color96">分享</button>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
-</block>
+							<view class="quesition_number font28 color9" data-index="{{index}}" bindtap="show_more" style="{{!item.isShowAnswer?'display:block':'display:none'}}">
+								<view><text class="color" style="margin-right:20rpx;">{{item.answer.length}}</text>条回答</view>
+								<view class="more_icon">
+									<image src="/images/up1.png"></image>
+								</view>
+							</view>
+							<view class="more_question" style="{{item.isShowAnswer?'display:block':'display:none'}}">
+								<block wx:for="{{item.answerData}}" wx:key="id" wx:for-item="c_item">
+									<view class="flex1" style="border-top:solid 1px #c9c9c9;width:100%">
+										<view class="question_left flex">
+											<view class="user_img">
+												<image src="{{c_item.answerUser[0].headImgUrl}}" class="user_img"></image>
+											</view>
+										</view>
+										<view class="question_right">
+											<view class="quesition_title flexRowBetween">
+												<view class="font30 color3 avoidOverflow" style="width:60%;">{{c_item.answerUser[0].nickname}}</view>
+												<view class="user_right avoidOverflow font30 colorc9">{{c_item.create_time}}</view>
+											</view>
+											<view class="font26 color6 quesition_cont" style="border:none">
+												{{c_item.content}}
+											</view>
+										</view>
+									</view>
+								</block>
+								<view class="quesition_number font28 color9" data-index="{{index}}" style="{{item.isShowAnswer?'display:block':'display:none'}}"
+								 bindtap="show_more">
+									<view>收起回答</view>
+									<view class="more_icon">
+										<image src="/images/up2.png"></image>
+									</view>
+								</view>
+							</view>
+
+						</view>
+					</view>
+				</view>
+			</block>
+		</scroll-view>
+	</swiper-item>
+	<swiper-item>
+
+		<scroll-view scroll-y="true" class="scoll-h" >
+			<view class="status">
+				<view class="w670" bindtap="intoPath" data-path="/pages/detail/detail">
+					<view class="record bg">
+						<view class="record_cont flex">
+							<view class="record_left flex">
+								<image src="/images/record_icon.png"></image>
+							</view>
+							<view class="record_right">
+								<view class="record_tit font30 color1">
+									小记录
+								</view>
+								<view class="font30 color1" style="clear:both">记录你在国外的点点滴滴</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="index_title font36 color3">
+				最新动态
+			</view>
+			<block wx:for="{{web_mainData}}" wx:key="id">
+
+				<view class="status">
+					<view class="w670">
+						<view class="information bg1 shadow1">
+							<view class="information_tlt w690 flex">
+								<view class="user_left" bindtap="{{item.isMe?'intoPathRedi':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
+									<view class="user_img">
+										<image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
+									</view>
+								</view>
+
+								<view class="user_center avoidOverflow font32 avoidOverflow" bindtap="{{item.isMe?'intoPathRedi':'intoPath'}}"
+								 data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">{{item.user[0].nickname}}</view>
+								<view class="user_right avoidOverflow font30 color6">{{item.country}}·{{item.city}}</view>
+							</view>
+							<view class="information_img_box">
+								<view wx:if="{{item.video.length>0}}" class="video_cont">
+									<video src="{{item.video[0].url}}"></video>
+
+								</view>
+								<view wx:else class="flexRowBetween">
+									<block wx:for="{{item.mainImg}}" wx:for-item="c_item" wx:for-index="c_index">
+										<view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}" bindtap="previewImage"
+										 data-index="{{index}}" data-id="{{c_index}}">
+											<image src="{{c_item.url}}" mode="aspectFill"></image>
+										</view>
+
+										<view class="two_img" wx:if="{{item.mainImg.length==2}}" bindtap="previewImage" data-index="{{index}}"
+										 data-id="{{c_index}}">
+											<image src="{{c_item.url}}" mode="aspectFill"></image>
+										</view>
+										<view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}"
+										 data-id="{{c_index}}">
+											<image src="{{c_item.url}}" mode="aspectFill"></image>
+
+										</view>
+
+									</block>
+								</view>
+							</view>
+							<view class="w690">
+								<view class="information_title flex avoidOverflow" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
+									{{item.title}}
+								</view>
+								<view class="information_cont font26 color6 avoidOverflow2" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
+									<text>{{item.content}}</text>
+								</view>
+								<view class="handle flex">
+									<view class="handle_browse flexCenter">
+										<image src="/images/handle1.png"></image>
+										<text class="color96 font24">{{item.view_count}}</text>
+									</view>
+									<view class="handle_browse flexCenter">
+										<image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}"
+										 data-index="{{index}}" bindtap="clickGood"></image>
+										<text class="color96 font24">{{item.goodDataNum.num}}</text>
+									</view>
+									<view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
+										<image src="/images/handle3.png"></image>
+										<text class="color96 font24">{{item.comment.length}}</text>
+									</view>
+									<view class="handle_browse flexCenter">
+										<image src="/images/handle4.png"></image>
+										<button open-type="share" class="font24 color96" bindtap="onShareAppMessage" data-type="graphic" data-id="{{item.id}}">分享</button>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</scroll-view>
+	</swiper-item>
+
+	<swiper-item>
+		<scroll-view scroll-y="true" class="scoll-h" >
+			<block wx:for="{{web_mainData}}" wx:key="id">
+				<view class="status 3232">
+					<view class="w670">
+						<view class="information bg1 shadow1">
+							<view class="information_tlt w690 flex">
+								<view class="user_left">
+									<view class="user_img">
+										<image src="{{item.anonymous[0].mainImg[0].url}}"></image>
+									</view>
+								</view>
+								<view class="user_center avoidOverflow font32 avoidOverflow">{{item.anonymous[0].name}}</view>
+								<view class="user_right avoidOverflow font30 color6">{{item.create_time}}</view>
+							</view>
+
+							<view>
+								<view class="flexRowBetween">
+									<block wx:for="{{item.mainImg}}" wx:for-item="c_item" wx:for-index="c_index">
+										<view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}" bindtap="previewImage"
+										 data-index="{{index}}" data-id="{{c_index}}">
+											<image src="{{c_item.url}}" mode="aspectFill"></image>
+										</view>
+
+										<view class="two_img" wx:if="{{item.mainImg.length==2}}" bindtap="previewImage" data-index="{{index}}"
+										 data-id="{{c_index}}">
+											<image src="{{c_item.url}}" mode="aspectFill"></image>
+										</view>
+										<view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}"
+										 data-id="{{c_index}}">
+											<image src="{{c_item.url}}" mode="aspectFill"></image>
+										</view>
+
+									</block>
+								</view>
+								<view class="information_cont w690 font26 color6 avoidOverflow2" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.id}}">
+									<text>{{item.content}}</text>
+								</view>
+							</view>
+							<view class="w670">
+								<view class="handle flex">
+									<view class="handle_browse flexCenter">
+										<image src="/images/handle1.png"></image>
+										<text class="color96 font24">{{item.view_count}}</text>
+									</view>
+									<view class="handle_browse flexCenter">
+										<image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}"
+										 data-index="{{index}}" bindtap="clickGood"></image>
+										<text class="color96 font24">{{item.goodDataNum.num}}</text>
+									</view>
+									<view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.id}}">
+										<image src="/images/handle3.png"></image>
+										<text class="color96 font24">{{item.comment.length}}</text>
+									</view>
+									<view class="handle_browse flexCenter">
+										<image src="/images/handle4.png"></image>
+										<button open-type="share" class="font24 color96" bindtap="onShareAppMessage" data-type="teasing" data-id="{{item.id}}">分享</button>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</scroll-view>
+	</swiper-item>
+	<swiper-item>
+		<scroll-view scroll-y="true" class="scoll-h" >
+			<block wx:for="{{web_mainData}}" wx:key="id">
+				<view class="w670 teasing">
+					<view class="information bg1 shadow1">
+						<view>
+							<view class="information_tlt w690 flex">
+								<view class="user_left" bindtap="{{item.isMe?'intoPathRedi':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
+									<view class="user_img">
+										<image src="{{item.user[0].headImgUrl}}"></image>
+									</view>
+								</view>
+								<view class="user_center avoidOverflow font32 avoidOverflow">{{item.user[0].nickname}}</view>
+								<view class="user_right avoidOverflow font30 color6">{{item.country}}·{{item.city}}</view>
+							</view>
+							<view class="information_three_img flex">
+								<block wx:for="{{item.video}}" wx:for-item="c_item">
+									<video src="{{c_item.url}}"></video>
+								</block>
+							</view>
+							<view class="w690">
+
+								<view class="information_cont font26 color6 avoidOverflow2" bindtap="intoPath" data-path="/pages/indexVideoDetail/indexVideoDetail?id={{item.id}}">
+									<text>{{item.content}}</text>
+								</view>
+							</view>
+						</view>
+						<view class="w670">
+							<view class="handle flex">
+								<view class="handle_browse flexCenter">
+									<image src="/images/handle1.png"></image>
+									<text class="color96 font24">{{item.view_count}}</text>
+								</view>
+								<view class="handle_browse flexCenter">
+									<image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}"
+									 data-index="{{index}}" bindtap="clickGood"></image>
+									<text class="color96 font24">{{item.goodDataNum.num}}</text>
+								</view>
+								<view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexVideoDetail/indexVideoDetail?id={{item.id}}">
+									<image src="/images/handle3.png"></image>
+									<text class="color96 font24">{{item.comment.length}}</text>
+								</view>
+								<view class="handle_browse flexCenter">
+									<image src="/images/handle4.png"></image>
+									<button open-type="share" class="font24 color96" bindtap="onShareAppMessage" data-type="video" data-id="{{item.id}}">分享</button>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</scroll-view>
+	</swiper-item>
+</swiper>
 <!-- 发布选择分类 -->
 <view class="send" catchtouchmove="true" style="{{menu_show?'bottom:0':'opacity:0;bottom:-100%'}}">
-    <view class="send_cont">
-        <image src="/images/send_bg.png"></image>
-        <view class="send_menu">
-            <view class="menu">
-                <view class="menu_tlt">记录我的歪果动态</view>
-                <view class="menu_btn flex">
-                    <view class="menu_item" bindtap="choose">
-                        <image src="/images/menu_icon1.png"></image>
-                        <view class="font32 color3">动态</view>
-                    </view>
-                    <view class="menu_item" bindtap="intoPath" data-path="/pages/sendAnswer/sendAnswer">
-                        <image src="/images/menu_icon2.png"></image>
-                        <view class="font32 color3">问答</view>
-                    </view>
-                    <view class="menu_item" bindtap="intoPath" data-path="/pages/sendTeasing/sendTeasing">
-                        <image src="/images/menu_icon3.png"></image>
-                        <view class="font32 color3">吐槽</view>
-                    </view>
-                    <view class="menu_item" bindtap="intoPath" data-path="/pages/sendSmallVideo/sendSmallVideo">
-                        <image src="/images/menu_icon4.png"></image>
-                        <view class="font32 color3">小视频</view>
-                    </view>
-                </view>
-                <view class="close" bindtap="close">
-                    <image src="/images/close.png"></image>
-                </view>
-            </view>
+	<view class="send_cont">
+		<image src="/images/send_bg.png"></image>
+		<view class="send_menu">
+			<view class="menu">
+				<view class="menu_tlt">记录我的歪果动态</view>
+				<view class="menu_btn flex">
+					<view class="menu_item" bindtap="choose">
+						<image src="/images/menu_icon1.png"></image>
+						<view class="font32 color3">动态</view>
+					</view>
+					<view class="menu_item" bindtap="intoPath" data-path="/pages/sendAnswer/sendAnswer">
+						<image src="/images/menu_icon2.png"></image>
+						<view class="font32 color3">问答</view>
+					</view>
+					<view class="menu_item" bindtap="intoPath" data-path="/pages/sendTeasing/sendTeasing">
+						<image src="/images/menu_icon3.png"></image>
+						<view class="font32 color3">吐槽</view>
+					</view>
+					<view class="menu_item" bindtap="intoPath" data-path="/pages/sendSmallVideo/sendSmallVideo">
+						<image src="/images/menu_icon4.png"></image>
+						<view class="font32 color3">小视频</view>
+					</view>
+				</view>
+				<view class="close" bindtap="close">
+					<image src="/images/close.png"></image>
+				</view>
+			</view>
 
-        </view>
-    </view>
+		</view>
+	</view>
 </view>
 <!-- 选择图片视频 -->
-<view class="mask"  catchtouchmove="true" style="{{is_choose?'display:block;':'display:none'}}">
-    <view class="mask_cont">
-        <view class="choose_video">
-            <view class="choose_send font32 bg1" bindtap="intoPath" data-path="/pages/sendGraphic/sendGraphic">
-                图片
-            </view>
-            <view class="choose_send font32 bg1" bindtap="intoPath" data-path="/pages/sendVideo/sendVideo" style="border-top:solid 1px #c9c9c9">
-                视频
-            </view>
-             <view class="choose_send font32 bg1" style="border-top:solid 14px #efefef" bindtap="choose_close">
-                取消
-            </view>
-        </view>
-    </view>
+<view class="mask" catchtouchmove="true" style="{{is_choose?'display:block;':'display:none'}}">
+	<view class="mask_cont">
+		<view class="choose_video">
+			<view class="choose_send font32 bg1" bindtap="intoPath" data-path="/pages/sendGraphic/sendGraphic">
+				图片
+			</view>
+			<view class="choose_send font32 bg1" bindtap="intoPath" data-path="/pages/sendVideo/sendVideo" style="border-top:solid 1px #c9c9c9">
+				视频
+			</view>
+			<view class="choose_send font32 bg1" style="border-top:solid 14px #efefef" bindtap="choose_close">
+				取消
+			</view>
+		</view>
+	</view>
 </view>
 <view style="width:100%;height:150rpx;"></view>
 <view class="navbar flex">
-    <view class="navbar_item">
-        <view class="nav_img bg1">
-          <image src="/images/navbar1-a.png"></image>
-        </view>
-        <view class="text this-text">首页</view>
-    </view>
-    <view class="navbar_add"   bindtap="menu">
-        <view class="nav_img">
-           <image src="/images/navbar_add.png" style="border:solid 8rpx #fff;border-radius:50%;"></image>
-        </view>   
-    </view>
-    <view class="navbar_item  bg1"   bindtap="intoPathRedirect" data-path="/pages/user/user">
-        <view class="nav_img">
-           <image src="/images/navbar2.png"></image>
-        </view>
-        <view class="text">我的</view>
-    </view>
+	<view class="navbar_item">
+		<view class="nav_img bg1">
+			<image src="/images/navbar1-a.png"></image>
+		</view>
+		<view class="text this-text">首页</view>
+	</view>
+	<view class="navbar_add" bindtap="menu">
+		<view class="nav_img">
+			<image src="/images/navbar_add.png" style="border:solid 8rpx #fff;border-radius:50%;"></image>
+		</view>
+	</view>
+	<view class="navbar_item  bg1" bindtap="intoPathRedi" data-path="/pages/user/user">
+		<view class="nav_img">
+			<image src="/images/navbar2.png"></image>
+		</view>
+		<view class="text">我的</view>
+	</view>
 </view>

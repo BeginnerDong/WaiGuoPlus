@@ -19,9 +19,9 @@
 	height:26rpx;
 	margin-left:10rpx;
 }
-.sender>view{
+/* .sender>view{
 	width:33.33%;
-}
+} */
 .detail{
 	overflow:hidden;
 }
@@ -138,4 +138,112 @@ button::after {
 .no_comment image{
 	width:170rpx;
 	height:170rpx;
+}
+.handle{
+	width:100%;
+	height:96rpx;
+}
+.handle_browse{
+	width:25%;
+}
+.handle_browse image{
+	width:34rpx;
+	height:28rpx;
+	margin-right:14rpx;
+
+}
+.handle_browse button{
+	width:60rpx;
+	height:40rpx;
+	line-height:40rpx;
+	border:none;
+	padding:0;
+	margin:0;
+	background:none;
+}
+/************发布*****************/
+.send{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	bottom:-100%;
+	z-index:9999;
+}
+.mask{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:9999;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	background:rgba(0,0,0,0.3);
+}
+.mask_cont{
+	position: relative;
+	width:100%;
+	height:100%;
+}
+.choose_video{
+	position: absolute;
+	left:0;
+	bottom:0;
+	z-index:9999;
+	width:100%;
+}
+.choose_send{
+	width:100%;
+	height:100rpx;
+	line-height:100rpx;
+	color:#000;
+	text-align:center;
+}
+.send image{
+	width:100%;
+	height:100%;
+}
+.send_cont{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.send_menu{
+	width:100%;
+	height:72%;
+	position:absolute;
+	left:0;
+	bottom:0;
+}
+.menu{
+	width:86.4%;
+	padding:0 6.8%;
+	height:100%;
+}
+.menu_btn{
+	flex-wrap:wrap;
+}
+.menu_tlt{
+	width:100%;
+	font-size:64rpx;
+	color:#474747;
+	text-align:center;
+}
+.menu_item{
+	width:50%;
+	text-align:center;
+}
+.menu_item image{
+	width:184rpx;
+	height:184rpx;
+	margin-top:76rpx;
+}
+.close{
+	text-align:center;
+	margin-top:60rpx;
+}
+.close image{
+	width:42rpx;
+	height:42rpx;
 }

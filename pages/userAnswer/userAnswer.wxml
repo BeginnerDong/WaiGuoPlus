@@ -9,26 +9,26 @@
 
 <view class="status">
     <block wx:for="{{web_mainData}}" wx:key="id">
-        <view class="w670" bindtap="intoPath" data-path="/pages/indexAnswer/indexAnswer?id={{item.quesition[0].id}}">
+        <view class="w670" bindtap="intoPath">
             <view class="information bg1 shadow1" >
                 <view class="w690">
-                    <view class="information_title font30 color3  avoidOverflow2">
-                        {{item.quesition[0].title}}
+                    <view class="information_title font30 color3  avoidOverflow2"  data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.quesition[0].id}}" bindtap="intoPath">
+                        {{item.quesition[0].content}}
                     </view>
-                    <view class="information_cont font26 color6 avoidOverflow2">
+                    <view class="information_cont font26 color6 avoidOverflow2"  data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.quesition[0].id}}" bindtap="intoPath">
                         {{item.content}}
                     </view>
                     <view class="handle flex">
-                        <view class="handle_browse flex">
-                            <image src="/images/handle2.png"></image>
-                            <text class="color96 font24">{{item.goodData.length}}</text>
+                        <view class="handle_browse flexCenter" >
+                            <image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}" data-index="{{index}}" bindtap="clickGood"></image>
+                            <text class="color96 font24">{{item.goodDataNum.num}}</text>
                         </view>
                         <view class="handle_browse flex">
                             <image src="/images/handle3.png"></image>
                             <text class="color96 font24">{{item.comment.length}}</text>
                         </view>
                         <view class="handle_browse font24 color96" style="text-align:right;">
-                           7分钟前
+                           {{item.create_time}}
                         </view>
                     </view>
                 </view>

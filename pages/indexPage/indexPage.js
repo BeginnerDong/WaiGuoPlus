@@ -6,8 +6,10 @@ const token = new Token();
 
 Page({
   data: {
-    isFirstLoadAllStandard:['userInfoGet'],
+  	mainData:[],
+    isFirstLoadAllStandard:['userInfoGet','checkFollow','getMainData'],
   },
+	
   onLoad(options) {
     const self = this;
     api.commonInit(self);  
@@ -60,7 +62,7 @@ Page({
       followDataNum:{
         tableName:'Log',
         middleKey:'user_no',
-        key:'pay_no',
+        key:'user_no',
         searchItem:{
           status:1,
           type:5,
@@ -86,16 +88,146 @@ Page({
     };
     const callback = (res)=>{
       if(res.info.data.length>0){
-        self.data.mainData = res.info.data[0];
+        self.data.userData = res.info.data[0];
       };
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'userInfoGet',self);
       self.setData({
-        web_mainData:self.data.mainData,
+        web_userData:self.data.userData,
       });
-      
+      self.checkFollow();
+      self.getMainData();
     };
     api.messageGet(postData,callback);
   },
+
+  follow(){
+    const self =this;
+    api.buttonCanClick(self);
+    const postData = {};
+    postData.tokenFuncName = 'getProjectToken';
+    postData.data = {
+    	type:5,
+    	pay_no:self.data.userData.people[0].user_no
+    };
+    postData.saveAfter = [
+      {
+        tableName:'Message',
+        FuncName:'add',
+        data:{
+					thirdapp_id:2,
+					user_no:wx.getStorageSync('info').user_no,
+          type:7,
+          title:'关注',
+          relation_user:self.data.userData.people[0].user_no
+        }
+      }
+    ];
+    const callback = (data)=>{
+			api.buttonCanClick(self,true)
+      if(data.solely_code==100000){
+	     api.showToast('关注成功','none');
+			 self.checkFollow();
+      }else{
+        api.showToast(data.msg,'none',1000)
+      };
+      
+      
+    };
+    api.logAdd(postData,callback);
+  },
+
+   unFollow(){
+    const self =this;
+    api.buttonCanClick(self);
+    const postData = {};
+    postData.tokenFuncName = 'getProjectToken';
+    postData.searchItem={
+    	id:self.data.checkFollowData[0].id
+    };
+    postData.data = {
+    	status:-1
+    };
+    postData.saveAfter = [
+      {
+        tableName:'Message',
+        FuncName:'add',
+        data:{
+					thirdapp_id:2,
+          type:7,
+					user_no:wx.getStorageSync('info').user_no,
+          title:'取消关注',
+          relation_user:self.data.userData.people[0].user_no
+        }
+      }
+    ];
+    const callback = (data)=>{
+			api.buttonCanClick(self,true)
+      if(data.solely_code==100000){
+				 api.showToast('已取消','none');
+				 self.checkFollow();
+      }else{
+        api.showToast(data.msg,'none',1000)
+      };
+      
+      
+    };
+    api.logUpdate(postData,callback);
+  },
+
+  checkFollow(){
+  	 const self =this;
+    const postData = {};
+    postData.tokenFuncName = 'getProjectToken';
+    postData.searchItem = {
+    	type:5,
+    	pay_no:self.data.userData.people[0].user_no
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+				self.data.checkFollowData = res.info.data
+      }else{
+				self.data.checkFollowData = []
+			}
+			console.log('self.data.checkFollowData',self.data.checkFollowData)
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'checkFollow',self);
+      
+      self.setData({
+      	web_checkFollowData:self.data.checkFollowData
+      })
+    };
+    api.logGet(postData,callback);
+   },
+
+
+   getMainData(isNew){
+	    const self =this;
+	    if(isNew){
+	      api.clearPageIndex(self)
+	    };
+	    const postData={};
+	    postData.tokenFuncName = 'getProjectToken';
+	    postData.paginate = api.cloneForm(self.data.paginate);
+	    postData.searchItem = {
+	      thirdapp_id:getApp().globalData.thirdapp_id,
+	      type:['in',[1,2,3,4]],
+	      user_no:self.data.userData.people[0].user_no,
+	      user_type:0
+	    };
+	    const callback =(res)=>{
+	      if(res.info.data.length>0){
+	        self.data.mainData.push.apply(self.data.mainData,res.info.data);
+	      }else{
+	        self.data.isLoadAll = true;
+	        api.showToast('没有更多了','none');
+	      };
+	      api.buttonCanClick(self,true);
+	      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
+	      self.setData({
+	        web_mainData:self.data.mainData,
+	      });
+	    };
+	    api.messageGet(postData,callback);
+  	},
 
   intoPath(e){
     const self = this;

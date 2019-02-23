@@ -1,20 +1,16 @@
 <view class="send w670 bg1">
-    <view class="send_title flex">
-        <view class="send_left font28 color3">标题</view>
-        <view class="send_right">
-            <input class="font26" name="" placeholder="输入标题内容" placeholder-class="placeholder" data-key="title" bindblur="changeBind"  value="{{web_submitData.title}}"></input>
-        </view>
-    </view>
+    
     <textarea placeholder="这一刻的想法" placeholder-class="placeholder" style="height:240rpx" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.video}}" wx:key="index">
                 <view class="upload_box">
                     <video src="{{item.url}}"></video>
+					<image src="/images/delete.png" class="delete" bindtap="delete" data-index="{{index}}"></image>
                 </view>
             </block>
-            <view class="upload_video" bindtap="upLoadVideo">
-                <image src="/images/upload.png"></image>
+            <view class="upload_video" bindtap="upLoadVideo" wx:if="{{web_submitData.video.length==0}}">
+                <image src="/images/upload.png" class="upload_icon"></image>
             </view>
         </view>
         <view class="upload_right">
@@ -28,11 +24,8 @@
     <view class="position_img flex">
         <image src="/images/position.png"></image>
     </view>
-    <view class="position_left avoidOverflow font28 color6">
-        当前位置
-    </view>
-    <view class="position_right">
-        <image src="/images/next.png"></image>
+    <view class="position_left avoidOverflow focnt28 color6">
+        当前位置:{{web_submitData.country}}●{{web_submitData.city}}
     </view>
 </view>
 <form>

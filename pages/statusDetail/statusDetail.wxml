@@ -33,7 +33,7 @@
 		<text class="font24 color96">587466</text>
 	</view>
 	<view class="comment_share">
-		<button open-data="share">
+		<button open-type="share">
 			<image src="/images/handle4.png"></image>
 		</button>
 	</view>

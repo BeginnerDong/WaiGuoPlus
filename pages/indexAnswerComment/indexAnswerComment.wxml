@@ -4,12 +4,12 @@
     	<view class="information_tlt w690 flex">
             <view class="user_left">
                 <view class="user_img">
-                  <open-data type="userAvatarUrl"></open-data>
+                  <image src="{{web_originData.user.headImgUrl}}" class="user_img"></image>
                 </view>
             </view>
             <view class="user_center font32 avoidOverflow">
-            	<view>{{web_originData.title}}</view>
-            	<view class="font22 color96">2018-9-9 12:23:00</view>
+            	<view>{{web_originData.user.nickname}}</view>
+            	<view class="font22 color96">{{web_originData.create_time}}</view>
             </view>
         </view>
         <view wx:if="web_originData.mainImg.length>0">
@@ -43,11 +43,11 @@
             <view class="information_tlt w690 flex">
                 <view class="user_left">
                     <view class="user_img">
-                      <image src="{{item.user.headImgUrl}}"></image>
+                      <image src="{{item.user.headImgUrl}}" class="user_img"></image>
                     </view>
                 </view>
                 <view class="user_center font32 avoidOverflow">
-                    <view>{{item.title}}</view>
+                    <view>{{item.user.nickname}}</view>
                     <view class="font22 color96">{{item.create_time}}</view>
                 </view>
             </view>
@@ -61,17 +61,25 @@
     </block>
     
 </view>
+
+<view wx:if="{{!web_mainData.length>0}}">
+   
+    <view class="no_comment">
+        <image src="/images/no_comment.png"></image>
+        <view class="font24"style="color:#c9c9c9">还没有有人评论，你当是第一个吧~</view>
+    </view>
+</view>
 <view style="width:100%;height:120rpx;"></view>
 <view class="w670 comment_bottom bg1 flex">
     <view class="search1">
-        <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder"></input>
+        <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder" data-key="content" bindconfirm="changeBind"  value="{{web_submitData.content}}"></input>
     </view>
     <view class="comment_great flexCenter">
         <image src="/images/handle2.png"></image>
-        <text class="font24 color96">587466</text>
+        <text class="font24 color96">{{web_originData.goodDataNum.num}}</text>
     </view>
     <view class="comment_share">
-        <button open-data="share">
+        <button open-type="share" bindtap="onShareAppMessage" data-type="answerDetail" data-id="{{web_originData.id}}">
             <image src="/images/handle4.png"></image>
         </button>
     </view>

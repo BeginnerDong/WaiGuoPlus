@@ -14,7 +14,7 @@
         </view>
         <view class="upload_right">
             <view class="limit_number font24">
-                {{web_submitData.mainImg.length}}/999
+                {{web_submitData.mainImg.length}}/3
             </view>
         </view>
     </view>
@@ -23,11 +23,8 @@
     <view class="position_img flex">
         <image src="/images/position.png"></image>
     </view>
-    <view class="position_left avoidOverflow font28 color6">
-        当前位置
-    </view>
-    <view class="position_right">
-        <image src="/images/next.png"></image>
+    <view class="position_left avoidOverflow focnt28 color6">
+        当前位置:{{web_submitData.country}}●{{web_submitData.city}}
     </view>
 </view>
 <form>

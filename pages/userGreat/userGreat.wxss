@@ -94,3 +94,324 @@ page{
 .information{
 	margin-top:28rpx;
 }
+.tab{
+	height:80rpx;
+	background:#fff;
+}
+.tab_item{
+	width:25%;
+	text-align:center;
+	height:80rpx;
+	line-height:80rpx;
+	transition:all 0.2s;
+	-webkit-transition:all 0.2s;
+	border-bottom:solid 2px #eee;
+	color:#333;
+}
+.tab_this{
+	color:#38bca4;
+	border-bottom:solid 2px #38bca4;
+	font-weight:700;
+}
+.placeholder{
+	color:#999;
+}
+.record{
+	height:288rpx;
+	border-radius:30rpx;
+}
+.record_cont{
+	width:63%;
+	height:100%;
+	margin:0 auto;
+}
+.record_left{
+	width:46%;
+}
+.record_right{
+	width:54%;
+	text-align:right;
+}
+.record_left image{
+	width:174rpx;
+	height:182rpx;
+}
+.record_tit{
+	width:114rpx;
+	height:46rpx;
+	border:solid 1px #fff;
+	text-align:center;
+	line-height:46rpx;
+	float:right;
+	margin-bottom:46rpx;
+}
+
+.information{
+	border-radius:20rpx;
+}
+.information_tlt{
+	height:126rpx;
+}
+.user_img{
+	width:60rpx;
+	height:60rpx;
+	border-radius:50%;
+	overflow:hidden;
+}
+.user_left{
+	width:14%;
+}
+.user_center{
+	width:45%;
+}
+.user_right{
+	width:41%;
+	text-align:right;
+}
+.information_img{
+	width:100%;
+	height:450rpx;
+}
+.information_three_img image:nth-child(2n){
+	margin:0 3%;
+}
+.information_img image{
+	width:100%;
+	height:100%;
+}
+.information_title{
+	width:100%;
+	height:78rpx;
+	overflow: hidden;
+}
+.information_title span{
+	color:#333;
+	margin:0 10rpx;
+}
+.information_cont{
+	height:66rpx;
+	margin-top:16rpx;
+}
+.handle{
+	width:100%;
+	height:96rpx;
+}
+.handle_browse{
+	width:25%;
+}
+.handle_browse image{
+	width:34rpx;
+	height:28rpx;
+	margin-right:14rpx;
+
+}
+.handle_browse button{
+	width:60rpx;
+	height:40rpx;
+	line-height:40rpx;
+	border:none;
+	padding:0;
+	margin:0;
+	background:none;
+}
+.information_three_img{
+	flex-wrap:wrap;
+	overflow:hidden;
+}
+.information_three_img image{
+	width:31.33%;
+	height:140rpx;
+}
+.information{
+	margin-bottom:28rpx;
+}
+/************发布*****************/
+.send{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	bottom:-100%;
+	z-index:9999;
+}
+.mask{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:9999;
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	background:rgba(0,0,0,0.3);
+}
+.mask_cont{
+	position: relative;
+	width:100%;
+	height:100%;
+}
+.choose_video{
+	position: absolute;
+	left:0;
+	bottom:0;
+	z-index:9999;
+	width:100%;
+}
+.choose_send{
+	width:100%;
+	height:100rpx;
+	line-height:100rpx;
+	color:#000;
+	text-align:center;
+}
+.send image{
+	width:100%;
+	height:100%;
+}
+.send_cont{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.send_menu{
+	width:100%;
+	height:72%;
+	position:absolute;
+	left:0;
+	bottom:0;
+}
+.menu{
+	width:86.4%;
+	padding:0 6.8%;
+	height:100%;
+}
+.menu_btn{
+	flex-wrap:wrap;
+}
+.menu_tlt{
+	width:100%;
+	font-size:64rpx;
+	color:#474747;
+	text-align:center;
+}
+.menu_item{
+	width:50%;
+	text-align:center;
+}
+.menu_item image{
+	width:184rpx;
+	height:184rpx;
+	margin-top:76rpx;
+}
+.close{
+	text-align:center;
+	margin-top:60rpx;
+}
+.close image{
+	width:42rpx;
+	height:42rpx;
+}
+/**************问答****************/
+.quesition_cont{
+	padding-bottom:46rpx;
+	border-bottom:solid 1px #c9c9c9;
+}
+.quesition_handle{
+	height:112rpx;
+}
+.quesition_item{
+	width:50%;
+	height:40rpx;
+}
+.quesition_item image{
+	width:30rpx;
+	height:30rpx;
+	margin-right:14rpx;
+}
+.quesition_number{
+	text-align: center;
+	padding-bottom:24rpx;
+}
+.more_icon image{
+	width:26rpx;
+	height:14rpx;
+}
+/****************更多评论********************/
+.question_left{
+	width:14%;
+	height:140rpx;
+
+}
+.question_right{
+	width:86%;
+}
+.quesition_title{
+	height:140rpx;
+}
+.teasing{
+	margin-top:28rpx;
+}
+.information_img video{
+	width:100%;
+	height:450rpx;
+}
+.user_img image{
+	width:100%;
+	height:100%;
+}
+.title1 {
+	width:98%;
+	height:100%;
+	line-height:60rpx;
+}
+.title2{
+	width:98%;
+}
+.title3{
+	width:20%;
+	height:100%;
+}
+.title_left{
+	width:50%;
+	height:100%;
+}
+.title_right{
+	width:30%;
+	height:100%;
+}
+.two_img{
+	width:48%;
+	height:240rpx;
+}
+.two_img image{
+	width:100%;
+	height:100%;
+}
+.three_img{
+	width:31%;
+	height:200rpx;
+}
+.three_img image{
+	width:100%;
+	height:100%;
+}
+video {
+	width:100%;
+	height:450rpx;
+	margin:0 auto;
+}
+.video_cont{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	position:relative;
+}
+.video_mask{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	background:rgba(0,0,0,0.6);
+	z-index:99;
+}

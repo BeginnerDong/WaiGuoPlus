@@ -3,14 +3,14 @@
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
         </view>
-        <view class="upload_right">
+        <!-- <view class="upload_right">
             <view class="limit_number font24">
                 0/999
             </view>
-        </view>
+        </view> -->
     </view>
 </view>
-<view class="position bg1 flex w670">
+<!-- <view class="position bg1 flex w670">
     <view class="position_img flex">
         <image src="/images/position.png"></image>
     </view>
@@ -20,7 +20,7 @@
     <view class="position_right">
         <image src="/images/next.png"></image>
     </view>
-</view>
+</view> -->
 <form>
     <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;" open-type="getUserInfo" bindgetuserinfo="{{web_buttonCanClick?'submit':''}}">发布</button>
 </form>

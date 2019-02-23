@@ -28,7 +28,7 @@
     <view class="position_img flex">
         <image src="/images/position.png"></image>
     </view>
-    <view class="position_left avoidOverflow focnt28 color6">
+    <view class="position_left avoidOverflow focnt24 color6">
         当前位置:{{web_submitData.country}}●{{web_submitData.city}}
     </view>
 </view>

@@ -1,11 +1,12 @@
 
 <view class="w670 bg1">
     <view class="font26 color6">
-        {{web_originData.content}}
+       <text>{{web_originData.content}}</text>
     </view>
     <view class="quesition_user flex">
         <text class="font22 color96">{{web_originData.create_time}}</text>
         <text class="font22 color96">发布人:{{web_originData.user.nickname}}</text>
+		<view style="color:black;font-size:24rpx;text-align: right;" bindtap="choose" wx:if="{{web_originData.isMe}}">编辑</view>
     </view>
     <view class="quesition_handle flex">
         <view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0">
@@ -40,29 +41,59 @@
                     <view class="font22 color96">{{item.create_time}}</view>
                 </view>
             </view>
-            <view class="font28 color3 w690">
-                <view style="padding-bottom:32rpx">
-                    {{item.content}}
+            <view>
+                <view class="flexRowBetween">
+                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
+                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+                    
+                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
+                            <image src="{{item.mainImg[0].url}}"></image>
+                        </view>
+
+                    </block>
+                </view>
+                <view class="information_cont w690 font26 color6" bindtap="intoPath" data-path="/pages/indexAnswerComment/indexAnswerComment?id={{item.id}}">
+                    <text>{{item.content}}</text>
                 </view>
             </view>
+           
             <view class="handle flex">
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle2.png"></image>
-                    <text class="color96 font24">{{web_mainData.goodData.length?web_mainData.goodData.length:0}}</text>
+                 <view class="handle_browse flexCenter" >
+                    <image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}" data-index="{{index}}" bindtap="clickGood"></image>
+                    <text class="color96 font24">{{item.goodDataNum.num}}</text>
                 </view>
                 <view class="handle_browse flexCenter" bindtap="intoPath" data-path="/pages/indexAnswerComment/indexAnswerComment?id={{item.id}}">
                     <image src="/images/handle3.png"></image>
-                    <text class="color96 font24">{{item.remarkData.length?item.remarkData.length:0}}</text>
+                    <text class="color96 font24">{{item.comment.length}}</text>
                 </view>
                 <view class="handle_browse flexCenter">
                     <image src="/images/handle4.png"></image>
-                    <button open-type="share" class="font24 color96">分享</button>
+                    <button open-type="share" class="font24 color96" bindtap="onShareAppMessage" data-type="answerDetail" data-id="{{item.id}}">分享</button>
                 </view>
             </view>
         </view>
     </block> 
 </view>
-
+<view class="mask"  catchtouchmove="true" style="{{is_choose?'display:block;':'display:none'}}">
+    <view class="mask_cont">
+        <view class="choose_video">
+            <view class="choose_send font32 bg1" bindtap="intoPath" data-path="/pages/sendAnswer/sendAnswer?id={{web_originData.id}}">
+                编辑
+            </view>
+            <view class="choose_send font32 bg1" style="border-top:solid 1px #c9c9c9"  bindtap="messageUpdate">
+                删除
+            </view>
+             <view class="choose_send font32 bg1" style="border-top:solid 14px #efefef" bindtap="choose_close">
+                取消
+            </view>
+        </view>
+    </view>
+</view>
 <view wx:if="{{!web_mainData.length>0}}">
     <view class="big_title flexRowBetween">
         <view class="tlt_left"></view>

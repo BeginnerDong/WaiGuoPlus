@@ -5,64 +5,87 @@ const app = getApp();
 
 Page({
   data: {
-    currentId:1,
-    menu_show:false,
-    is_choose:false,
-    is_more:false,
+    mainData:[],
+    isFirstLoadAllStandard:['getMainData']
   },
   //事件处理函数
  
   onLoad(options) {
     const self = this;
+    api.commonInit(self);
+    self.getMainData()
+  },
+ 
+  getMainData(){
+  	 const self =this;
+    const postData = {};
+    postData.tokenFuncName = 'getProjectToken';
+    postData.searchItem = {
+    	type:5,
+    };
+    postData.getAfter = {
+      user:{
+      	tableName:'User',
+    	middleKey:'pay_no',
+    	key:'user_no',
+    	searchItem:{
+    		status:1
+    	},
+    	condition:'='
+      },
+      goodDataNum:{
+        tableName:'Log',
+        middleKey:'pay_no',
+        key:'pay_no',
+        searchItem:{
+          status:1,
+          type:4,
+        },
+        condition:'=',
+        compute:{
+          num:['count','count',{status:1}]
+        }
+      },
+      forNav:{
+      	tableName:'Message',
+      	middleKey:['goodDataNum','0','order_no'],
+      	key:'id',
+      	searchItem:{
+      		status:1
+      	},
+      	condition:'='
+      }	
+   	};
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+	    self.data.mainData.push.apply(self.data.mainData,res.info.data)
+      }else{
+      	self.data.isLoadAll = true
+      };
+      api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
+      self.setData({
+      	web_mainData:self.data.mainData
+      })
+    };
+    api.logGet(postData,callback);
+  },
 
+  onReachBottom() {
+    const self = this;
+    if(!self.data.isLoadAll&&self.data.buttonCanClick){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
   },
-  tab(e){
-   this.setData({
-      currentId:e.currentTarget.dataset.id
-    })
-  },
-  menu(){
-    const self =this;
-    self.menu_show = !self.menu_show;
-    this.setData({
-      menu_show:self.menu_show
-    })
-  }, 
-  close(){
-     const self =this;
-    self.menu_show = false;
-    this.setData({
-      menu_show:self.menu_show
-    })
-  },
-  choose(){
-     const self =this;
-    self.is_choose = true;
-    self.menu_show = false;
-    this.setData({
-      is_choose:self.is_choose,
-      menu_show:self.menu_show
-    })
-  },
-  choose_close(){
-     const self =this;
-    self.is_choose = false;
-    this.setData({
-      is_choose:self.is_choose
-    })
-  },
-  /*******展示更多评论*********/
-  show_more(){
-    const self =this;
-    self.is_more = !self.is_more;
-    this.setData({
-      is_more:self.is_more
-    })
-  },
+
+
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
   },
+
+
   intoPathRedirect(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'redi');

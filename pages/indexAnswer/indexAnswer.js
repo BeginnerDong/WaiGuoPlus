@@ -55,6 +55,7 @@ Page({
     postData.data = api.cloneForm(self.data.submitData);
     postData.data.relation_id = self.data.id;
     const callback = (data)=>{
+			api.buttonCanClick(self,true);
       if(data.solely_code==100000){
         api.showToast('回答成功','none',1000,function(){
           setTimeout(function(){
@@ -66,7 +67,7 @@ Page({
       }else{
         api.showToast(data.msg,'none',1000)
       }
-      api.buttonCanClick(self,true)
+      
     };
     api.messageAdd(postData,callback);
   },

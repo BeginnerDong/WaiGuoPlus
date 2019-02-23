@@ -9,21 +9,134 @@ Page({
     submitData:{
       content:'',
       mainImg:[],
-      type:3
+      type:3,
+      country:'',
+      city:'',
+			keywords:''
     }, 
+		anonymousData:[],
     isFirstLoadAllStandard:['getLocation']
 
   },
 
 
 
-  onLoad() {
-    const self = this;
-    api.commonInit(self);
-    self.setData({
-      web_submitData:self.data.submitData
-    });
-    self.getLocation()
+  onLoad(options) {
+  	const self = this;
+  	api.commonInit(self);
+		
+		
+	
+  	if(options.id){
+  			self.data.id = options.id;
+  			self.getMainData();
+  	};
+  	self.setData({
+  		web_submitData: self.data.submitData
+  	});
+  	self.getAnonymousData();
+  	self.getLocation()
+  },
+	
+	getAnonymousData() {
+		const self = this;
+		const postData = {};
+		postData.searchItem = {
+			thirdapp_id:2
+		};
+		postData.tokenFuncName = 'getProjectToken';
+		const callback = (res) => {
+			if (res.info.data.length > 0) {
+				self.data.anonymousData.push.apply(self.data.anonymousData,res.info.data)
+			};
+			var num = Math.floor(Math.random()*self.data.anonymousData.length);//0-10
+			self.data.submitData.keywords = num;
+				console.log(num)
+		};
+		api.anonymousGet(postData, callback);
+	},
+	
+  
+  getMainData() {
+  	const self = this;
+  	const postData = {};
+		postData.searchItem = {
+			id:self.data.id
+		};
+  	postData.tokenFuncName = 'getProjectToken';
+  	const callback = (res) => {
+  		if (res.info.data.length > 0) {
+  			self.data.submitData.title = res.info.data[0].title;
+  			self.data.submitData.content = res.info.data[0].content;
+  			self.data.submitData.mainImg = res.info.data[0].mainImg;
+				self.data.submitData.keywords= res.info.data[0].keywords;
+  			/* 		self.data.submitData.country = res.info.data[0].country; 
+  					self.data.submitData.city = res.info.data[0].city; */
+  		};
+  		self.data.mainData = res.info.data[0];
+  		self.setData({
+  			web_mainData: self.data.mainData,
+  			web_submitData: self.data.submitData,
+  		});
+  	};
+  	api.messageGet(postData, callback);
+  },
+  
+  submit() {
+  	const self = this;
+  	api.buttonCanClick(self);
+  	const pass = api.checkComplete(self.data.submitData);
+  	console.log('pass', pass);
+  	if (pass) {
+  		const callback = (user, res) => {
+  			if (self.data.id) {
+  				self.messageUpdate()
+  			} else {
+  				self.messageAdd();
+  			}
+  		}
+  		api.getAuthSetting(callback);
+  	} else {
+			api.buttonCanClick(self, true);
+  		api.showToast('请补全信息', 'none')
+  		
+  	};
+  },
+  
+  messageUpdate() {
+  	const self = this;
+  	const postData = {};
+  	postData.tokenFuncName = 'getProjectToken';
+  	postData.searchItem = {
+  		id: self.data.id
+  	};
+  	postData.data = {};
+  	postData.data = api.cloneForm(self.data.submitData);
+  	const callback = (data) => {
+  		if (data.solely_code == 100000) {
+  			api.showToast('編輯成功', 'none', 1000, function() {
+  				setTimeout(function() {
+  					wx.navigateBack({
+  						delta: 1
+  					})
+  				}, 1000);
+  			})
+  		} else {
+  			api.showToast(data.msg, 'none', 1000)
+  		}
+  		api.buttonCanClick(self, true)
+  	};
+  	api.messageUpdate(postData, callback);
+  },
+  
+  delete(e) {
+  	const self = this;
+  	var index = api.getDataSet(e, 'index');
+  	console.log('deleteImg', index)
+  	self.data.submitData.mainImg.splice(index, 1);
+  	self.setData({
+  		web_submitData: self.data.submitData
+  	})
   },
 
 
@@ -64,15 +177,18 @@ Page({
   },
 
 
-  getLocation(){
-    const self=this;
-    wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
-        
-        console.log(res)
-      }
-    });
+  getLocation() {
+    const self = this;
+    const callback = (res)=>{
+      if(res){
+        self.data.submitData.country = res.address_component.nation;
+        self.data.submitData.city = res.address_component.city
+      };
+      self.setData({
+        web_submitData:self.data.submitData
+      })
+    };
+    api.getLocation('reverseGeocoder',callback);
     api.checkLoadAll(self.data.isFirstLoadAllStandard,'getLocation',self)
   },
   

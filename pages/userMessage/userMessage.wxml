@@ -1,22 +1,54 @@
 <block wx:for="{{web_mainData}}" wx:key="id">
-<view class="system_message flex w690 ">
-
+<view class="system_message flex w690 " wx:if="{{item.title=='点赞'}}">
     <view class="message">
         <view class="message_list flex">
             <view class="message_left">
                 <view class="user_img">
-                  <image src="{{item.user[0].headImgUrl}}"></image>
+                  <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
                 </view>
             </view>
             <view class="message_right">
                 <view class="notice flexRowBetween">
                     <view class="font30 color3">系统通知</view>
-                    <view class="font22 color96">7分钟前</view>
+                    <view class="font22 color96">{{item.create_time}}</view>
                 </view>
-                <view class="font30 color3 avoidOverflow" wx:if="{{item.type==7}}">你发布的动态被{{item.user[0].nickname}}点赞了</view>
-                <view class="flex message_box w690">
-                    <view class="message_cont font28 color6 avoidOverflow2">{{item.message[0].content}}</view>
+                <view class="font30 color3 avoidOverflow" wx:if="{{item.type==7}}">{{item.user[0].nickname}}点赞了你发布的內容</view>
+                <view class="flex message_box w690" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.message[0].id}}" wx:if="{{item.message[0].type==3}}">
+                    <view class="message_cont font28 color6 avoidOverflow2" >{{item.message[0].content}}</view>
                 </view>
+				<view class="flex message_box w690" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.message[0].id}}" wx:if="{{item.message[0].type==2}}">
+				    <view class="message_cont font28 color6 avoidOverflow2" >{{item.message[0].content}}</view>
+				</view>
+				<view class="flex message_box w690" bindtap="intoPath" data-path="/pages/indexVideoDetail/indexVideoDetail?id={{item.message[0].id}}" wx:if="{{item.message[0].type==4}}">
+				    <view class="message_cont font28 color6 avoidOverflow2" >{{item.message[0].content}}</view>
+				</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="system_message flex w690 " wx:if="{{item.title=='评论'}}">
+    <view class="message">
+        <view class="message_list flex">
+            <view class="message_left">
+                <view class="user_img">
+                  <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
+                </view>
+            </view>
+            <view class="message_right">
+                <view class="notice flexRowBetween">
+                    <view class="font30 color3">系统通知</view>
+                    <view class="font22 color96">{{item.create_time}}</view>
+                </view>
+                <view class="font30 color3 avoidOverflow" wx:if="{{item.type==7}}">{{item.user[0].nickname}}评论了你发布的內容</view>
+                <view class="flex message_box w690" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.message[0].id}}" wx:if="{{item.message[0].type==3}}">
+                    <view class="message_cont font28 color6 avoidOverflow2" >{{item.message[0].content}}</view>
+                </view>
+				<view class="flex message_box w690" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.message[0].id}}" wx:if="{{item.message[0].type==2}}">
+				    <view class="message_cont font28 color6 avoidOverflow2" >{{item.message[0].content}}</view>
+				</view>
+				<view class="flex message_box w690" bindtap="intoPath" data-path="/pages/indexVideoDetail/indexVideoDetail?id={{item.message[0].id}}" wx:if="{{item.message[0].type==4}}">
+				    <view class="message_cont font28 color6 avoidOverflow2" >{{item.message[0].content}}</view>
+				</view>
             </view>
         </view>
     </view>

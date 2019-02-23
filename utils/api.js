@@ -92,7 +92,20 @@ class Api extends Base{
         };
         this.request(allParams);       
     }
-
+	
+	anonymousGet(param,callback){
+	    var allParams ={
+	        url:'Common/Anonymous/get',
+	        type:'post',
+	        data:param,
+	        sCallback: function(data) {
+	            callback && callback(data);
+	        }
+	    };
+	    this.request(allParams);       
+	}
+	
+	anonymousGet
     skuAdd(param,callback){
         var allParams ={
             url:'Common/Sku/add',

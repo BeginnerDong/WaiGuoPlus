@@ -22,14 +22,16 @@ Page({
     };
     const postData={};
     postData.tokenFuncName = 'getProjectToken';
+		postData.searchItem={
+			relation_user:wx.getStorageSync('info').user_no,
+			type:['in',[7]]
+		};
     postData.paginate = api.cloneForm(self.data.paginate);
-    postData.searchItem = {
-      type:['in',[7,8]]
-    };
+    
     postData.getAfter = {
       user:{
         tableName:'User',
-        middleKey:'relation_user',
+        middleKey:'user_no',
         key:'user_no',
         searchItem:{
           status:1

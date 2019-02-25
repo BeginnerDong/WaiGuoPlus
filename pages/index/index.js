@@ -17,7 +17,12 @@ Page({
 		is_choose: false,
 		is_more: false,
 		isFirstLoadAllStandard: ['getMainData','userInfoGet'],
-		mainData: [],
+		mainData: {
+			1:[],
+			2:[],
+			3:[],
+			4:[]
+		},
 		is_mask: '看谁高',
 		submitData: {
 			item: ''
@@ -58,6 +63,12 @@ Page({
 		self.data.menu_show = false;
 		self.data.is_choose = false;
 		self.init();
+		self.data.mainData = {
+			1:[],
+			2:[],
+			3:[],
+			4:[]
+		};
 		self.setData({
 		
 			menu_show: self.data.menu_show,
@@ -112,9 +123,7 @@ Page({
 
 	getMainData(isNew) {
 		const self = this;
-		if (isNew) {
-			api.clearPageIndex(self)
-		};
+		console.log(self.data.mainData)
 		const postData = {};
 		postData.tokenFuncName = 'getProjectToken';
 		postData.paginate = api.cloneForm(self.data.paginate);
@@ -206,7 +215,8 @@ Page({
 				/* for (var i = 0; i < res.info.data.length; i++) {
 				  res.info.data[i].content = api.wxParseReturn(res.info.data[i].content).nodes;
 				} */
-				self.data.mainData.push.apply(self.data.mainData, res.info.data);
+				console.log(self.data.mainData);
+				self.data.mainData[self.data.type].push.apply(self.data.mainData[self.data.type], res.info.data);
 			} else {
 				self.data.isLoadAll = true;
 				api.showToast('没有更多了', 'none');
@@ -300,7 +310,7 @@ Page({
 	
 	bindChange: function( e ) {  
 		const self = this;
-		api.buttonCanClick(self);
+		
 		
 		console.log(e,'e')
 
@@ -308,7 +318,10 @@ Page({
 		self.setData( { web_currentType:self.data.type });  
 		console.log('self.data.type',self.data.type);
 		console.log('e.detail.current',e.detail.current);
-		//self.getMainData(true);			
+		if(self.data.mainData[self.data.type].length==0){
+			api.buttonCanClick(self);
+			self.getMainData(true);
+		};
 	},  
 
 	clickGood(e) {
@@ -363,6 +376,27 @@ Page({
 			});
 		};
 		api.logAdd(postData, callback);
+	},
+
+
+	vedioPlay(e){
+		const self = this;
+		console.log(e);
+		console.log(e.target.id);
+		var currentId = e.target.id;
+		
+			var videoContextPrev = wx.createVideoContext(currentId)
+			videoContextPrev.play();
+		
+
+		
+		if (self.data.playId&&self.data.playId!=currentId) {
+			console.log('currentId',currentId)
+			var videoContextPrev = wx.createVideoContext(self.data.playId)
+			videoContextPrev.pause();
+		};
+		self.data.playId = currentId
+
 	},
 
 

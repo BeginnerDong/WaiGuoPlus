@@ -10,10 +10,9 @@
 	<view class="tab_item {{web_currentType == 3?'tab_this':''}}" data-type="3" bindtap="changeType">
 		吐槽
 	</view>
-	<view class="tab_item {{web_currentType ==4?'tab_this':''}}" data-type="4" bindtap="changeType">
+	<view class="tab_item {{web_currentType == 4?'tab_this':''}}" data-type="4" bindtap="changeType">
 		视频
 	</view>
-
 </view>
 <view class="w670">
 	<view class="search flex bg1">
@@ -30,7 +29,7 @@
 
 	<swiper-item>
 		<scroll-view scroll-y="true" class="scoll-h">
-			<block wx:for="{{web_mainData}}" wx:key="id">
+			<block wx:for="{{web_mainData[1]}}" wx:key="id">
 				<view class="quesition w670">
 					<view class="information bg1 shadow1">
 						<view class="information_tlt w690 flex">
@@ -123,7 +122,7 @@
 			<view class="index_title font36 color3">
 				最新动态
 			</view>
-			<block wx:for="{{web_mainData}}" wx:key="id">
+			<block wx:for="{{web_mainData[2]}}" wx:key="id">
 
 				<view class="status">
 					<view class="w670">
@@ -200,7 +199,7 @@
 
 	<swiper-item>
 		<scroll-view scroll-y="true" class="scoll-h" >
-			<block wx:for="{{web_mainData}}" wx:key="id">
+			<block wx:for="{{web_mainData[3]}}" wx:key="id">
 				<view class="status 3232">
 					<view class="w670">
 						<view class="information bg1 shadow1">
@@ -266,7 +265,7 @@
 	</swiper-item>
 	<swiper-item>
 		<scroll-view scroll-y="true" class="scoll-h" >
-			<block wx:for="{{web_mainData}}" wx:key="id">
+			<block wx:for="{{web_mainData[4]}}" wx:key="id">
 				<view class="w670 teasing">
 					<view class="information bg1 shadow1">
 						<view>
@@ -280,8 +279,8 @@
 								<view class="user_right avoidOverflow font30 color6">{{item.country}}·{{item.city}}</view>
 							</view>
 							<view class="information_three_img flex">
-								<block wx:for="{{item.video}}" wx:for-item="c_item">
-									<video src="{{c_item.url}}"></video>
+								<block wx:for="{{item.video}}" wx:for-item="c_item" wx:for-index="c_index">
+									<video  id="{{item.id+index+c_index}}" src="{{c_item.url}}" bindtap="vedioPlay"></video>
 								</block>
 							</view>
 							<view class="w690">

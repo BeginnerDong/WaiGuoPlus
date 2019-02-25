@@ -18,7 +18,7 @@ App({
     paginate: {
         count: 0,
         currentPage:1,
-        pagesize:10,
+        pagesize:5,
         is_page:true,
     },
     categoryIndex:'',

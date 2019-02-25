@@ -280,7 +280,7 @@
 							</view>
 							<view class="information_three_img flex">
 								<block wx:for="{{item.video}}" wx:for-item="c_item" wx:for-index="c_index">
-									<video  id="{{item.id+index+c_index}}" src="{{c_item.url}}" bindtap="vedioPlay"></video>
+									<video  custom-cache="{{false}}" id="{{item.id+index+c_index}}" src="{{c_item.url}}" bindtap="vedioPlay"></video>
 								</block>
 							</view>
 							<view class="w690">

@@ -295,14 +295,19 @@ Page({
 
 	changeType(e) {
 		const self = this;
-		api.buttonCanClick(self);
+		
 		var type = api.getDataSet(e, 'type');
 		if (type != self.data.currentType) {
-			self.data.type = type+1;	
-			self.data.currentType = type-1;
+		
+			self.data.type = type;	
+			self.data.currentType = type;
 			self.setData({
 				web_currentType: api.getDataSet(e, 'type')
-			})
+			});
+			if(self.data.mainData[self.data.type].length==0){
+				api.buttonCanClick(self);
+				self.getMainData(true);
+			};
 		}else{
 			api.buttonCanClick(self,true);
 		}
@@ -385,8 +390,8 @@ Page({
 		console.log(e.target.id);
 		var currentId = e.target.id;
 		
-			var videoContextPrev = wx.createVideoContext(currentId)
-			videoContextPrev.play();
+		/*var videoContextPrev = wx.createVideoContext(currentId)
+		videoContextPrev.play();*/
 		
 
 		

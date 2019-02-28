@@ -34,7 +34,6 @@
     "pages/indexVideoComment/indexVideoComment",
     "pages/detail/detail",
     "pages/userMessage/userMessage"
-
   ],
   "window": {
     "backgroundTextStyle": "light",

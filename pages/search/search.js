@@ -6,16 +6,37 @@ const app = getApp();
 Page({
   data: {
       mainData:[],
-      isFirstLoadAllStandard:['getMainData']
+      isFirstLoadAllStandard:['getMainData'],
+			anonymousData:[]
   },
+	
   onLoad(options) {
     const self = this;
     api.commonInit(self);
     if(options.item){
       self.data.item = options.item
     };
-    self.getMainData()
+    self.getMainData();
+		
   },
+	
+/* 	getAnonymousData() {
+		const self = this;
+		const postData = {};
+		postData.searchItem = {
+			thirdapp_id: 2
+		};
+		postData.tokenFuncName = 'getProjectToken';
+		const callback = (res) => {
+			if (res.info.data.length > 0) {
+				self.data.anonymousData.push.apply(self.data.anonymousData, res.info.data)
+			};
+			self.setData({
+				web_anonymousData: self.data.anonymousData
+			}))
+		};
+		api.anonymousGet(postData, callback);
+	}, */
 
   getMainData(isNew){
     const  self =this;
@@ -85,6 +106,16 @@ Page({
         },
         condition:'='
       },
+			anonymous: {
+				tableName: 'Anonymous',
+				middleKey: 'keywords',
+				key: 'id',
+				condition: '=',
+				searchItem: {
+					status: 1
+				},
+			
+			},
     };
     const callback =(res)=>{
       if(res.info.data.length>0){

@@ -10,123 +10,216 @@ const token = new Token();
 
 Page({
 	data: {
-		winHeight:"",//窗口高度
-		currentType: 0,
-		type:1,
+		touchDot: 0,
+		time: 0,
+		interval: "",
+		currentType: 1,
+		type: 1,
 		menu_show: false,
 		is_choose: false,
-		is_more: false,
-		isFirstLoadAllStandard: ['getMainData','userInfoGet'],
+		isFirstLoadAllStandard: ['getMainData', 'userInfoGet'],
 		mainData: {
-			1:[],
-			2:[],
-			3:[],
-			4:[]
+			1: [],
+			2: [],
+			3: [],
+			4: []
 		},
-		is_mask: '看谁高',
 		submitData: {
 			item: ''
 		},
-		anonymousData:[],
-		urlSet:[],
-		
+		urlSet: [],
 	},
 	//事件处理函数
 
 	onLoad(options) {
 		const self = this;
-		console.log('options',options);
-		if(options.type&&options.type=='answer'){
-			api.pathTo('/pages/indexAnswer/indexAnswer?id='+options.id,'nav')
-		}else if(options.type&&options.type=='graphic'){
-			api.pathTo('/pages/indexDetail/indexDetail?id='+options.id,'nav')
-		}else if(options.type&&options.type=='video'){
-			api.pathTo('/pages/indexVideoDetail/indexVideoDetail?id='+options.id,'nav')
-		}else if(options.type&&options.type=='teasing'){
-			api.pathTo('/pages/indexTeasingDetail/indexTeasingDetail?id='+options.id,'nav')
-		}else if(options.type&&options.type=='answerDetail'){
-			api.pathTo('/pages/indexAnswerComment/indexAnswerComment?id='+options.id,'nav')
-		}else if(options.type&&options.type=='graphicDetail'){
-			api.pathTo('/pages/indexStateDetail/indexStateDetail?id='+options.id,'nav')
-		}else if(options.type&&options.type=='videoDetail'){
-			api.pathTo('/pages/indexVideoComment/indexVideoComment?id='+options.id,'nav')
-		}else if(options.type&&options.type=='teasingDetail'){
-			api.pathTo('/pages/indexTeasingComment/indexTeasingComment?id='+options.id,'nav')
+		console.log('options', options);
+		if (options.type && options.type == 'answer') {
+			api.pathTo('/pages/indexAnswer/indexAnswer?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'graphic') {
+			api.pathTo('/pages/indexDetail/indexDetail?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'video') {
+			api.pathTo('/pages/indexVideoDetail/indexVideoDetail?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'teasing') {
+			api.pathTo('/pages/indexTeasingDetail/indexTeasingDetail?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'answerDetail') {
+			api.pathTo('/pages/indexAnswerComment/indexAnswerComment?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'graphicDetail') {
+			api.pathTo('/pages/indexStateDetail/indexStateDetail?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'videoDetail') {
+			api.pathTo('/pages/indexVideoComment/indexVideoComment?id=' + options.id, 'nav')
+		} else if (options.type && options.type == 'teasingDetail') {
+			api.pathTo('/pages/indexTeasingComment/indexTeasingComment?id=' + options.id, 'nav')
 		}
-		
-		
+
+
 	},
 
 	onShow() {
 		const self = this;
-		
 		self.data.menu_show = false;
 		self.data.is_choose = false;
+		clearInterval(self.data.interval); // 清除setInterval 
+		self.data.time = 0;
 		self.init();
 		self.data.mainData = {
-			1:[],
-			2:[],
-			3:[],
-			4:[]
+			1: [],
+			2: [],
+			3: [],
+			4: []
 		};
 		self.setData({
-		
 			menu_show: self.data.menu_show,
 			is_choose: self.data.is_choose,
-			web_currentType:self.data.type
+			web_currentType: self.data.type
 		})
 	},
 
+	// 触摸开始事件 
+
+	touchStart: function(e) {
+		const self = this;
+		self.data.touchDot = e.touches[0].pageX; // 获取触摸时的原点 
+		// 使用js计时器记录时间  
+		self.data.interval = setInterval(function() {
+			self.data.time++;
+		}, 100)
+	},
+
+	// 触摸移动事件 
+
+	touchMove: function(e) {
+		const self = this;
+		var touchMove = e.touches[0].pageX;
+		console.log("touchMove:" + touchMove + " touchDot:" + self.data.touchDot + " diff:" + (touchMove - self.data.touchDot));
+		// 向左滑动  
+		console.log('self.data.time', self.data.time)
+		if (touchMove - self.data.touchDot <= -40) {
+			if (self.data.currentType < 4) {
+				/* var animation = wx.createAnimation({
+					duration: 1000,
+					timingFunction: 'ease',
+					delay: 100
+				});
+				animation.opacity(1).translate(-375, 0).step() */
+				self.data.type++;
+				self.data.currentType = self.data.type;
+				self.setData({
+					// animation: animation.export(),
+					web_currentType: self.data.currentType
+				});
+				console.log('self.data.type', self.data.type)
+				if (self.data.mainData[self.data.type].length == 0) {
+					api.buttonCanClick(self);
+					self.getMainData(true);
+				};
+				
+			} else {
+				api.buttonCanClick(self, true);
+			}
+		};
+		if (touchMove - self.data.touchDot >= 40) {
+			console.log('向右滑动');
+			if (self.data.currentType > 1) {
+				self.data.type--;
+				self.data.currentType = self.data.type;
+				self.setData({
+					web_currentType: self.data.currentType
+				});
+				console.log('self.data.type', self.data.type)
+				if (self.data.mainData[self.data.type].length == 0) {
+					api.buttonCanClick(self);
+					self.getMainData(true);
+				};
+				/* var animation = wx.createAnimation({
+					duration: 1000,
+					timingFunction: 'ease',
+					delay: 100
+				});
+				animation.opacity(1).translate(375, 0).step()
+				self.setData({
+					animation: animation.export()
+				}) */
+			} else {
+				console.log(222)
+				api.buttonCanClick(self, true);
+			}
+		}
+	},
+
+	// 触摸结束事件 
+
+	touchEnd: function(e) {
+		const self = this;
+		clearInterval(self.data.interval); // 清除setInterval 
+		self.data.time = 0;
+	},
 
 	init() {
 		const self = this;
 		api.commonInit(self);
-		wx.getSystemInfo( {  
-				success: function( res ) {  
-						var clientHeight=res.windowHeight,
-								clientWidth=res.windowWidth,
-								rpxR=750/clientWidth;
-					var  calc=clientHeight*rpxR-180;
-						console.log(calc)
-						self.setData( {  
-								winHeight: calc  
-						});  
-				}  
-		});
-		
+		self.data.paginate = [{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
+					is_page: true
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
+					is_page: true,
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
+					is_page: true,
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
+					is_page: true,
+				},
+			],
+			console.log('self.data.paginate', self.data.paginate)
 		self.userInfoGet();
 		self.getMainData();
 		self.setData({
 			web_currentType: self.data.currentType
 		})
 	},
-	
-	userInfoGet(){
-	  const self = this;
-	  const postData = {};
-	  postData.tokenFuncName = 'getProjectToken';
-	  const callback = (res)=>{
-	    if(res.info.data.length>0){
-	      self.data.userData = res.info.data[0];
-		  if(self.data.userData.info.behavior==null||self.data.userData.info.behavior==''||self.data.userData.info.behavior==undefined){
-			  wx.reLaunch({
-			      url:'/pages/entrance/entrance',
-			  });
-		  }
-	    };
-	    api.checkLoadAll(self.data.isFirstLoadAllStandard,'userInfoGet',self);
-	    console.log('userInfoGet',self.data.userData)
-	    
-	  };
-	  api.userGet(postData,callback);
+
+	userInfoGet() {
+		const self = this;
+		const postData = {};
+		postData.tokenFuncName = 'getProjectToken';
+		const callback = (res) => {
+			if (res.info.data.length > 0) {
+				self.data.userData = res.info.data[0];
+				if (self.data.userData.info.behavior == null || self.data.userData.info.behavior == '' || self.data.userData.info
+					.behavior == undefined) {
+					wx.reLaunch({
+						url: '/pages/entrance/entrance',
+					});
+				}
+			};
+			api.checkLoadAll(self.data.isFirstLoadAllStandard, 'userInfoGet', self);
+			console.log('userInfoGet', self.data.userData)
+
+		};
+		api.userGet(postData, callback);
 	},
 
 	getMainData(isNew) {
 		const self = this;
-		console.log(self.data.mainData)
+		self.setData({
+			web_loading: true
+		});
 		const postData = {};
 		postData.tokenFuncName = 'getProjectToken';
-		postData.paginate = api.cloneForm(self.data.paginate);
+		postData.paginate = api.cloneForm(self.data.paginate[self.data.type - 1]);
 		postData.searchItem = {
 			thirdapp_id: getApp().globalData.thirdapp_id,
 			type: self.data.type,
@@ -196,60 +289,42 @@ Page({
 					status: 1,
 				},
 				condition: '=',
-				
-			},	
-			
+
+			},
+
 		};
 		const callback = (res) => {
+			api.buttonCanClick(self, true);
 			if (res.info.data.length > 0) {
-				
+
 				for (var i = 0; i < res.info.data.length; i++) {
-					if(res.info.data[i].user_no==wx.getStorageSync('info').user_no){
+					if (res.info.data[i].user_no == wx.getStorageSync('info').user_no) {
 						res.info.data[i].isMe = true;
 					};
 					var time = api.timeToTimestamp(res.info.data[i].create_time)
-					
+
 					res.info.data[i].create_time = api.getDateDiff(time)
-			
+
 				}
-				/* for (var i = 0; i < res.info.data.length; i++) {
-				  res.info.data[i].content = api.wxParseReturn(res.info.data[i].content).nodes;
-				} */
 				console.log(self.data.mainData);
 				self.data.mainData[self.data.type].push.apply(self.data.mainData[self.data.type], res.info.data);
 			} else {
 				self.data.isLoadAll = true;
 				api.showToast('没有更多了', 'none');
 			};
-			
-			api.buttonCanClick(self, true);
+
+
 			api.checkLoadAll(self.data.isFirstLoadAllStandard, 'getMainData', self);
 			self.setData({
+				web_loading: false,
 				web_mainData: self.data.mainData,
 			});
 		};
 		api.messageGet(postData, callback);
 	},
-	
-	/* getAnonymousData() {
-		const self = this;
-		const postData = {};
-		postData.searchItem = {
-			thirdapp_id:2
-		};
-		postData.tokenFuncName = 'getProjectToken';
-		const callback = (res) => {
-			if (res.info.data.length > 0) {
-				self.data.anonymousData.push.apply(self.data.anonymousData,res.info.data)
-			};
-			self.setData({
-				web_anonymousData:self.data.anonymousData
-			})
-		
-		};
-		api.anonymousGet(postData, callback);
-	},	 */
-		
+
+
+
 	getAnswerData(index) {
 		const self = this;
 		const postData = {
@@ -276,7 +351,6 @@ Page({
 			if (res.info.data.length > 0) {
 				for (var i = 0; i < res.info.data.length; i++) {
 					var time = api.timeToTimestamp(res.info.data[i].create_time)
-
 					res.info.data[i].create_time = api.getDateDiff(time)
 				};
 				self.data.mainData[index].answerData = res.info.data;
@@ -292,42 +366,39 @@ Page({
 		api.messageGet(postData, callback);
 	},
 
-
+	//点击切换
 	changeType(e) {
 		const self = this;
-		
+
 		var type = api.getDataSet(e, 'type');
 		if (type != self.data.currentType) {
-		
-			self.data.type = type;	
+			self.data.type = type;
 			self.data.currentType = type;
 			self.setData({
 				web_currentType: api.getDataSet(e, 'type')
 			});
-			if(self.data.mainData[self.data.type].length==0){
+			if (self.data.mainData[self.data.type].length == 0) {
 				api.buttonCanClick(self);
 				self.getMainData(true);
 			};
-		}else{
-			api.buttonCanClick(self,true);
+		} else {
+			api.buttonCanClick(self, true);
 		}
 	},
-	
-	bindChange: function( e ) {  
-		const self = this;
-		
-		
-		console.log(e,'e')
 
-		self.data.type = e.detail.current+1;
-		self.setData( { web_currentType:self.data.type });  
-		console.log('self.data.type',self.data.type);
-		console.log('e.detail.current',e.detail.current);
-		if(self.data.mainData[self.data.type].length==0){
-			api.buttonCanClick(self);
-			self.getMainData(true);
-		};
-	},  
+	/* 	//滑动切换
+		bindChange(e) {
+			const self = this;
+			console.log(e, 'e')
+			self.data.type = e.detail.current + 1;
+			self.setData({
+				web_currentType: self.data.type
+			});
+			if (self.data.mainData[self.data.type].length == 0) {
+				api.buttonCanClick(self);
+				self.getMainData(true);
+			};
+		}, */
 
 	clickGood(e) {
 		const self = this;
@@ -384,19 +455,13 @@ Page({
 	},
 
 
-	vedioPlay(e){
+	vedioPlay(e) {
 		const self = this;
 		console.log(e);
 		console.log(e.target.id);
 		var currentId = e.target.id;
-		
-		/*var videoContextPrev = wx.createVideoContext(currentId)
-		videoContextPrev.play();*/
-		
-
-		
-		if (self.data.playId&&self.data.playId!=currentId) {
-			console.log('currentId',currentId)
+		if (self.data.playId && self.data.playId != currentId) {
+			console.log('currentId', currentId)
 			var videoContextPrev = wx.createVideoContext(self.data.playId)
 			videoContextPrev.pause();
 		};
@@ -484,8 +549,9 @@ Page({
 
 	onReachBottom() {
 		const self = this;
+		wx.showLoading();
 		if (!self.data.isLoadAll && self.data.buttonCanClick) {
-			self.data.paginate.currentPage++;
+			self.data.paginate[self.data.type - 1].currentPage++;
 			self.getMainData();
 		};
 	},
@@ -515,59 +581,59 @@ Page({
 		console.log('self.data.mainData', self.data.mainData);
 	},
 
-	onShareAppMessage(res){
-	  const self = this;
-		
-	  if(self.data.buttonClicked){
-	    api.showToast('数据有误请稍等','none');
-	    setTimeout(function(){
-	      wx.showLoading();
-	    },800)   
-	    return;
-	  };
-	   console.log(res)
-		 var id = res.target.dataset.id;
-		 var type = res.target.dataset.type;
-	    if(res.from == 'button'){
-	      self.data.shareBtn = true;
-	    }else{   
-	      self.data.shareBtn = false;
-	    }
-	    return {
-	      title: '歪果plus',
-	      path: 'pages/index/index?id='+id+'&&type='+type,
-	      success: function (res){
-	        console.log(res);
-	        console.log(parentNo)
-	        if(res.errMsg == 'shareAppMessage:ok'){
-	          console.log('分享成功')
-	          if (self.data.shareBtn){
-	            if(res.hasOwnProperty('shareTickets')){
-	            console.log(res.shareTickets[0]);
-	              self.data.isshare = 1;
-	            }else{
-	              self.data.isshare = 0;
-	            }
-	          }
-	        }else{
-	          wx.showToast({
-	            title: '分享失败',
-	          })
-	          self.data.isshare = 0;
-	        }
-	      },
-	      fail: function(res) {
-	        console.log(res)
-	      }
-	    }
+	onShareAppMessage(res) {
+		const self = this;
+
+		if (self.data.buttonClicked) {
+			api.showToast('数据有误请稍等', 'none');
+			setTimeout(function() {
+				wx.showLoading();
+			}, 800)
+			return;
+		};
+		console.log(res)
+		var id = res.target.dataset.id;
+		var type = res.target.dataset.type;
+		if (res.from == 'button') {
+			self.data.shareBtn = true;
+		} else {
+			self.data.shareBtn = false;
+		}
+		return {
+			title: '歪果plus',
+			path: 'pages/index/index?id=' + id + '&&type=' + type,
+			success: function(res) {
+				console.log(res);
+				console.log(parentNo)
+				if (res.errMsg == 'shareAppMessage:ok') {
+					console.log('分享成功')
+					if (self.data.shareBtn) {
+						if (res.hasOwnProperty('shareTickets')) {
+							console.log(res.shareTickets[0]);
+							self.data.isshare = 1;
+						} else {
+							self.data.isshare = 0;
+						}
+					}
+				} else {
+					wx.showToast({
+						title: '分享失败',
+					})
+					self.data.isshare = 0;
+				}
+			},
+			fail: function(res) {
+				console.log(res)
+			}
+		}
 	},
-	
+
 	previewImage(e) {
 		const self = this;
-		var index = api.getDataSet(e,'index');
-		var imgIndex = api.getDataSet(e,'id');
-		console.log('index',index)
-		console.log('imgIndex',imgIndex)
+		var index = api.getDataSet(e, 'index');
+		var imgIndex = api.getDataSet(e, 'id');
+		console.log('index', index)
+		console.log('imgIndex', imgIndex)
 		console.log(self.data.mainData[index].mainImg[0])
 		for (var i = 0; i < self.data.mainData[index].mainImg.length; i++) {
 			self.data.urlSet.push(self.data.mainData[index].mainImg[i].url);
@@ -576,7 +642,7 @@ Page({
 			current: self.data.mainData[index].mainImg[imgIndex].url, // 当前显示图片的http链接
 			urls: self.data.urlSet // 需要预览的图片http链接列表
 		})
-	},	
+	},
 
 
 	intoPath(e) {

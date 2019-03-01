@@ -15,6 +15,7 @@ Page({
 		interval: "",
 		currentType: 1,
 		type: 1,
+		currentType:1,
 		menu_show: false,
 		is_choose: false,
 		isFirstLoadAllStandard: ['getMainData', 'userInfoGet'],
@@ -28,6 +29,12 @@ Page({
 			item: ''
 		},
 		urlSet: [],
+		oneCss:'middle',
+		twoCss:'right-clear',
+		threeCss:'right-clear',
+		fourCss:'left-clear',
+		touchClock:true,
+
 	},
 	//事件处理函数
 
@@ -91,60 +98,28 @@ Page({
 	touchMove: function(e) {
 		const self = this;
 		var touchMove = e.touches[0].pageX;
-		console.log("touchMove:" + touchMove + " touchDot:" + self.data.touchDot + " diff:" + (touchMove - self.data.touchDot));
+		
 		// 向左滑动  
-		console.log('self.data.time', self.data.time)
-		if (touchMove - self.data.touchDot <= -40) {
-			if (self.data.currentType < 4) {
-				/* var animation = wx.createAnimation({
-					duration: 1000,
-					timingFunction: 'ease',
-					delay: 100
-				});
-				animation.opacity(1).translate(-375, 0).step() */
-				self.data.type++;
-				self.data.currentType = self.data.type;
-				self.setData({
-					// animation: animation.export(),
-					web_currentType: self.data.currentType
-				});
-				console.log('self.data.type', self.data.type)
-				if (self.data.mainData[self.data.type].length == 0) {
-					api.buttonCanClick(self);
-					self.getMainData(true);
+		if(!self.data.touchClock){
+			if (touchMove - self.data.touchDot <= -70&&!self.data.touchClock) {
+				if(self.data.currentType==4){
+					self.data.type=1;
+				}else{
+					self.data.type++;
 				};
-				
-			} else {
-				api.buttonCanClick(self, true);
-			}
+				self.changeContent();
+			};
+			if (touchMove - self.data.touchDot >= 70&&!self.data.touchClock) {
+				if(self.data.currentType==1){
+					self.data.type=4;
+				}else{
+					self.data.type--;
+				};
+				self.changeContent();
+			};
 		};
-		if (touchMove - self.data.touchDot >= 40) {
-			console.log('向右滑动');
-			if (self.data.currentType > 1) {
-				self.data.type--;
-				self.data.currentType = self.data.type;
-				self.setData({
-					web_currentType: self.data.currentType
-				});
-				console.log('self.data.type', self.data.type)
-				if (self.data.mainData[self.data.type].length == 0) {
-					api.buttonCanClick(self);
-					self.getMainData(true);
-				};
-				/* var animation = wx.createAnimation({
-					duration: 1000,
-					timingFunction: 'ease',
-					delay: 100
-				});
-				animation.opacity(1).translate(375, 0).step()
-				self.setData({
-					animation: animation.export()
-				}) */
-			} else {
-				console.log(222)
-				api.buttonCanClick(self, true);
-			}
-		}
+		
+
 	},
 
 	// 触摸结束事件 
@@ -155,31 +130,164 @@ Page({
 		self.data.time = 0;
 	},
 
+
+	//点击切换
+	changeType(e) {
+		const self = this;
+
+		var type = api.getDataSet(e, 'type');
+		self.data.type = type;
+		self.changeContent();
+		
+
+	},
+
+	toMiddle(){
+		const self = this;
+		if(self.data.type==1){
+			self.setData({
+				oneCss:'middle'
+			});
+		};
+		if(self.data.type==2){
+			self.setData({
+				twoCss:'middle'
+			});
+		};
+		if(self.data.type==3){
+			self.setData({
+				threeCss:'middle'
+			});
+		};
+		if(self.data.type==4){
+			self.setData({
+				fourCss:'middle'
+			});
+		};
+	},
+
+
+
+	changeContent(){
+		const self = this;
+		self.data.touchClock = true;
+
+		if(self.data.currentType==1){
+			self.setData({
+				fourCss:'left-clear',
+				threeCss:'right-clear',
+				twoCss:'right-clear',
+			});
+			if(self.data.type==4){
+				self.setData({
+					oneCss:'right'
+				});
+			}else{
+				self.setData({
+					oneCss:'left'
+				});
+			};
+			self.toMiddle();
+		};
+
+		if(self.data.currentType==2){
+			self.setData({
+				fourCss:'right-clear',
+				threeCss:'right-clear',
+				oneCss:'left-clear',
+			});
+			if(self.data.type==1){
+				self.setData({
+					twoCss:'right'
+				});
+			}else{
+				self.setData({
+					twoCss:'left'
+				});
+			};
+			self.toMiddle();
+		};
+
+		if(self.data.currentType==3){
+			self.setData({
+				fourCss:'right-clear',
+				twoCss:'left-clear',
+				oneCss:'left-clear',
+			});
+			if(self.data.type==4){
+				self.setData({
+					threeCss:'left'
+				});
+			}else{
+				self.setData({
+					threeCss:'right'
+				});
+			};
+			self.toMiddle();
+		};
+
+		if(self.data.currentType==4){
+			self.setData({
+				fourCss:'left-clear',
+				twoCss:'left-clear',
+				oneCss:'right-clear',
+			});
+			if(self.data.type==1){
+				self.setData({
+					fourCss:'left'
+				});
+			}else{
+				self.setData({
+					fourCss:'right'
+				});
+			};
+			self.toMiddle();
+		};
+
+		self.data.currentType = self.data.type;
+		self.setData({
+			web_currentType: self.data.currentType
+		});
+
+		if (self.data.mainData[self.data.type].length == 0) {
+			api.buttonCanClick(self);
+			self.getMainData(true);
+		}else{
+			setTimeout(function(){
+				self.data.touchClock = false;
+			},300);
+		};
+		
+	},
+
+
+
+
 	init() {
 		const self = this;
 		api.commonInit(self);
 		self.data.paginate = [{
 					count: 0,
 					currentPage: 1,
-					pagesize: 5,
+					pagesize: 3,
 					is_page: true
 				},
 				{
 					count: 0,
 					currentPage: 1,
-					pagesize: 5,
+					pagesize: 3,
 					is_page: true,
 				},
 				{
 					count: 0,
 					currentPage: 1,
-					pagesize: 5,
+					pagesize: 3,
 					is_page: true,
 				},
 				{
 					count: 0,
 					currentPage: 1,
-					pagesize: 5,
+					pagesize: 3,
 					is_page: true,
 				},
 			],
@@ -214,6 +322,7 @@ Page({
 
 	getMainData(isNew) {
 		const self = this;
+		api.buttonCanClick(self, false);
 		self.setData({
 			web_loading: true
 		});
@@ -294,7 +403,7 @@ Page({
 
 		};
 		const callback = (res) => {
-			api.buttonCanClick(self, true);
+			
 			if (res.info.data.length > 0) {
 
 				for (var i = 0; i < res.info.data.length; i++) {
@@ -314,11 +423,16 @@ Page({
 			};
 
 
-			api.checkLoadAll(self.data.isFirstLoadAllStandard, 'getMainData', self);
+			
 			self.setData({
 				web_loading: false,
 				web_mainData: self.data.mainData,
 			});
+			setTimeout(function(){
+				api.buttonCanClick(self, true);
+				self.data.touchClock = false;
+			},300);
+			
 		};
 		api.messageGet(postData, callback);
 	},
@@ -355,36 +469,17 @@ Page({
 				};
 				self.data.mainData[index].answerData = res.info.data;
 				self.data.mainData[index].isShowAnswer = true;
-
 			} else {
 				api.showToast('没有更多了', 'none')
 			};
 			self.setData({
 				web_mainData: self.data.mainData
-			})
+			});
 		};
 		api.messageGet(postData, callback);
 	},
 
-	//点击切换
-	changeType(e) {
-		const self = this;
-
-		var type = api.getDataSet(e, 'type');
-		if (type != self.data.currentType) {
-			self.data.type = type;
-			self.data.currentType = type;
-			self.setData({
-				web_currentType: api.getDataSet(e, 'type')
-			});
-			if (self.data.mainData[self.data.type].length == 0) {
-				api.buttonCanClick(self);
-				self.getMainData(true);
-			};
-		} else {
-			api.buttonCanClick(self, true);
-		}
-	},
+	
 
 	/* 	//滑动切换
 		bindChange(e) {

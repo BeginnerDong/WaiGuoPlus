@@ -350,3 +350,44 @@ video {
   left: 0;
   z-index: -1;
 }
+
+
+.middle {
+	transform: translateX(0);
+	transition: all 0.5s ease;
+	
+	width:100%;
+	height:auto;
+}
+
+.right {
+	transform: translateX(120%);
+	transition: all 0.3s ease;
+	
+	height:0!important;
+	overflow:hidden;
+}
+
+.right-clear {
+	transform: translateX(120%);
+	
+	height:0!important;	
+	overflow:hidden;
+}
+
+.left-clear {
+	transform: translateX(-120%);
+	
+	height:0!important;
+	overflow:hidden;
+}
+
+.left {
+	transform: translateX(-120%);
+	transition: all 0.3s ease;
+	
+	height:0!important;
+	overflow:hidden;
+}
+
+

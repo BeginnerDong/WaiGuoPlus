@@ -19,9 +19,11 @@ class Base{
         var baseRestUrl = 'https://m.waiguoplus.com/api/public/index.php/api/v1/';
         var url=baseRestUrl + params.url;
         const callback = (res)=>{
+            if(res){
+                params.data.refreshToken=false;
+            };
             that.request(params);
         };
-		
         if(params.data.tokenFuncName){
             console.log('params.data.token');
             if(params.data.refreshToken){
@@ -129,6 +131,10 @@ class Base{
                 return;
             };
             if(type=='reverseGeocoder'){
+                console.log('reverseGeocoder',{
+                    latitude: latitude,
+                    longitude: longitude
+                });
                 wxMap.reverseGeocoder({
                   location: {
                     latitude: latitude,
@@ -138,6 +144,7 @@ class Base{
                     callback&&callback(res.result)
                   },
                   fail(res){
+                    console.log('fail',res)
                     wx.showToast({
                         title:'获取位置失败',
                         icon:'none',
@@ -148,6 +155,8 @@ class Base{
                 });  
             }
           },
+
+
           fail(res) {
             wx.showToast({
                 title:'获取经纬度失败',

@@ -134,9 +134,9 @@ Page({
     const self =this;
     const postData = {};
     postData.tokenFuncName = 'getProjectToken';
-    /*if(!wx.getStorageSync('info')||!wx.getStorageSync('info').headImgUrl){
+    if(!wx.getStorageSync('info')||!wx.getStorageSync('info').headImgUrl){
       postData.refreshToken = true;
-    };*/
+    };
     postData.data = {};
     postData.data = api.cloneForm(self.data.submitData);
     const callback = (data)=>{
@@ -161,9 +161,17 @@ Page({
   getLocation() {
     const self = this;
     const callback = (res)=>{
+      console.log('getLocation',res)
       if(res){
         self.data.submitData.country = res.address_component.nation;
-        self.data.submitData.city = res.address_component.city
+        if(res.address_component.ad_level_1){
+          self.data.submitData.city = res.address_component.ad_level_1;
+        }else if(res.address_component.city){
+          self.data.submitData.city = res.address_component.city;
+        }else{
+          self.data.submitData.city = '未定位到城市';
+        };
+        
       };
       self.setData({
         web_submitData:self.data.submitData

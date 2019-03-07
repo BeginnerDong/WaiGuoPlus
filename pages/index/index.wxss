@@ -1,7 +1,7 @@
 /**index.wxss**/
 @import "../../wxParse/wxParse.wxss"
 .tab{
-	height:80rpx;
+	 height:80rpx; 
 	background:#fff;
 }
 page{
@@ -335,6 +335,7 @@ video {
 	top:0;
 	width:100%;
 	z-index:99999;
+	height:80rpx
 }
 .margin{
 	height:80rpx

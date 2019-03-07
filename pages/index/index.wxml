@@ -1,21 +1,41 @@
 <!--index.wxml-->
 <wxs src="../../utils/func.wxs" module="func" />
-<view class="navbarTop">
-	<view class="tab font32 flexRowBetween">
-		<view class="tab_item {{web_currentType == 1?'tab_this':''}}" data-type="1" bindtap="changeType">
+<cover-view class="navbarTop">
+	<cover-view class="tab font32 flexRowBetween">
+		<cover-view class="tab_item {{web_currentType == 1?'tab_this':''}}" data-type="1" bindtap="changeType">
 			问答
-		</view>
-		<view class="tab_item {{web_currentType == 2?'tab_this':''}}" data-type="2" bindtap="changeType">
+		</cover-view>
+		<cover-view class="tab_item {{web_currentType == 2?'tab_this':''}}" data-type="2" bindtap="changeType">
 			动态
-		</view>
-		<view class="tab_item {{web_currentType == 3?'tab_this':''}}" data-type="3" bindtap="changeType">
+		</cover-view>
+		<cover-view class="tab_item {{web_currentType == 3?'tab_this':''}}" data-type="3" bindtap="changeType">
 			吐槽
-		</view>
-		<view class="tab_item {{web_currentType == 4?'tab_this':''}}" data-type="4" bindtap="changeType">
+		</cover-view>
+		<cover-view class="tab_item {{web_currentType == 4?'tab_this':''}}" data-type="4" bindtap="changeType">
 			视频
-		</view>
-	</view>
-</view>
+		</cover-view>
+	</cover-view>
+</cover-view>
+
+<cover-view class="navbar flex">
+	<cover-view class="navbar_item">
+		<cover-view class="nav_img bg1">
+			<cover-image src="/images/navbar1-a.png" style="width:40rpx;height:40rpx"></cover-image>
+		</cover-view>
+		<cover-view class="text this-text">首页</cover-view>
+	</cover-view>
+	<cover-view class="navbar_add" bindtap="menu">
+		<cover-view class="nav_img">
+			<cover-image src="/images/navbar_add.png" style="border:solid 8rpx #fff;border-radius:50%;"></cover-image>
+		</cover-view>
+	</cover-view>
+	<cover-view class="navbar_item  bg1" bindtap="intoPathRedi" data-path="/pages/user/user">
+		<cover-view class="nav_img">
+			<cover-image src="/images/navbar2.png" style="width:40rpx;height:40rpx"></cover-image>
+		</cover-view>
+		<cover-view class="text">我的</cover-view>
+	</cover-view>
+</cover-view>
 <view class="margin"></view>
 <view class="w670">
 	<view class="search flex bg1">
@@ -283,8 +303,8 @@
 									<cover-image src="{{item.mainImg[0].url}}" style="width:100%;height:100%;position:absolute;top: 0;left:0"/>
 								</cover-view>
 								
-								<cover-view  style="{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block;z-index:2;'}}">
-									<cover-image id="{{item.id+''+index+''+c_index}}" bindtap="vedioPlay" src="/images/play.png" style="width:60rpx;height:60rpx;position:absolute;top: 45%;left:45%" />
+								<cover-view  style="{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block;z-index:2;position:absolute;top: 45%;left:45%'}}">
+									<cover-image id="{{item.id+''+index+''+c_index}}" bindtap="vedioPlay" src="/images/play.png" style="width:60rpx;height:60rpx;" />
 								</cover-view>
 
 
@@ -328,38 +348,38 @@
 <!-- </swiper> -->
 <view class="load" id="load" wx:if="{{web_loading}}">加载中...</view>
 <!-- 发布选择分类 -->
-<view class="send" catchtouchmove="true" style="{{menu_show?'bottom:0':'opacity:0;bottom:-100%'}}">
-	<view class="send_cont">
-		<image src="/images/send_bg.png"></image>
-		<view class="send_menu">
-			<view class="menu">
-				<view class="menu_tlt">记录我的歪果动态</view>
-				<view class="menu_btn flex">
-					<view class="menu_item" bindtap="choose">
-						<image src="/images/menu_icon1.png"></image>
-						<view class="font32 color3">动态</view>
-					</view>
-					<view class="menu_item" bindtap="intoPath" data-path="/pages/sendAnswer/sendAnswer">
-						<image src="/images/menu_icon2.png"></image>
-						<view class="font32 color3">问答</view>
-					</view>
-					<view class="menu_item" bindtap="intoPath" data-path="/pages/sendTeasing/sendTeasing">
-						<image src="/images/menu_icon3.png"></image>
-						<view class="font32 color3">吐槽</view>
-					</view>
-					<view class="menu_item" bindtap="intoPath" data-path="/pages/sendSmallVideo/sendSmallVideo">
-						<image src="/images/menu_icon4.png"></image>
-						<view class="font32 color3">小视频</view>
-					</view>
-				</view>
-				<view class="close" bindtap="close">
-					<image src="/images/close.png"></image>
-				</view>
-			</view>
+<cover-view class="send" catchtouchmove="true" style="{{menu_show?'bottom:0':'opacity:0;bottom:-100%'}}">
+	<cover-view class="send_cont">
+		<cover-image src="/images/send_bg.png"></cover-image>
+		<cover-view class="send_menu">
+			<cover-view class="menu">
+				<cover-view class="menu_tlt">记录我的歪果动态</cover-view>
+				<cover-view class="menu_btn flex">
+					<cover-view class="menu_item" bindtap="choose">
+						<cover-image src="/images/menu_icon1.png"></cover-image>
+						<cover-view class="font32 color3">动态</cover-view>
+					</cover-view>
+					<cover-view class="menu_item" bindtap="intoPath" data-path="/pages/sendAnswer/sendAnswer">
+						<cover-image src="/images/menu_icon2.png"></cover-image>
+						<cover-view class="font32 color3">问答</cover-view>
+					</cover-view>
+					<cover-view class="menu_item" bindtap="intoPath" data-path="/pages/sendTeasing/sendTeasing">
+						<cover-image src="/images/menu_icon3.png"></cover-image>
+						<cover-view class="font32 color3">吐槽</cover-view>
+					</cover-view>
+					<cover-view class="menu_item" bindtap="intoPath" data-path="/pages/sendSmallVideo/sendSmallVideo">
+						<cover-image src="/images/menu_icon4.png"></cover-image>
+						<cover-view class="font32 color3">小视频</cover-view>
+					</cover-view>
+				</cover-view>
+				<cover-view class="close" bindtap="close">
+					<cover-image src="/images/close.png"></cover-image>
+				</cover-view>
+			</cover-view>
 
-		</view>
-	</view>
-</view>
+		</cover-view>
+	</cover-view>
+</cover-view>
 <!-- 选择图片视频 -->
 <view class="mask" catchtouchmove="true" style="{{is_choose?'display:block;':'display:none'}}">
 	<view class="mask_cont">
@@ -378,22 +398,4 @@
 </view>
 
 <view style="width:100%;height:150rpx;"></view>
-<view class="navbar flex">
-	<view class="navbar_item">
-		<view class="nav_img bg1">
-			<image src="/images/navbar1-a.png"></image>
-		</view>
-		<view class="text this-text">首页</view>
-	</view>
-	<view class="navbar_add" bindtap="menu">
-		<view class="nav_img">
-			<image src="/images/navbar_add.png" style="border:solid 8rpx #fff;border-radius:50%;"></image>
-		</view>
-	</view>
-	<view class="navbar_item  bg1" bindtap="intoPathRedi" data-path="/pages/user/user">
-		<view class="nav_img">
-			<image src="/images/navbar2.png"></image>
-		</view>
-		<view class="text">我的</view>
-	</view>
-</view>
+

@@ -20,9 +20,11 @@ Page({
   	 const self =this;
     const postData = {};
     postData.tokenFuncName = 'getProjectToken';
+		postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
     	type:5,
-    };
+
+		};
     postData.getAfter = {
       user:{
       	tableName:'User',

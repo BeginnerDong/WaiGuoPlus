@@ -1,7 +1,8 @@
 <view class="send w670 bg1">
     
-    <textarea placeholder="这一刻的想法" placeholder-class="placeholder" style="height:240rpx" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
-    <view class="upload flex">
+	<textarea placeholder="这一刻的想法" placeholder-class="placeholder" style="height:240rpx;border:1px solid #e5e5e5" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+	<view class="font30" style="margin-top:30rpx">请上传视频</view>
+	<view class="upload flex">
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.video}}" wx:key="index">
                 <view class="upload_box">
@@ -19,6 +20,24 @@
             </view>
         </view>
     </view>
+	<view class="font30" style="margin-top:30rpx">请上传视频封面</view>
+	<view class="upload flex">
+	    <view class="upload_left flex flex_wrap">
+	        <block wx:for="{{web_submitData.mainImg}}" wx:key="index">
+	            <view class="upload_video">
+	                <image src="{{item.url}}" class="upload_icon"></image>
+	            </view>
+	        </block>
+	        <view class="upload_video" bindtap="upLoadImg" wx:if="{{web_submitData.mainImg.length==0}}">
+	            <image src="/images/upload.png" class="upload_icon"></image>
+	        </view>
+	    </view>
+	    <view class="upload_right">
+	        <view class="limit_number font24">
+	            {{web_submitData.mainImg.length}}/1
+	        </view>
+	    </view>
+	</view>
 </view>
 <view class="position bg1 flex w670">
     <view class="position_img flex">
@@ -28,6 +47,7 @@
         当前位置:{{web_submitData.country}}●{{web_submitData.city}}
     </view>
 </view>
+
 <form>
     <button class="submit_info" style="margin-top:30rpx;border-radius:10rpx;"
     open-type="getUserInfo" bindgetuserinfo="{{web_buttonCanClick?'submit':''}}">发布</button>

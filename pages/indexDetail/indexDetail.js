@@ -14,6 +14,7 @@ Page({
 			content: '',
 			type: 6
 		},
+		
 	},
 
 	onLoad(options) {
@@ -405,6 +406,7 @@ Page({
 		}];
 		postData.tokenFuncName = 'getProjectToken';
 		const callback = (res) => {
+			api.buttonCanClick(self, true);
 			if (res.solely_code == 100000) {
 				self.data.mainData[index].goodMe.push({
 					status: 1,
@@ -414,7 +416,7 @@ Page({
 			} else {
 				api.showToast('点赞失败', 'none', 1000)
 			};
-			api.buttonCanClick(self, true);
+			
 			self.setData({
 				web_mainData: self.data.mainData
 			});
@@ -438,6 +440,7 @@ Page({
 		};
 		postData.tokenFuncName = 'getProjectToken';
 		const callback = (res) => {
+			api.buttonCanClick(self, true);
 			if (res.solely_code == 100000) {
 				console.log('item.goodMe[0].status', item.goodMe[0].status);
 				self.data.mainData[index].goodMe[0].status = -item.goodMe[0].status;
@@ -445,7 +448,7 @@ Page({
 			} else {
 				api.showToast('点赞失败', 'none', 1000)
 			};
-			api.buttonCanClick(self, true);
+			
 			self.setData({
 				web_mainData: self.data.mainData
 			})

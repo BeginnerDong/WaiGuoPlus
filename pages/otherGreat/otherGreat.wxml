@@ -1,13 +1,14 @@
-<view class="search" style="border:0" wx:if="{{web_mainData.length==0}}">
-    <image src="/images/search1.png"></image>
-    <view class="font26 color6" style="width:100%;position:absolute;left:0;top:10%;text-align:center">无搜索结果，换个词试试吧~</view>
+<view class="search bg1" style="border:0" catchtouchmove="true" wx:if="{{web_mainData.length==0}}">
+    <view class="search_cont bg1">
+        <image src="/images/search2.png"></image>
+        <view class="font26 color6" style="width:100%;position:absolute;left:0;top:10%;text-align:center">还没有点赞，快去点赞吧~</view>
+    </view>
 </view>
-
 <block wx:for="{{web_mainData}}" wx:key="id">
 <view class="quesition w670" style="{{item.type == 1?'display:block;':'display:none'}}">
     <view class="information bg1 shadow1">
         <view class="information_tlt w690 flex">
-            <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
+            <view class="user_left" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                 <view class="user_img">
                   <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
                 </view>
@@ -66,23 +67,23 @@
     </view>
 </view>
 
-<view class="status" style="{{item.type == 2?'display:block;':'display:none'}}">
+<view class="status" style="{{item.type == 2&&item.goodDataNum.num>0?'display:block;':'display:none'}}">
     <view class="w670"> 
         <view class="information bg1 shadow1" >
             <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
+                <view class="user_left" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                     <view class="user_img">
                       <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
                     </view>
                 </view>
 
-                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">{{item.user[0].nickname}}</view>
+                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">{{item.user[0].nickname}}</view>
                 <view class="user_right avoidOverflow font30 color6">{{item.country}}·{{item.city}}</view>
             </view>
             <view class="information_img_box">
                 <view wx:if="{{item.video.length>0}}" class="video_cont">
                     <video src="{{item.video[0].url}}"></video>
-                   
+                  
                 </view>
                 <view wx:else class="flexRowBetween">
                     <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
@@ -120,20 +121,17 @@
                         <image src="/images/handle3.png"></image>
                         <text class="color96 font24">{{item.comment.length}}</text>
                     </view>
-                    <view class="handle_browse flexCenter">
-                        <image src="/images/handle4.png"></image>
-                        <button open-type="share" class="font24 color96">分享</button>
-                    </view>
+                    
                 </view>
             </view>
         </view>
     </view>
 </view>
-<view class="w670 teasing"  style="{{item.type == 4?'display:block;':'display:none'}}">
+<view class="w670 teasing"  style="{{item.type == 4&&item.goodDataNum.num>0?'display:block;':'display:none'}}">
     <view class="information bg1 shadow1">
         <view >
             <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
+                <view class="user_left" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                     <view class="user_img">
                       <image src="{{item.user[0].headImgUrl}}"></image>
                     </view>
@@ -169,68 +167,11 @@
                     <image src="/images/handle3.png"></image>
                     <text class="color96 font24">{{item.comment.length}}</text>
                 </view>
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle4.png"></image>
-                    <button open-type="share" class="font24 color96">分享</button>
-                </view>
+               
             </view>
         </view>
     </view>
 </view>
-<view class="status 3232" style="{{item.type == 3?'display:block;':'display:none'}}">
-    <view class="w670">
-        <view class="information bg1 shadow1" >
-            <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">
-                    <view class="user_img">
-                       <image src="{{item.anonymous[0].mainImg[0].url}}"></image>
-                    </view>
-                </view>
-                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.id}}">{{item.anonymous[0].name}}</view>
-                <view class="user_right avoidOverflow font30 color6">{{item.create_time}}</view>
-            </view>
 
-            <view  bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.id}}">
-                <view class="flexRowBetween">
-                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
-                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
-                            <image src="{{c_item.url}}"></image>
-                        </view>
-                    
-                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
-                            <image src="{{c_item.url}}"></image>
-                        </view>
-                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
-                            <image src="{{c_item.url}}"></image>
-                        </view>
-
-                    </block>
-                </view>
-                <view class="information_cont w690 font26 color6 avoidOverflow2">
-                    {{item.content}}
-                </view>
-            </view>
-            <view class="w670">
-            <view class="handle flex">
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle1.png"></image>
-                    <text class="color96 font24">{{item.view_count}}</text>
-                </view>
-                <view class="handle_browse flexCenter" >
-                    <image src="{{item.goodMe.length>0&&item.goodMe[0].status==1?'/images/handle2-active.png':'/images/handle2.png'}}" data-index="{{index}}" bindtap="clickGood"></image>
-                    <text class="color96 font24">{{item.goodDataNum.num}}</text>
-                </view>
-                <view class="handle_browse flexCenter"  bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.id}}">
-                    <image src="/images/handle3.png"></image>
-                    <text class="color96 font24">{{item.comment.length}}</text>
-                </view>
-                <view class="handle_browse flexCenter">
-                    <image src="/images/handle4.png"></image>
-                    <button open-type="share" class="font24 color96">分享</button>
-                </view>
-            </view>
-        </view>
-        </view>
-    </view>
-</view>
+    
 </block>

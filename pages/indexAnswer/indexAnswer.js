@@ -51,6 +51,9 @@ Page({
     const self =this;
     const postData = {};
     postData.tokenFuncName = 'getProjectToken';
+		if(!wx.getStorageSync('info')||!wx.getStorageSync('info').headImgUrl){
+		  postData.refreshToken = true;
+		};
     postData.data = {};
     postData.data = api.cloneForm(self.data.submitData);
     postData.data.relation_id = self.data.id;

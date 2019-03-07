@@ -45,9 +45,14 @@ Page({
     const self =this;
     const postData = {};
     postData.tokenFuncName = 'getProjectToken';
+		
+		if(!wx.getStorageSync('info')||!wx.getStorageSync('info').headImgUrl){
+		  postData.refreshToken = true;
+		};
     postData.data = {};
     postData.data = api.cloneForm(self.data.submitData);
     const callback = (data)=>{
+			 api.buttonCanClick(self,true)
       if(data.solely_code==100000){
         api.showToast('提交成功','none',1000,function(){
           setTimeout(function(){
@@ -59,7 +64,7 @@ Page({
       }else{
         api.showToast(data.msg,'none',1000)
       }
-      api.buttonCanClick(self,true)
+     
     };
     api.messageAdd(postData,callback);
   },

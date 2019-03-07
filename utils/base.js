@@ -590,20 +590,18 @@ class Base{
         console.log(pass);
     };*/
 
-    checkComplete(obj){
-        var pass = true;
-        for(var key in obj){
-
-          if(!obj[key]){
-            if(obj[key]===0){
-                pass = true;
-            }else{
-                pass = false;
-            };
-          };
-        };
-        return pass;
-        console.log(pass);
+    checkComplete(obj) {
+    	var pass = true;
+    	for (var key in obj) {
+    		if (!obj[key] || JSON.stringify(obj[key]) == '[]' || JSON.stringify(obj[key]) == '{}') {
+    			if (obj[key] === 0) {
+    				pass = true;
+    			} else {
+    				pass = false;
+    			};
+    		};
+    	};
+    	return pass;
     };
 
     getcurrentPage(){

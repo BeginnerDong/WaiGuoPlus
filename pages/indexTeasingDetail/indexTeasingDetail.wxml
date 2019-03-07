@@ -21,8 +21,8 @@
 	    <view class="font28 color3" style="margin:40rpx 0;">
 	    	<text>{{web_originData.content}}</text>
 	    </view>
-	    <block wx:for="{{web_originData.mainImg}}" wx:key="index">
-	    	<image src="{{item.url}}" mode="widthFix"></image>
+	    <block wx:for="{{web_originData.mainImg}}" wx:key="index" >
+	    	<image src="{{item.url}}" mode="widthFix" bindtap="previewImage" data-index="{{index}}" ></image>
 	    </block>
 	</view>
 </view>

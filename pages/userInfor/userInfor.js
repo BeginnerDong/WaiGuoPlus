@@ -69,6 +69,9 @@ Page({
     const self = this;
     const postData = {};
     postData.tokenFuncName = 'getProjectToken';
+		if(!wx.getStorageSync('info')||!wx.getStorageSync('info').headImgUrl){
+		  postData.refreshToken = true;
+		};
     postData.data = {};
     postData.data = api.cloneForm(self.data.sForm);
     const callback = (data)=>{

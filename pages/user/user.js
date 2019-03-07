@@ -19,8 +19,13 @@ Page({
     api.commonInit(self);  
     self.userInfoGet();
     self.getMainData();
-		self.getNoticeData()
   },
+	
+	onShow(){
+		const self = this;
+		self.data.noticeData = [];
+		self.getNoticeData()
+	},
 
   getMainData(isNew){
     const self =this;
@@ -36,13 +41,14 @@ Page({
       user_no:wx.getStorageSync('info').user_no
     };
     const callback =(res)=>{
+			api.buttonCanClick(self,true);
       if(res.info.data.length>0){
         self.data.mainData.push.apply(self.data.mainData,res.info.data);
       }else{
         self.data.isLoadAll = true;
         api.showToast('没有更多了','none');
       };
-      api.buttonCanClick(self,true);
+      
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
       self.setData({
         web_mainData:self.data.mainData,
@@ -57,7 +63,8 @@ Page({
 	  postData.tokenFuncName = 'getProjectToken';
 		postData.searchItem={
 			relation_user:wx.getStorageSync('info').user_no,
-			type:['in',[7]]
+			type:['in',[7]],
+			behavior:1
 		};
 	
 	  const callback =(res)=>{
@@ -87,6 +94,8 @@ Page({
     };
     api.userGet(postData,callback);
   },
+  
+  
 
   menu(){
     const self =this;

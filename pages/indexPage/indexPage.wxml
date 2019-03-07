@@ -5,7 +5,7 @@
         <view class="user_top flex">
             <view class="user_left">
                 <view class="user_img shadow2">
-                    <image src="{{web_userData.people[0].headImgUrl}}" class="user_img"></image>
+                    <image src="{{web_userData.people[0].headImgUrl}}" class="user_img" style="border: none;"></image>
                 </view>
                 <view class="font24 submit_info" style="text-align:center;width:182rpx;height:60rpx;line-height:60rpx;margin:0 auto;" bindtap="{{web_checkFollowData.length>0?'unFollow':'follow'}}">
                     {{web_checkFollowData&&web_checkFollowData.length>0?'取消关注':'关注'}}
@@ -13,7 +13,7 @@
             </view>
             <view class="user_right">
                 <view class="user_infor">
-                    <view class="user_name color3">
+                    <view class="user_name color3 avoidOverflow">
                         {{web_userData.people[0].nickname}}
                     </view>
                     <view class="user_city color3 font28">
@@ -30,20 +30,20 @@
         </view>
     </view>
 </view>
-<view class="user_sort flex bg1">
+<view class="user_sort flex bg1" bindtap="intoPath" data-path="/pages/otherGreat/otherGreat?user_no={{web_mainData[0].user_no}}">
     <view class="user_item">
         <view class="font30 color96">{{web_userData.goodDataNum.num>10000?web_userData.goodDataNum.num/10000+W:web_userData.goodDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
             ta收到的点赞
         </view>
     </view>
-    <view class="user_item" style="border-left:solid 1px #c9c9c9;border-right:solid 1px #c9c9c9">
+    <view class="user_item" style="border-left:solid 1px #c9c9c9;border-right:solid 1px #c9c9c9" bindtap="intoPath" data-path="/pages/otherFocus/otherFocus?user_no={{web_mainData[0].user_no}}">
         <view class="font30 color96">{{web_userData.followDataNum.num>10000?web_userData.followDataNum.num/10000+W:web_userData.followDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
             ta的关注
         </view>
     </view>
-    <view class="user_item">
+    <view class="user_item" bindtap="intoPath" data-path="/pages/otherAnswer/otherAnswer?user_no={{web_mainData[0].user_no}}">
         <view class="font30 color96">{{web_userData.AnswerDataNum.num>10000?web_userData.AnswerDataNum.num/10000+W:web_userData.AnswerDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
             ta的回答
@@ -53,10 +53,10 @@
 
     <view class="w670" >
         <view class="index_title flexRowBetween"  style="font-size:46rpx;height:156rpx;line-height:156rpx;">
-            <view class=" font36 color3">我的发布</view>
+            <view class=" font36 color3">ta的发布</view>
         </view>
         <block wx:for="{{web_mainData}}" wx:key="id">
-            <view class="user_list flex shadow1" wx:if="{{item.type==2}}">
+            <view class="user_list flex shadow1" wx:if="{{item.type==2}}" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
                 <view class="user_time">
                     <view class="time_cont">
                         <view class="font24 color6">{{func.playString(item.create_time,0,4)}}</view>
@@ -71,7 +71,7 @@
                     <view class="font24 color6 avoidOverflow2">{{item.content}}</view>
                 </view>
             </view>
-            <view class="user_list flex shadow1" wx:if="{{item.type==1}}">
+            <view class="user_list flex shadow1" wx:if="{{item.type==1}}" bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
                 <view class="user_time">
                     <view class="time_cont">
                         <view class="font24 color6">{{func.playString(item.create_time,0,4)}}</view>
@@ -84,7 +84,7 @@
                 </view>
             </view>
 
-            <view class="user_list flex shadow1" wx:if="{{item.type==4}}">
+            <view class="user_list flex shadow1" wx:if="{{item.type==4}}" bindtap="intoPath" data-path="/pages/indexTeasingDetail/indexTeasingDetail?id={{item.id}}">
                 <view class="user_time">
                     <view class="time_cont">
                         <view class="font24 color6">{{func.playString(item.create_time,0,4)}}</view>

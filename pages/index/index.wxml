@@ -29,9 +29,9 @@
 </view>
 
 
-<view  bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation="{{animation}}" class="{{oneCss}}">
-	<block wx:for="{{web_mainData[1]}}" wx:key="id" >
-		<view  class="quesition w670" >
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation="{{animation}}" class="{{oneCss}}">
+	<block wx:for="{{web_mainData[1]}}" wx:key="id">
+		<view class="quesition w670">
 			<view class="information bg1 shadow1">
 				<view class="information_tlt w690 flex">
 					<view class="user_left" bindtap="{{item.isMe?'intoPathRedi':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
@@ -102,10 +102,10 @@
 </view>
 
 
-<view  bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation="{{animation}}" class="{{twoCss}}">
-	<view class="status" >
-		<view class="w670" bindtap="intoPath" data-path="/pages/detail/detail" >
-			<view class="record bg" >
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation="{{animation}}" class="{{twoCss}}">
+	<view class="status">
+		<view class="w670" bindtap="intoPath" data-path="/pages/detail/detail">
+			<view class="record bg">
 				<view class="record_cont flex">
 					<view class="record_left flex">
 						<image src="/images/record_icon.png"></image>
@@ -120,11 +120,11 @@
 			</view>
 		</view>
 	</view>
-	<view class="index_title font36 color3" >
+	<view class="index_title font36 color3">
 		最新动态
 	</view>
 
-	<block wx:for="{{web_mainData[2]}}" wx:key="id" >
+	<block wx:for="{{web_mainData[2]}}" wx:key="id">
 		<view class="status">
 			<view class="w670">
 				<view class="information bg1 shadow1">
@@ -154,7 +154,8 @@
 								<view class="two_img" wx:if="{{item.mainImg.length==2}}" bindtap="previewImage" data-index="{{index}}" data-id="{{c_index}}">
 									<image src="{{c_item.url}}" mode="aspectFill"></image>
 								</view>
-								<view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}" data-id="{{c_index}}">
+								<view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}"
+								 data-id="{{c_index}}">
 									<image src="{{c_item.url}}" mode="aspectFill"></image>
 
 								</view>
@@ -196,9 +197,9 @@
 
 </view>
 
-<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"  class="{{threeCss}}">
-	<block wx:for="{{web_mainData[3]}}" wx:key="id" >
-		<view class="status 3232" >
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" class="{{threeCss}}">
+	<block wx:for="{{web_mainData[3]}}" wx:key="id">
+		<view class="status 3232">
 			<view class="w670">
 				<view class="information bg1 shadow1">
 					<view class="information_tlt w690 flex">
@@ -222,7 +223,8 @@
 								<view class="two_img" wx:if="{{item.mainImg.length==2}}" bindtap="previewImage" data-index="{{index}}" data-id="{{c_index}}">
 									<image src="{{c_item.url}}" mode="aspectFill"></image>
 								</view>
-								<view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}" data-id="{{c_index}}">
+								<view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}"
+								 data-id="{{c_index}}">
 									<image src="{{c_item.url}}" mode="aspectFill"></image>
 								</view>
 
@@ -259,8 +261,8 @@
 	</block>
 </view>
 
-<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"  class="{{fourCss}}">
-	<block wx:for="{{web_mainData[4]}}" wx:key="id" >
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" class="{{fourCss}}">
+	<block wx:for="{{web_mainData[4]}}" wx:key="id">
 		<view class="w670 teasing">
 			<view class="information bg1 shadow1">
 				<view>
@@ -273,9 +275,20 @@
 						<view class="user_center avoidOverflow font32 avoidOverflow">{{item.user[0].nickname}}</view>
 						<view class="user_right avoidOverflow font30 color6">{{item.country}}·{{item.city}}</view>
 					</view>
-					<view class="information_three_img flex">
+					<view class="information_three_img flex" >
 						<block wx:for="{{item.video}}" wx:for-item="c_item" wx:for-index="c_index">
-							<video custom-cache="{{false}}" id="{{item.id+index+c_index}}" src="{{c_item.url}}" bindtap="vedioPlay"></video>
+							<video custom-cache="{{false}}"  src="{{c_item.url}}" id="{{item.id+''+index+''+c_index}}">
+								
+								<cover-view class="controls" style="{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block'}}">
+									<cover-image src="{{item.mainImg[0].url}}" style="width:100%;height:100%;position:absolute;top: 0;left:0"/>
+								</cover-view>
+								
+								<cover-view  style="{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block;z-index:2;'}}">
+									<cover-image id="{{item.id+''+index+''+c_index}}" bindtap="vedioPlay" src="/images/play.png" style="width:60rpx;height:60rpx;position:absolute;top: 45%;left:45%" />
+								</cover-view>
+
+
+							</video>
 						</block>
 					</view>
 					<view class="w690">
@@ -311,7 +324,7 @@
 	</block>
 </view>
 
-<!-- 	</swiper-item> -->
+<!-- 	</swiper-item>
 <!-- </swiper> -->
 <view class="load" id="load" wx:if="{{web_loading}}">加载中...</view>
 <!-- 发布选择分类 -->

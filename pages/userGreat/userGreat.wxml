@@ -8,7 +8,7 @@
 <view class="quesition w670" style="{{item.original[0].type == 1?'display:block;':'display:none'}}">
     <view class="information bg1 shadow1">
         <view class="information_tlt w690 flex">
-            <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.original[0].id}}">
+            <view class="user_left" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                 <view class="user_img">
                   <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
                 </view>
@@ -71,13 +71,13 @@
     <view class="w670"> 
         <view class="information bg1 shadow1" >
             <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.original[0].id}}">
+                <view class="user_left" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                     <view class="user_img">
                       <image src="{{item.user[0].headImgUrl}}" class="user_img"></image>
                     </view>
                 </view>
 
-                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.original[0].id}}">{{item.user[0].nickname}}</view>
+                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">{{item.user[0].nickname}}</view>
                 <view class="user_right avoidOverflow font30 color6">{{item.original[0].country}}·{{item.original[0].city}}</view>
             </view>
             <view class="information_img_box">
@@ -134,7 +134,7 @@
     <view class="information bg1 shadow1">
         <view >
             <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.original[0].id}}">
+                <view class="user_left" bindtap="{{item.isMe?'intoPathRela':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                     <view class="user_img">
                       <image src="{{item.user[0].headImgUrl}}"></image>
                     </view>
@@ -182,12 +182,12 @@
     <view class="w670">
         <view class="information bg1 shadow1" >
             <view class="information_tlt w690 flex">
-                <view class="user_left" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.original[0].id}}">
+                <view class="user_left">
                     <view class="user_img">
-                       <image src="{{item.user[0].headImgUrl}}"></image>
+                       <image src="{{item.anonymous[0].mainImg[0].url}}"></image>
                     </view>
                 </view>
-                <view class="user_center avoidOverflow font32 avoidOverflow" bindtap="intoPath" data-path="/pages/indexPage/indexPage?id={{item.original[0].id}}">{{item.user[0].nickname}}</view>
+                <view class="user_center avoidOverflow font32 avoidOverflow" >{{item.anonymous[0].name}}</view>
                 <view class="user_right avoidOverflow font30 color6">{{item.original[0].create_time}}</view>
             </view>
 

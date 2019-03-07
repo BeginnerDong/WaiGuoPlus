@@ -79,6 +79,7 @@ Page({
       },
     };
     const callback =(res)=>{
+			api.buttonCanClick(self,true);
       if(res.info.data.length>0){
         
         for (var i = 0; i < res.info.data.length; i++) {
@@ -91,7 +92,7 @@ Page({
       }else{
         self.data.isLoadAll = true;
       };
-      api.buttonCanClick(self,true);
+      
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
       self.setData({
         web_mainData:self.data.mainData,
@@ -99,8 +100,30 @@ Page({
     };
     api.messageGet(postData,callback);
   },
+	
+	delete(e){
+		const self = this;
+		var index = api.getDataSet(e,'index');
+		const postData = {};
+		postData.tokenFuncName='getProjectToken';
+		postData.searchItem = {
+			id:self.data.mainData[index].id
+		};
+		postData.data = {
+			status:-1
+		};
+		const callback = (res) =>{
+			if(res.solely_code==100000){
+				api.showToast('删除成功','none');
+				self.getMainData(true)
+			}else{
+				api.showToast(res.msg,'none')
+			}
+		}
+		api.messageUpdate(postData,callback)
+	},
 
-    clickGood(e){
+   clickGood(e){
     const self = this;
     api.buttonCanClick(self);
     var index = api.getDataSet(e,'index');

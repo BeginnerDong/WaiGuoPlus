@@ -15,7 +15,7 @@ Page({
 		interval: "",
 		currentType: 1,
 		type: 1,
-		currentType:1,
+		currentType: 1,
 		menu_show: false,
 		is_choose: false,
 		isFirstLoadAllStandard: ['getMainData', 'userInfoGet'],
@@ -29,15 +29,15 @@ Page({
 			item: ''
 		},
 		urlSet: [],
-		oneCss:'middle',
-		twoCss:'right-clear',
-		threeCss:'right-clear',
-		fourCss:'left-clear',
-		touchClock:true,
-
+		oneCss: 'middle',
+		twoCss: 'right-clear',
+		threeCss: 'right-clear',
+		fourCss: 'left-clear',
+		touchClock: true,
+		buttonCanClick: true,
+		playId:''
 	},
 	//事件处理函数
-
 	onLoad(options) {
 		const self = this;
 		console.log('options', options);
@@ -57,215 +57,7 @@ Page({
 			api.pathTo('/pages/indexVideoComment/indexVideoComment?id=' + options.id, 'nav')
 		} else if (options.type && options.type == 'teasingDetail') {
 			api.pathTo('/pages/indexTeasingComment/indexTeasingComment?id=' + options.id, 'nav')
-		}
-
-
-	},
-
-	onShow() {
-		const self = this;
-		self.data.menu_show = false;
-		self.data.is_choose = false;
-		clearInterval(self.data.interval); // 清除setInterval 
-		self.data.time = 0;
-		self.init();
-		self.data.mainData = {
-			1: [],
-			2: [],
-			3: [],
-			4: []
 		};
-		self.setData({
-			menu_show: self.data.menu_show,
-			is_choose: self.data.is_choose,
-			web_currentType: self.data.type
-		})
-	},
-
-	// 触摸开始事件 
-
-	touchStart: function(e) {
-		const self = this;
-		self.data.touchDot = e.touches[0].pageX; // 获取触摸时的原点 
-		// 使用js计时器记录时间  
-		self.data.interval = setInterval(function() {
-			self.data.time++;
-		}, 100)
-	},
-
-	// 触摸移动事件 
-
-	touchMove: function(e) {
-		const self = this;
-		var touchMove = e.touches[0].pageX;
-		
-		// 向左滑动  
-		if(!self.data.touchClock){
-			if (touchMove - self.data.touchDot <= -70&&!self.data.touchClock) {
-				if(self.data.currentType==4){
-					self.data.type=1;
-				}else{
-					self.data.type++;
-				};
-				self.changeContent();
-			};
-			if (touchMove - self.data.touchDot >= 70&&!self.data.touchClock) {
-				if(self.data.currentType==1){
-					self.data.type=4;
-				}else{
-					self.data.type--;
-				};
-				self.changeContent();
-			};
-		};
-		
-
-	},
-
-	// 触摸结束事件 
-
-	touchEnd: function(e) {
-		const self = this;
-		clearInterval(self.data.interval); // 清除setInterval 
-		self.data.time = 0;
-	},
-
-
-	//点击切换
-	changeType(e) {
-		const self = this;
-
-		var type = api.getDataSet(e, 'type');
-		self.data.type = type;
-		self.changeContent();
-		
-
-	},
-
-	toMiddle(){
-		const self = this;
-		if(self.data.type==1){
-			self.setData({
-				oneCss:'middle'
-			});
-		};
-		if(self.data.type==2){
-			self.setData({
-				twoCss:'middle'
-			});
-		};
-		if(self.data.type==3){
-			self.setData({
-				threeCss:'middle'
-			});
-		};
-		if(self.data.type==4){
-			self.setData({
-				fourCss:'middle'
-			});
-		};
-	},
-
-
-
-	changeContent(){
-		const self = this;
-		self.data.touchClock = true;
-
-		if(self.data.currentType==1){
-			self.setData({
-				fourCss:'left-clear',
-				threeCss:'right-clear',
-				twoCss:'right-clear',
-			});
-			if(self.data.type==4){
-				self.setData({
-					oneCss:'right'
-				});
-			}else{
-				self.setData({
-					oneCss:'left'
-				});
-			};
-			self.toMiddle();
-		};
-
-		if(self.data.currentType==2){
-			self.setData({
-				fourCss:'right-clear',
-				threeCss:'right-clear',
-				oneCss:'left-clear',
-			});
-			if(self.data.type==1){
-				self.setData({
-					twoCss:'right'
-				});
-			}else{
-				self.setData({
-					twoCss:'left'
-				});
-			};
-			self.toMiddle();
-		};
-
-		if(self.data.currentType==3){
-			self.setData({
-				fourCss:'right-clear',
-				twoCss:'left-clear',
-				oneCss:'left-clear',
-			});
-			if(self.data.type==4){
-				self.setData({
-					threeCss:'left'
-				});
-			}else{
-				self.setData({
-					threeCss:'right'
-				});
-			};
-			self.toMiddle();
-		};
-
-		if(self.data.currentType==4){
-			self.setData({
-				fourCss:'left-clear',
-				twoCss:'left-clear',
-				oneCss:'right-clear',
-			});
-			if(self.data.type==1){
-				self.setData({
-					fourCss:'left'
-				});
-			}else{
-				self.setData({
-					fourCss:'right'
-				});
-			};
-			self.toMiddle();
-		};
-
-		self.data.currentType = self.data.type;
-		self.setData({
-			web_currentType: self.data.currentType
-		});
-
-		if (self.data.mainData[self.data.type].length == 0) {
-			api.buttonCanClick(self);
-			self.getMainData(true);
-		}else{
-			setTimeout(function(){
-				self.data.touchClock = false;
-			},300);
-		};
-		
-	},
-
-
-
-
-	init() {
-		const self = this;
-		api.commonInit(self);
 		self.data.paginate = [{
 					count: 0,
 					currentPage: 1,
@@ -287,16 +79,91 @@ Page({
 				{
 					count: 0,
 					currentPage: 1,
-					pagesize: 3,
+					pagesize: 4,
+					is_page: true,
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
 					is_page: true,
 				},
 			],
-			console.log('self.data.paginate', self.data.paginate)
-		self.userInfoGet();
+
+			self.data.mainData = {
+				1: [],
+				2: [],
+				3: [],
+				4: []
+			};
+		self.setData({
+			web_playId:self.data.playId,
+			web_buttonCanClick: self.data.buttonCanClick
+		})
+		console.log('self.data.mainData ', self.data.mainData)
 		self.getMainData();
+		self.userInfoGet();
+	},
+
+	onShow() {
+		const self = this;
+		self.data.menu_show = false;
+		self.data.is_choose = false;
+		clearInterval(self.data.interval); // 清除setInterval 
+		self.data.time = 0;
+		self.init();
+		self.setData({
+			menu_show: self.data.menu_show,
+			is_choose: self.data.is_choose,
+			web_currentType: self.data.type
+		})
+	},
+
+
+	init() {
+		const self = this;
 		self.setData({
 			web_currentType: self.data.currentType
 		})
+	},
+
+	onPullDownRefresh: function() {
+		const self = this;
+		wx.showNavigationBarLoading();
+		self.data.mainData[self.data.type] = [];
+		self.data.paginate = [{
+					count: 0,
+					currentPage: 1,
+					pagesize: 3,
+					is_page: true
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 3,
+					is_page: true,
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 3,
+					is_page: true,
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 4,
+					is_page: true,
+				},
+				{
+					count: 0,
+					currentPage: 1,
+					pagesize: 5,
+					is_page: true,
+				},
+			],
+			self.getMainData(true);
+
 	},
 
 	userInfoGet() {
@@ -326,6 +193,7 @@ Page({
 		self.setData({
 			web_loading: true
 		});
+		console.log(self.data.paginate)
 		const postData = {};
 		postData.tokenFuncName = 'getProjectToken';
 		postData.paginate = api.cloneForm(self.data.paginate[self.data.type - 1]);
@@ -403,7 +271,7 @@ Page({
 
 		};
 		const callback = (res) => {
-			
+			api.buttonCanClick(self, true);
 			if (res.info.data.length > 0) {
 
 				for (var i = 0; i < res.info.data.length; i++) {
@@ -421,18 +289,17 @@ Page({
 				self.data.isLoadAll = true;
 				api.showToast('没有更多了', 'none');
 			};
-
-
-			
 			self.setData({
 				web_loading: false,
 				web_mainData: self.data.mainData,
 			});
-			setTimeout(function(){
-				api.buttonCanClick(self, true);
+			setTimeout(function() {
+				wx.hideNavigationBarLoading();
+				wx.stopPullDownRefresh();
+
 				self.data.touchClock = false;
-			},300);
-			
+			}, 300);
+
 		};
 		api.messageGet(postData, callback);
 	},
@@ -442,10 +309,10 @@ Page({
 	getAnswerData(index) {
 		const self = this;
 		const postData = {
-			paginate: api.cloneForm(self.data.paginate),
+			paginate: api.cloneForm(self.data.paginate[4]),
 			tokenFuncName: 'getProjectToken',
 			searchItem: {
-				relation_id: self.data.mainData[index].id,
+				relation_id: self.data.mainData[self.data.type][index].id,
 				type: 5,
 				user_type: 0
 			},
@@ -467,8 +334,8 @@ Page({
 					var time = api.timeToTimestamp(res.info.data[i].create_time)
 					res.info.data[i].create_time = api.getDateDiff(time)
 				};
-				self.data.mainData[index].answerData = res.info.data;
-				self.data.mainData[index].isShowAnswer = true;
+				self.data.mainData[self.data.type][index].answerData = res.info.data;
+				self.data.mainData[self.data.type][index].isShowAnswer = true;
 			} else {
 				api.showToast('没有更多了', 'none')
 			};
@@ -479,7 +346,7 @@ Page({
 		api.messageGet(postData, callback);
 	},
 
-	
+
 
 	/* 	//滑动切换
 		bindChange(e) {
@@ -499,7 +366,7 @@ Page({
 		const self = this;
 		api.buttonCanClick(self);
 		var index = api.getDataSet(e, 'index');
-		var item = self.data.mainData[index];
+		var item = self.data.mainData[self.data.type][index];
 
 		if (item.goodMe.length == 0) {
 			self.addLog(index)
@@ -510,34 +377,34 @@ Page({
 
 	addLog(index) {
 		const self = this;
-		var item = self.data.mainData[index];
+		var item = self.data.mainData[self.data.type][index];
 		const postData = {};
 		postData.data = {
 			type: 4,
 			title: '点赞成功',
-			order_no: self.data.mainData[index].id,
-			pay_no: self.data.mainData[index].user_no,
+			order_no: self.data.mainData[self.data.type][index].id,
+			pay_no: self.data.mainData[self.data.type][index].user_no,
 		};
 		postData.saveAfter = [{
 			tableName: 'Message',
 			FuncName: 'add',
 			data: {
-				relation_id: self.data.mainData[index].id,
+				relation_id: self.data.mainData[self.data.type][index].id,
 				type: 7,
 				thirdapp_id: 2,
 				title: '点赞',
-				relation_user: self.data.mainData[index].user_no,
+				relation_user: self.data.mainData[self.data.type][index].user_no,
 				user_no: wx.getStorageSync('info').user_no
 			}
 		}];
 		postData.tokenFuncName = 'getProjectToken';
 		const callback = (res) => {
 			if (res.solely_code == 100000) {
-				self.data.mainData[index].goodMe.push({
+				self.data.mainData[self.data.type][index].goodMe.push({
 					status: 1,
 					id: res.info.id
 				});
-				self.data.mainData[index].goodDataNum.num += 1;
+				self.data.mainData[self.data.type][index].goodDataNum.num += 1;
 			} else {
 				api.showToast('点赞失败', 'none', 1000)
 			};
@@ -559,9 +426,18 @@ Page({
 			console.log('currentId', currentId)
 			var videoContextPrev = wx.createVideoContext(self.data.playId)
 			videoContextPrev.pause();
-		};
-		self.data.playId = currentId
 
+			var videoContextNext = wx.createVideoContext(currentId)
+			videoContextNext.play();
+		} else {
+			self.data.playId = currentId;
+			console.log('self.data.playId', self.data.playId)
+			wx.createVideoContext(self.data.playId).play()
+		}
+		self.data.playId = currentId
+		self.setData({
+			web_playId: self.data.playId
+		})
 	},
 
 
@@ -569,7 +445,7 @@ Page({
 
 	updateLog(index) {
 		const self = this;
-		var item = api.cloneForm(self.data.mainData[index]);
+		var item = api.cloneForm(self.data.mainData[self.data.type][index]);
 		const postData = {
 			searchItem: {
 				id: item.goodMe[0].id
@@ -582,8 +458,8 @@ Page({
 		const callback = (res) => {
 			if (res.solely_code == 100000) {
 				console.log('item.goodMe[0].status', item.goodMe[0].status);
-				self.data.mainData[index].goodMe[0].status = -item.goodMe[0].status;
-				self.data.mainData[index].goodDataNum.num -= item.goodMe[0].status;
+				self.data.mainData[self.data.type][index].goodMe[0].status = -item.goodMe[0].status;
+				self.data.mainData[self.data.type][index].goodDataNum.num -= item.goodMe[0].status;
 			} else {
 				api.showToast('点赞失败', 'none', 1000)
 			};
@@ -614,6 +490,190 @@ Page({
 			url: '/pages/search/search?item=' + self.data.submitData.item
 		})
 		console.log(self.data.submitData)
+	},
+
+	// 触摸开始事件 
+
+	touchStart: function(e) {
+		const self = this;
+		self.data.touchDot = e.touches[0].pageX; // 获取触摸时的原点 
+		self.data.touchDotY = e.touches[0].pageY;
+	},
+
+	// 触摸移动事件 
+
+	touchMove: function(e) {
+		const self = this;
+		self.data.touchMove = e.touches[0].pageX;
+		self.data.touchMoveY = e.touches[0].pageY;
+		// 向左滑动  
+
+
+
+	},
+
+	// 触摸结束事件 
+
+	touchEnd: function(e) {
+		const self = this;
+		if (!self.data.touchClock) {
+			console.log('self.data.touchMoveY-self.data.touchDotY', self.data.touchMoveY - self.data.touchDotY)
+			console.log('self.data.touchMove - self.data.touchDot', self.data.touchMove - self.data.touchDot)
+			if (self.data.touchMove - self.data.touchDot <= -50 && -20 < self.data.touchMoveY - self.data.touchDotY && 20 >
+				self.data.touchMoveY - self.data.touchDotY && !self.data.touchClock) {
+				if (self.data.currentType == 4) {
+					self.data.type = 1;
+				} else {
+					self.data.type++;
+				};
+				self.changeContent();
+			} else {
+				self.data.touchClock = false
+			};
+			if (self.data.touchMove - self.data.touchDot >= 50 && -20 < self.data.touchMoveY - self.data.touchDotY && 20 >
+				self.data.touchMoveY - self.data.touchDotY && !self.data.touchClock) {
+				if (self.data.currentType == 1) {
+					self.data.type = 4;
+				} else {
+					self.data.type--;
+				};
+				self.changeContent();
+			} else {
+				console.log(222)
+			}
+
+
+		};
+	},
+
+
+	//点击切换
+	changeType(e) {
+		const self = this;
+
+		var type = api.getDataSet(e, 'type');
+		self.data.type = type;
+		self.changeContent();
+
+
+	},
+
+	toMiddle() {
+		const self = this;
+		if (self.data.type == 1) {
+			self.setData({
+				oneCss: 'middle'
+			});
+		};
+		if (self.data.type == 2) {
+			self.setData({
+				twoCss: 'middle'
+			});
+		};
+		if (self.data.type == 3) {
+			self.setData({
+				threeCss: 'middle'
+			});
+		};
+		if (self.data.type == 4) {
+			self.setData({
+				fourCss: 'middle'
+			});
+		};
+	},
+
+
+
+	changeContent() {
+		const self = this;
+		self.data.touchClock = true;
+
+		if (self.data.currentType == 1) {
+			self.setData({
+				fourCss: 'left-clear',
+				threeCss: 'right-clear',
+				twoCss: 'right-clear',
+			});
+			if (self.data.type == 4) {
+				self.setData({
+					oneCss: 'right'
+				});
+			} else {
+				self.setData({
+					oneCss: 'left'
+				});
+			};
+			self.toMiddle();
+		};
+
+		if (self.data.currentType == 2) {
+			self.setData({
+				fourCss: 'right-clear',
+				threeCss: 'right-clear',
+				oneCss: 'left-clear',
+			});
+			if (self.data.type == 1) {
+				self.setData({
+					twoCss: 'right'
+				});
+			} else {
+				self.setData({
+					twoCss: 'left'
+				});
+			};
+			self.toMiddle();
+		};
+
+		if (self.data.currentType == 3) {
+			self.setData({
+				fourCss: 'right-clear',
+				twoCss: 'left-clear',
+				oneCss: 'left-clear',
+			});
+			if (self.data.type == 4) {
+				self.setData({
+					threeCss: 'left'
+				});
+			} else {
+				self.setData({
+					threeCss: 'right'
+				});
+			};
+			self.toMiddle();
+		};
+
+		if (self.data.currentType == 4) {
+			self.setData({
+				fourCss: 'left-clear',
+				twoCss: 'left-clear',
+				oneCss: 'right-clear',
+			});
+			if (self.data.type == 1) {
+				self.setData({
+					fourCss: 'left'
+				});
+			} else {
+				self.setData({
+					fourCss: 'right'
+				});
+			};
+			self.toMiddle();
+		};
+
+		self.data.currentType = self.data.type;
+		self.setData({
+			web_currentType: self.data.currentType
+		});
+
+		if (self.data.mainData[self.data.type].length == 0) {
+			api.buttonCanClick(self);
+			self.getMainData(true);
+		} else {
+			setTimeout(function() {
+				self.data.touchClock = false;
+			}, 300);
+		};
+
 	},
 
 	menu() {
@@ -663,10 +723,11 @@ Page({
 		const self = this;
 		const index = api.getDataSet(e, 'index');
 
-		if (self.data.mainData[index].answerData) {
-			self.data.mainData[index].isShowAnswer = self.data.mainData[index].isShowAnswer ? !self.data.mainData[index].isShowAnswer :
+		if (self.data.mainData[self.data.type][index].answerData) {
+			self.data.mainData[self.data.type][index].isShowAnswer = self.data.mainData[self.data.type][index].isShowAnswer ?
+				!self.data.mainData[self.data.type][index].isShowAnswer :
 				true;
-			console.log(self.data.mainData[index].isShowAnswer);
+			console.log(self.data.mainData[self.data.type][index].isShowAnswer);
 			self.setData({
 				web_mainData: self.data.mainData
 			})
@@ -729,12 +790,12 @@ Page({
 		var imgIndex = api.getDataSet(e, 'id');
 		console.log('index', index)
 		console.log('imgIndex', imgIndex)
-		console.log(self.data.mainData[index].mainImg[0])
-		for (var i = 0; i < self.data.mainData[index].mainImg.length; i++) {
-			self.data.urlSet.push(self.data.mainData[index].mainImg[i].url);
+		console.log(self.data.mainData[self.data.type][index].mainImg[0])
+		for (var i = 0; i < self.data.mainData[self.data.type][index].mainImg.length; i++) {
+			self.data.urlSet.push(self.data.mainData[self.data.type][index].mainImg[i].url);
 		};
 		wx.previewImage({
-			current: self.data.mainData[index].mainImg[imgIndex].url, // 当前显示图片的http链接
+			current: self.data.mainData[self.data.type][index].mainImg[imgIndex].url, // 当前显示图片的http链接
 			urls: self.data.urlSet // 需要预览的图片http链接列表
 		})
 	},

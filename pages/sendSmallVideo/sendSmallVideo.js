@@ -7,7 +7,7 @@ Page({
   data: {
 
     submitData:{
-
+		mainImg:[],
       content:'',
       video:[],
       type:4,
@@ -47,8 +47,9 @@ Page({
   			self.data.submitData.title = res.info.data[0].title;
   			self.data.submitData.content = res.info.data[0].content;
   			self.data.submitData.video = res.info.data[0].video;
-  			/* 		self.data.submitData.country = res.info.data[0].country; 
-  					self.data.submitData.city = res.info.data[0].city; */
+			self.data.submitData.country = res.info.data[0].country; 
+			self.data.submitData.city = res.info.data[0].city;
+			self.data.submitData.mainData = res.info.data[0].mainData;
   		};
   		self.data.mainData = res.info.data[0];
   		self.setData({
@@ -74,8 +75,9 @@ Page({
   		}
   		api.getAuthSetting(callback);
   	} else {
+		api.buttonCanClick(self, true)
   		api.showToast('请补全信息', 'none')
-  		api.buttonCanClick(self, true)
+  		
   	};
   },
   
@@ -133,10 +135,15 @@ Page({
     const self =this;
     const postData = {};
     postData.tokenFuncName = 'getProjectToken';
+	if(!wx.getStorageSync('info')||!wx.getStorageSync('info').headImgUrl){
+	  postData.refreshToken = true;
+	};
     postData.data = {};
     postData.data = api.cloneForm(self.data.submitData);
     const callback = (data)=>{
+			 api.buttonCanClick(self,true)
       if(data.solely_code==100000){
+				
         api.showToast('发布成功','none',1000,function(){
           setTimeout(function(){
             wx.navigateBack({
@@ -147,7 +154,7 @@ Page({
       }else{
         api.showToast(data.msg,'none',1000)
       }
-      api.buttonCanClick(self,true)
+     
     };
     api.messageAdd(postData,callback);
   },
@@ -175,14 +182,16 @@ Page({
     api.buttonCanClick(self);
     const pass = api.checkComplete(self.data.submitData);
     console.log('pass',pass);
+	return
     if(pass){  
         const callback = (user,res) =>{
           self.messageAdd();
         } 
        api.getAuthSetting(callback);   
     }else{
+			 api.buttonCanClick(self,true) 
       api.showToast('请补全信息','none')
-      api.buttonCanClick(self,true) 
+     
     };
   },
 

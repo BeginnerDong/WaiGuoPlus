@@ -14,6 +14,7 @@ Page({
   onLoad(options) {
     const self = this;
     api.commonInit(self);
+		self.data.user_no=options.user_no;
     self.getMainData();
     
   },
@@ -30,7 +31,7 @@ Page({
     postData.searchItem = {
       thirdapp_id:getApp().globalData.thirdapp_id,
       type:5,
-      user_no:wx.getStorageSync('info').user_no
+      user_no:self.data.user_no
     };
     postData.getAfter = {
       goodDataNum:{

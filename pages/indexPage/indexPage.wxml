@@ -30,8 +30,8 @@
         </view>
     </view>
 </view>
-<view class="user_sort flex bg1" bindtap="intoPath" data-path="/pages/otherGreat/otherGreat?user_no={{web_mainData[0].user_no}}">
-    <view class="user_item">
+<view class="user_sort flex bg1" >
+    <view class="user_item" bindtap="intoPath" data-path="/pages/otherGreat/otherGreat?user_no={{web_mainData[0].user_no}}">
         <view class="font30 color96">{{web_userData.goodDataNum.num>10000?web_userData.goodDataNum.num/10000+W:web_userData.goodDataNum.num}}</view>
         <view class="font24 color3" style="color:#251718;font-weight:700">
             ta收到的点赞

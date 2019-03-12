@@ -130,6 +130,7 @@ Page({
     postData.data = api.cloneForm(self.data.submitData);
     const callback = (data)=>{
       if(data.solely_code==100000){
+				wx.setStorageSync('newPublish', data.info.id);
         api.showToast('发布成功','none',1000,function(){
           setTimeout(function(){
             wx.navigateBack({

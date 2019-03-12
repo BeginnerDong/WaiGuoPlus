@@ -143,7 +143,7 @@ Page({
     postData.data = api.cloneForm(self.data.submitData);
     const callback = (data)=>{
       if(data.solely_code==100000){
-        
+        wx.setStorageSync('newPublish', data.info.id);
         api.showToast('发布成功','none',1000,function(){
           setTimeout(function(){
             wx.navigateBack({
@@ -225,7 +225,7 @@ Page({
       }
     };
     wx.chooseImage({
-      count:3,
+      count:3-self.data.submitData.mainImg.length,
       success: function(res) {
         console.log(res);
         var tempFilePaths = res.tempFilePaths;

@@ -212,11 +212,22 @@ color: transparent;
 .menu_item{
 	width:50%;
 	text-align:center;
+	
 }
 .menu_item image{
 	width:184rpx;
 	height:184rpx;
 	margin-top:76rpx;
+}
+.menu_img{
+	width:184rpx;
+	height:184rpx;
+	margin-top:76rpx;
+
+}
+.justify-center{
+	display: flex;
+	justify-content: center;
 }
 .close{
 	text-align:center;
@@ -328,7 +339,6 @@ video {
 	left:0;
 	top:0;
 	background:rgba(0,0,0,0.6);
-	z-index:99;
 }
 .navbarTop{
 	position:fixed;

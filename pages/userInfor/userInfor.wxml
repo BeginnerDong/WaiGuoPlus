@@ -33,7 +33,7 @@
                 <input class=" input avoidOverflow"  data-key="address" bindblur="changeBind" value="{{web_sForm.address}}"></input>
             </view>
             <view class="input_list1 font28 flex">
-                <view class="input_before color6">语言:</view>
+                <view class="input_before color6">职业:</view>
                 <input class=""  data-key="language" bindblur="changeBind" value="{{web_sForm.language}}"></input>
             </view>
             <view class="input_list1 font28 flex">

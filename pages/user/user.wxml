@@ -11,7 +11,7 @@
 					<image src="/images/user_banner_icon1.png"></image>
 				</view>
 				<view class="font24 color96" style="text-align:center;" bindtap="intoPath" data-path="/pages/userMessage/userMessage">
-					<text class="font30 color3" style="margin-right:20rpx;">{{web_noticeData.length>0?web_noticeData.length:'0'}}</text>条通知
+					<text class="font30" style="margin-right:20rpx;color: red;">{{web_noticeData.length>0?web_noticeData.length:'0'}}</text>条通知
 				</view>
 			</view>
 			<view class="user_right" bindtap="intoPath" data-path="/pages/userInfor/userInfor">

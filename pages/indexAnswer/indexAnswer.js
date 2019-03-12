@@ -20,6 +20,9 @@ Page({
     const self = this;
     api.commonInit(self);
     self.data.id = options.id;
+		self.setData({
+			web_submitData:self.data.submitData
+		})
     self.getMainData()
   },
 
@@ -105,15 +108,18 @@ Page({
         self.setData({
           web_submitData:self.data.submitData
         });
+				
         wx.hideLoading()  
       }else{
         api.showToast('网络故障','none')
       }
     };
+		
     wx.chooseImage({
-      count:3,
+      count:3-self.data.submitData.mainImg.length,
       success: function(res) {
         console.log(res);
+				console.log(self.data.submitData);
         var tempFilePaths = res.tempFilePaths;
         console.log(callback)
         for (var i = 0; i < tempFilePaths.length; i++) {
@@ -129,7 +135,10 @@ Page({
   submit(){
     const self = this;
     api.buttonCanClick(self);
-    const pass = api.checkComplete(self.data.submitData);
+		var newObject = api.cloneForm(self.data.submitData);
+		
+		delete newObject.mainImg;
+    const pass = api.checkComplete(self.data.newObject);
     console.log('pass',pass);
     if(pass){  
         const callback = (user,res) =>{
@@ -148,7 +157,7 @@ Page({
   },
 
 
-  intoPathRedirect(e){
+  intoPathRedi(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'redi');
   }, 

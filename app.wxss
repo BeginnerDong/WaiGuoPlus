@@ -125,6 +125,11 @@ page{
 	height:40rpx;
 	
 }
+.navbottom_img{
+	width:40rpx;
+	height:40rpx;
+	
+}
 .nav_img{
 	/* width:100%; */
 	height:100%;
@@ -141,6 +146,10 @@ page{
 	top:-23rpx;
 }
 .navbar_add image{
+	width:124rpx;
+	height:124rpx;
+}
+.navbottomadd_img{
 	width:124rpx;
 	height:124rpx;
 }
@@ -168,10 +177,11 @@ page{
 }
 /*************搜索框*****************/
 .search{
-	width:100%;
+	width:90%;
+	
 	height:78rpx;
 	border-radius:50rpx;
-	margin:30rpx 0;
+	margin:30rpx auto;
 }
 .search_btn{
 	width:12%;

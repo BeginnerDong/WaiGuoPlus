@@ -18,7 +18,7 @@
                     <image src="{{item.url}}"></image>
                 </view>
             </block>
-            <view class="upload_item" bindtap="upLoadImg">
+            <view class="upload_item" bindtap="upLoadImg" wx:if="{{web_submitData.mainImg.length<3}}">
                 <image src="/images/upload.png"></image>
             </view>
         </view>

@@ -12,6 +12,7 @@ Page({
       mainImg:[],
       type:5
     }, 
+		urlSet:[],
     isFirstLoadAllStandard:['getMainData'],
     originData:{}
   },
@@ -126,9 +127,15 @@ Page({
 
     const callback =(res)=>{
       if(res.info.data.length>0){
+				for (var i = 0; i < res.info.data.length; i++) {
+					if (res.info.data[i].user_no == wx.getStorageSync('info').user_no) {
+						res.info.data[i].isMe = true;
+					};
+					
+				};	
         self.data.mainData.push.apply(self.data.mainData,res.info.data);
         self.data.total = res.info.total;
-
+				
       }else{
          self.data.isLoadAll = true;
       };
@@ -186,6 +193,23 @@ Page({
 	        console.log(res)
 	      }
 	    }
+	},
+	
+	previewImage(e) {
+		const self = this;
+		self.data.urlSet = [];
+		var index = api.getDataSet(e, 'index');
+		var imgIndex = api.getDataSet(e, 'id');
+		console.log('index', index)
+		console.log('imgIndex', imgIndex)
+		console.log(self.data.mainData[index].mainImg[0])
+		for (var i = 0; i < self.data.mainData[index].mainImg.length; i++) {
+			self.data.urlSet.push(self.data.mainData[index].mainImg[i].url);
+		};
+		wx.previewImage({
+			current: self.data.mainData[index].mainImg[imgIndex].url, // 当前显示图片的http链接
+			urls: self.data.urlSet // 需要预览的图片http链接列表
+		})
 	},
   
   clickGood(e){
@@ -379,7 +403,7 @@ Page({
   },
 
 
-  intoPathRedirect(e){
+  intoPathRedi(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'redi');
   }, 

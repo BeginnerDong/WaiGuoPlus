@@ -31,7 +31,7 @@
     <block wx:for="{{web_mainData}}" wx:key="id">
         <view class="comment bg1">
             <view class="information_tlt w690 flex">
-                <view class="user_left">
+                <view class="user_left"  bindtap="{{item.isMe?'intoPath':'intoPath'}}" data-path="{{item.isMe?'/pages/user/user':'/pages/indexPage/indexPage?id='+item.id}}">
                     <view class="user_img">
                       <image src="{{item.user.headImgUrl}}" class="user_img"></image>
                     </view>
@@ -43,16 +43,18 @@
             </view>
             <view>
                 <view class="flexRowBetween">
-                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" >
-                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
+                    <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" wx:for-index="c_index">
+                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}" bindtap="previewImage"
+						data-index="{{index}}" data-id="{{c_index}}"> 
+                            <image src="{{item.mainImg[0].url}}" mode="aspectFill"></image>
                         </view>
                     
-                        <view class="two_img" wx:if="{{item.mainImg.length==2}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
+                        <view class="two_img" wx:if="{{item.mainImg.length==2}}" bindtap="previewImage"
+										 data-index="{{index}}" data-id="{{c_index}}"> 
+                            <image src="{{item.mainImg[0].url}}" mode="aspectFill"></image>
                         </view>
-                        <view class="three_img" wx:if="{{item.mainImg.length==3}}"> 
-                            <image src="{{item.mainImg[0].url}}"></image>
+                        <view class="three_img" wx:if="{{item.mainImg.length==3}}" bindtap="previewImage" data-index="{{index}}" data-id="{{c_index}}"> 
+                            <image src="{{item.mainImg[0].url}}" mode="aspectFill"></image>
                         </view>
 
                     </block>

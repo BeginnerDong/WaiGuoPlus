@@ -164,6 +164,7 @@ Page({
     postData.data = {};
     postData.data = api.cloneForm(self.data.submitData);
     const callback = (data)=>{
+			wx.setStorageSync('newPublish', data.info.id);
       if(data.solely_code==100000){
         api.showToast('发布成功','none',1000,function(){
           setTimeout(function(){
@@ -198,21 +199,6 @@ Page({
   
 
 
-  submit(){
-    const self = this;
-    api.buttonCanClick(self);
-    const pass = api.checkComplete(self.data.submitData);
-    console.log('pass',pass);
-    if(pass){  
-        const callback = (user,res) =>{
-          self.messageAdd();
-        } 
-       api.getAuthSetting(callback);   
-    }else{
-      api.showToast('请补全信息','none')
-      api.buttonCanClick(self,true) 
-    };
-  },
 
   upLoadImg(){
     const self = this;
@@ -237,7 +223,7 @@ Page({
       }
     };
     wx.chooseImage({
-      count:3,
+      count:3-self.data.submitData.mainImg.length,
       success: function(res) {
         console.log(res);
         var tempFilePaths = res.tempFilePaths;

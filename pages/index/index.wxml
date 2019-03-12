@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <wxs src="../../utils/func.wxs" module="func" />
-<view style="width:100%;height:100.5%;overflow:hidden;">
+<view style="width:100%;height:{{web_totalHeight}}%;overflow:hidden;">
 	<view class="navbarTop">
 		<view class="tab font32 flexRowBetween">
 			<view class="tab_item {{web_currentType == 0?'tab_this':''}}" data-type="0" bindtap="changeType">
@@ -420,7 +420,5 @@
 			</view>
 		</view>
 	</view>
-
-	<view style="width:100%;height:150rpx;"></view>
 
 </view>

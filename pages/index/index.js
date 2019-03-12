@@ -80,6 +80,9 @@ Page({
 
 	onLoad(options) {
 		const self = this;
+		self.setData({
+			web_totalHeight:100.5
+		})
 		self.data.clientWidth = wx.getSystemInfoSync().windowWidth;
 
 		self.data.swiper.totalWidth = 3 * self.data.clientWidth;
@@ -333,9 +336,7 @@ Page({
 			};
 		};
 
-		wx.pageScrollTo({
-			scrollTop: 0,
-		});
+
 
 	},
 
@@ -369,7 +370,7 @@ Page({
 				} else {
 					var left = to;
 					var right = 0;
-					var type = 'right';
+					var type = 'left';
 				};
 			} else {
 				var left = to;
@@ -555,6 +556,7 @@ Page({
 	getMainData(isNew) {
 		const self = this;
 		self.data.touchClock = true;
+		
 		api.buttonCanClick(self, false);
 		console.log('self.data.buttonCanClick', self.data.buttonCanClick);
 		self.setData({
@@ -669,6 +671,9 @@ Page({
 
 			setTimeout(function() {
 				api.buttonCanClick(self, true);
+				self.setData({
+					web_totalHeight:100.5
+				})
 			}, 3000);
 
 
@@ -909,6 +914,10 @@ Page({
 
 		if (!self.data.paginate[self.data.type].isLoadAll && self.data.buttonCanClick) {
 			wx.showLoading();
+			self.setData({
+				web_totalHeight:100
+			});
+
 			self.data.paginate[self.data.type].currentPage++;
 			self.getMainData();
 		};

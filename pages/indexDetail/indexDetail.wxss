@@ -59,7 +59,7 @@
 }
 .comment{
 	border-radius:20rpx;
-	padding:40rpx 0 26rpx 0;
+	padding:0 0 26rpx 0;
 }
 .information_tlt{
 	height:190rpx;

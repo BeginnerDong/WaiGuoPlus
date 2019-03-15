@@ -20,10 +20,11 @@
 	color:#666;
 }
 .send textarea{
-	margin-top:40rpx;
+	margin-top:10rpx;
 	height:340rpx;
 	font-size:26rpx;
 	color:#666;
+	padding: 3% 0;
 }
 .upload_video{
 	width:40%;

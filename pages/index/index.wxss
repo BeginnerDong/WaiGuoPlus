@@ -274,9 +274,9 @@ color: transparent;
 .quesition_title{
 	height:140rpx;
 }
-.teasing{
+/* .teasing{
 	margin-top:28rpx;
-}
+} */
 .information_img video{
 	width:100%;
 	height:450rpx;

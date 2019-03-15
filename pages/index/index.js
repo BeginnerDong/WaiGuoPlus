@@ -245,7 +245,6 @@ Page({
 		const self = this;
 		self.data.touchOriginPage.X = e.touches[0].pageX; // 获取触摸时的原点 
 		self.data.touchOriginPage.Y = e.touches[0].pageY; // 获取触摸时的原点 
-		console.log('touchStart', self.data.touchOriginPage);
 		if (!self.data.touchClock) {
 			var index = parseInt(e.currentTarget.dataset.index);
 			self.data.type = index;
@@ -261,7 +260,6 @@ Page({
 			self.data.touchLeftRight = [left, right, type];
 
 			self.data.startTimes = 1;
-			console.log('touchStart', e);
 
 		};
 
@@ -430,6 +428,15 @@ Page({
 		self.data.type = index;
 		self.setData({
 			web_currentType: self.data.currentType
+		});
+
+		if(self.data.playId){
+			var videoContextPrev = wx.createVideoContext(self.data.playId)
+			videoContextPrev.pause();
+		};
+		self.data.playId = 'currentId';
+		self.setData({
+			web_playId: self.data.playId
 		});
 		if (self.data.mainData[index].length == 0) {
 			api.buttonCanClick(self);
@@ -810,25 +817,23 @@ Page({
 
 	vedioPlay(e) {
 		const self = this;
-		console.log(e);
-		console.log(e.target.id);
-		var currentId = e.target.id;
-		if (self.data.playId && self.data.playId != currentId) {
-			console.log('currentId', currentId)
-			var videoContextPrev = wx.createVideoContext(self.data.playId)
-			videoContextPrev.pause();
 
-			var videoContextNext = wx.createVideoContext(currentId)
-			videoContextNext.play();
-		} else {
+		var currentId = e.currentTarget.id;
+		var index = e.currentTarget.dataset.index;
+		
+		if (currentId&&self.data.playId!= currentId) {
+			if(self.data.playId){
+				var videoContextPrev = wx.createVideoContext(self.data.playId)
+				videoContextPrev.pause();
+			};
 			self.data.playId = currentId;
-			console.log('self.data.playId', self.data.playId)
-			wx.createVideoContext(self.data.playId).play()
-		}
-		self.data.playId = currentId
-		self.setData({
-			web_playId: self.data.playId
-		})
+			var videoContextNext = wx.createVideoContext(self.data.playId)
+			videoContextNext.play();
+			self.setData({
+				web_playId: self.data.playId
+			})
+		};
+		
 	},
 
 

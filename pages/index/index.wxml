@@ -304,19 +304,17 @@
 								<view class="user_right avoidOverflow font30 color6">{{item.country}}·{{item.city}}</view>
 							</view>
 							<view class="information_three_img flex">
+								
 								<block wx:for="{{item.video}}" wx:for-item="c_item" wx:for-index="c_index">
-									<view class="video_cont">
-									<video custom-cache="{{false}}"  id="{{item.id+''+index+''+c_index}}" src="{{c_item.url}}" >
-										<!-- <view class="controls" style="{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block'}}" class="video_mask" data-index="2" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"> -->
-											<image src="{{item.mainImg[0].url}}"   style="width:100%;height:100%;position:absolute;top:0;left:0;z-index: 99;{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block'}}"></image>
-										<!-- </view> -->
 
-										<view style="position:absolute;top:0%;left:0%;width:100%;height:100%;z-index: 100">
-										<!-- <view style="{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block;z-index:9999;position:absolute;top: 45%;left:45%'}}"> -->
-											<image id="{{item.id+''+index+''+c_index}}" bindtap="vedioPlay" src="/images/play.png" style="margin:29% auto;width:60rpx;height:60rpx;{{web_playId==item.id+''+index+''+c_index?'display: none':'display:block'}}"></image>
-										<!-- </view> -->
+									<view class="video_cont">
+									<video custom-cache="{{false}}" data-index="{{index}}"  id="{{item.id+''+index+''+c_index}}" src="{{c_item.url}}" show-center-play-btn="{{false}}"  bindtap="vedioPlay" >
+										<view wx:if="{{web_playId!=item.id+''+index+''+c_index}}" style="width:100%;height:100%;">
+											<image src="{{item.mainImg[0].url}}"   style="width:100%;height:100%;display:block"></image>
+											<view style="position:absolute;top:50%;width:100%;height:60rpx;">
+												<image id="{{item.id+''+index+''+c_index}}"  src="/images/play.png" style="margin:0 auto;width:60rpx;height:60rpx;display:block;"></image>
+											</view>
 										</view>
-										
 									</video>
 									</view>
 								</block>

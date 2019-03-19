@@ -191,7 +191,7 @@
 									{{item.title}}
 								</view>
 								<view class="information_cont font26 color6 avoidOverflow2" bindtap="intoPath" data-path="/pages/indexDetail/indexDetail?id={{item.id}}">
-									<text>{{item.content}}</text>
+									{{item.content}}
 								</view>
 								<view class="handle flex">
 									<view class="handle_browse flexCenter">

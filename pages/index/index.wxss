@@ -104,8 +104,9 @@ color: transparent;
 	margin:0 10rpx;
 }
 .information_cont{
-	height:66rpx;
+	height:68rpx;
 	margin-top:16rpx;
+	line-height:33rpx;
 }
 .handle{
 	width:100%;

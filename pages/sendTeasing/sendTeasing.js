@@ -85,7 +85,9 @@ Page({
   submit() {
   	const self = this;
   	api.buttonCanClick(self);
-  	const pass = api.checkComplete(self.data.submitData);
+    var testData = api.cloneForm(self.data.submitData);
+    delete testData.mainImg;
+  	const pass = api.checkComplete(testData);
   	console.log('pass', pass);
   	if (pass) {
   		const callback = (user, res) => {

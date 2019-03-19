@@ -74,10 +74,9 @@ Page({
   			}
   		}
   		api.getAuthSetting(callback);
-  	} else {
-		api.buttonCanClick(self, true)
+  	}else{
+		  api.buttonCanClick(self, true)
   		api.showToast('请补全信息', 'none')
-  		
   	};
   },
   
@@ -145,15 +144,15 @@ Page({
 			 wx.setStorageSync('newPublish', data.info.id);
       if(data.solely_code==100000){
 				
-        api.showToast('发布成功','none',1000,function(){
+        api.showToast('发布成功','none',300,function(){
           setTimeout(function(){
             wx.navigateBack({
               delta:1
             }) 
-          },1000);  
+          },300);  
         }) 
       }else{
-        api.showToast(data.msg,'none',1000)
+        api.showToast(data.msg,'none',300)
       }
      
     };
@@ -178,23 +177,7 @@ Page({
   
 
 
-  submit(){
-    const self = this;
-    api.buttonCanClick(self);
-    const pass = api.checkComplete(self.data.submitData);
-    console.log('pass',pass);
-	return
-    if(pass){  
-        const callback = (user,res) =>{
-          self.messageAdd();
-        } 
-       api.getAuthSetting(callback);   
-    }else{
-			 api.buttonCanClick(self,true) 
-      api.showToast('请补全信息','none')
-     
-    };
-  },
+
 
   upLoadImg(){
     const self = this;

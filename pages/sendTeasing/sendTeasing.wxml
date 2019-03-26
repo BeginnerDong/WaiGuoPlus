@@ -1,10 +1,11 @@
 <view class="send w670 bg1">
-    <textarea placeholder="这一刻的想法" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+    <textarea placeholder="这一刻的想法" maxlength="2000" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.mainImg}}" wx:key="index">
                 <view class="upload_item">
                     <image src="{{item.url}}"></image>
+					
                 </view>
             </block>
             

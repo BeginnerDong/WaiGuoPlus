@@ -98,6 +98,7 @@
 	width:40%;
 	height:240rpx;
 	overflow:hidden;
+	position:relative;
 }
 .upload_box video{
 	width:100%;

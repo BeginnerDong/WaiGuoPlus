@@ -1,12 +1,13 @@
 <view class="send w670 bg1">
-    <view style="height:160rpx;" class="flex">
-        <view class="send_title avoidOverflow2 font28 color6">
+    <view  >
+        <view class="send_title {{web_className}} font28 color6">
            {{web_mainData.content}}
         </view>
+		<view style="font-size:28rpx;text-align: center;margin-top: 10rpx;" bindtap="open">{{!web_isOpen?'展开全部>>':'收起>>'}}</view>
     </view>
 </view>
 <view class="send">
-    <textarea placeholder="这一刻的想法" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+    <textarea placeholder="这一刻的想法" maxlength="2000" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
 </view>
 <view class="w670 bg1" style="padding-top:36rpx;">   
     <text class="answer_tlt font30 color3">回答秘籍</text>

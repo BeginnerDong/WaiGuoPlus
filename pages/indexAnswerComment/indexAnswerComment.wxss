@@ -50,7 +50,7 @@
 }
 .comment{
 	border-radius:20rpx;
-	padding:40rpx 0 26rpx 0;
+	padding:0rpx 0 26rpx 0;
 	margin-top:24rpx;
 }
 .information_tlt{

@@ -7,11 +7,13 @@ Page({
   data: {
 
     submitData:{
-
+		
       content:'',
       mainImg:[],
       type:5
     }, 
+		isOpen:false,
+		className:'avoidOverflow2',
     isFirstLoadAllStandard:['getMainData']
   },
   //事件处理函数
@@ -21,6 +23,7 @@ Page({
     api.commonInit(self);
     self.data.id = options.id;
 		self.setData({
+			web_className:self.data.className,
 			web_submitData:self.data.submitData
 		})
     self.getMainData()
@@ -90,6 +93,20 @@ Page({
     }); 
     console.log(self.data.submitData)
   },
+	
+	open(){
+		const self = this;
+		self.data.isOpen = !self.data.isOpen;
+		if(!self.data.isOpen){
+			self.data.className = 'avoidOverflow2'
+		}else{
+			self.data.className = ''
+		};
+		self.setData({
+			web_isOpen:self.data.isOpen,
+			web_className:self.data.className
+		})
+	},
 
   upLoadImg(){
     const self = this;

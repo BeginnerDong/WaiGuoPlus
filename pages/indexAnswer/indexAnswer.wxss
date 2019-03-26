@@ -4,7 +4,7 @@ page{
 	background:#fff;
 }
 .send{
-	padding-bottom:10rpx;
+	padding-bottom:20rpx;
 	border-top:solid 14rpx #efefef;
 }
 .send_left{
@@ -17,8 +17,8 @@ page{
 	color:#c9c9c9;
 }
 .send_title{
-	margin-top:14rpx;
-	height:80rpx;
+	margin-top:20rpx;
+
 	overflow:hidden;
 }
 .send_right input{

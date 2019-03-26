@@ -1,6 +1,6 @@
 <view class="send w670 bg1">
     
-	<textarea placeholder="这一刻的想法" placeholder-class="placeholder" style="height:240rpx" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+	<textarea placeholder="这一刻的想法" maxlength="2000" placeholder-class="placeholder" style="height:240rpx" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
 	<view class="font30" style="margin-top:30rpx">请上传视频</view>
 	<view class="upload flex">
         <view class="upload_left flex flex_wrap">

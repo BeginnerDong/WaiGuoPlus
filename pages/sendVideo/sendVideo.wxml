@@ -5,12 +5,13 @@
             <input class="font26" name="" placeholder="输入标题内容" placeholder-class="placeholder" data-key="title" bindblur="changeBind"  value="{{web_submitData.title}}"></input>
         </view>
     </view>
-    <textarea placeholder="这一刻的想法" placeholder-class="placeholder" style="height:240rpx" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
-    <view class="upload flex">
+    <textarea placeholder="这一刻的想法" maxlength="2000" placeholder-class="placeholder" style="height:240rpx" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+	<view class="font30" style="margin-top:30rpx">请上传视频</view>
+	<view class="upload flex">
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.video}}" wx:key="index">
-                <view class="upload_video">
-                    <video src="{{item.url}}" class="upload_video"></video>
+                <view class="upload_box">
+                    <video src="{{item.url}}"></video>
 					<image src="/images/delete.png" class="delete" bindtap="delete" data-index="{{index}}"></image>
                 </view>
             </block>
@@ -24,6 +25,24 @@
             </view>
         </view>
     </view>
+	<view class="font30" style="margin-top:30rpx">请上传视频封面</view>
+	<view class="upload flex">
+	    <view class="upload_left flex flex_wrap">
+	        <block wx:for="{{web_submitData.mainImg}}" wx:key="index">
+	            <view class="upload_video">
+	                <image src="{{item.url}}" class="upload_icon"></image>
+	            </view>
+	        </block>
+	        <view class="upload_video" bindtap="upLoadImg" wx:if="{{web_submitData.mainImg.length==0}}">
+	            <image src="/images/upload.png" class="upload_icon"></image>
+	        </view>
+	    </view>
+	    <view class="upload_right">
+	        <view class="limit_number font24">
+	            {{web_submitData.mainImg.length}}/1
+	        </view>
+	    </view>
+	</view>
 </view>
 <view class="position bg1 flex w670">
     <view class="position_img flex">

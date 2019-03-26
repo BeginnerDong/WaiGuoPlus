@@ -226,11 +226,26 @@ Page({
 				var time = api.timeToTimestamp(res.info.data[0].create_time);
 				res.info.data[0].create_time = api.getDateDiff(time);
 				self.data.newPublishData = res.info.data[0];
-				self.data.mainData[res.info.data[0].type-1].unshift(self.data.newPublishData);
+				if(res.info.data[0].type==4){
+					
+					self.data.mainData[3] = [];
+					self.data.paginate[3] = {
+						count: 0,
+						currentPage: 1,
+						pagesize: 3,
+						is_page: true,
+						isLoadAll: false,
+					};
+					self.getMainData(true,4)
+				}else{
+					self.data.mainData[res.info.data[0].type-1].unshift(self.data.newPublishData);
+					self.setData({
+						web_mainData: self.data.mainData,
+					});
+				}
+				
 				wx.removeStorageSync('newPublish');
-				self.setData({
-					web_mainData: self.data.mainData,
-				});
+				
 			} 
 		};
 		api.messageGet(postData, callback);
@@ -526,41 +541,46 @@ Page({
 		wx.showNavigationBarLoading();
 		self.data.mainData[self.data.type] = [];
 		self.data.paginate = [{
-					count: 0,
-					currentPage: 1,
-					pagesize: 3,
-					is_page: true
-				},
-				{
-					count: 0,
-					currentPage: 1,
-					pagesize: 3,
-					is_page: true,
-				},
-				{
-					count: 0,
-					currentPage: 1,
-					pagesize: 3,
-					is_page: true,
-				},
-				{
-					count: 0,
-					currentPage: 1,
-					pagesize: 4,
-					is_page: true,
-				},
-				{
-					count: 0,
-					currentPage: 1,
-					pagesize: 5,
-					is_page: true,
-				},
-			],
+				count: 0,
+				currentPage: 1,
+				pagesize: 3,
+				is_page: true,
+				isLoadAll: false,
+			},
+			{
+				count: 0,
+				currentPage: 1,
+				pagesize: 3,
+				is_page: true,
+				isLoadAll: false,
+			},
+			{
+				count: 0,
+				currentPage: 1,
+				pagesize: 3,
+				is_page: true,
+				isLoadAll: false,
+			},
+			{
+				count: 0,
+				currentPage: 1,
+				pagesize: 3,
+				is_page: true,
+				isLoadAll: false,
+			},
+			{
+				count: 0,
+				currentPage: 1,
+				pagesize: 5,
+				is_page: true,
+				isLoadAll: false,
+			},
+		],
 			self.getMainData(true);
 	
 	},
 
-	getMainData(isNew) {
+	getMainData(isNew,type) {
 		const self = this;
 		self.data.touchClock = true;
 		
@@ -576,6 +596,9 @@ Page({
 			thirdapp_id: getApp().globalData.thirdapp_id,
 			type: self.data.type + 1,
 			user_type: 0
+		};
+		if(type){
+			postData.searchItem.type = type
 		};
 		postData.getAfter = {
 			user: {

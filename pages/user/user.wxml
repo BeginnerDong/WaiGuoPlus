@@ -87,7 +87,7 @@
 					<view class="font32 color3">{{func.playString(item.create_time,5,7)}}月{{func.playString(item.create_time,8,10)}}日</view>
 				</view>
 			</view>
-			<view class="user_list_left bg1" wx:if="{{item.mainImg.length>0}}">
+			<view class="user_list_left bg1" wx:if="{{item.mainImg.length>0&&item.video.length==0}}">
 				<image src="{{item.mainImg[0].url}}"></image>
 			</view>
 			<view class="user_list_left bg1" wx:if="{{item.video.length>0}}">

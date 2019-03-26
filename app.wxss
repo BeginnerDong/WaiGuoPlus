@@ -23,6 +23,14 @@ page{
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2; 
 }
+.avoidOverflow4{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4; 
+}
 .flex1{
 	display:flex;
 }

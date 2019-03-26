@@ -9,17 +9,18 @@
             	<view>{{web_originData.anonymous[0].name}}</view>
             	<view class="font22 color96">{{web_originData.create_time}}</view>
             </view>
-            <view class="flex user_number"  style="width:20%;">
-				<view style="float:right;text-align:right;width:70%;">
+            <view class="flex user_number"  style="width:25%;">
+				<view style="float:right;text-align:right;width:60%;">
 					<view style="float:right;" class="font24 color96">{{web_originData.view_count}}</view>
 					<image src="/images/handle1.png" style="float:right;"></image>
-					<view style="color:black;font-size:24rpx" bindtap="messageUpdate" wx:if="{{web_originData.isMe}}">删除</view>
+					
 				</view>
+				<view style="font-size:24rpx;width:40%;margin-left: 20rpx;"  class="colorc9" bindtap="messageUpdate" wx:if="{{web_originData.isMe}}">删除</view>
 			</view>
     </view>
     <view class="detail">
 	    <view class="font28 color3" style="margin:40rpx 0;">
-	    	<text>{{web_originData.content}}</text>
+	    	<text style="line-height: 20px;">{{web_originData.content}}</text>
 	    </view>
 	    <block wx:for="{{web_originData.mainImg}}" wx:key="index" >
 	    	<image src="{{item.url}}" mode="widthFix" bindtap="previewImage" data-index="{{index}}" ></image>
@@ -54,14 +55,14 @@
 	        </view>
 	        <view class="font28 color3 w690">
 	        	<view style="{{item.reply.length>0?'border-bottom:solid 1px #c9c9c9;padding-bottom:32rpx':''}}" bindtap="intoPath" data-path="/pages/indexTeasingComment/indexTeasingComment?id={{item.id}}">
-		        	<text>{{item.content}}</text>
+		        	<text class="avoidOverflow4">{{item.content}}</text>
 		        </view>
 		        <block wx:for="{{item.answerData}}"  wx:for-item="c_item" wx:for-index="c_index" wx:if="{{c_index<5&&item.isShowAnswer==true}}">
 		            <view class="comment_list font28 color6 flex">
 		            	<view class="comment_left avoidOverflow">
 		            		{{c_item.anonymous[0].name}}:
 		            	</view>
-		            	<view class="comment_right">
+		            	<view class="comment_right avoidOverflow4" >
 		            		{{c_item.content}}
 		            	</view>
 		            </view>
@@ -85,7 +86,7 @@
 <view style="width:100%;height:120rpx;"></view>
 <view class="w670 comment_bottom bg1 flex">
 	<view class="search1">
-	    <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder"
+	    <input placeholder="发表下看法吧" maxlength="2000" class="font28 color6" placeholder-class="placeholder"
 	    data-key="content" bindconfirm="changeBind"  value="{{web_submitData.content}}"></input>
 	</view>
 	<view class="comment_great flexCenter">

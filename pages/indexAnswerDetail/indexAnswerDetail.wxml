@@ -1,7 +1,7 @@
 
 <view class="w670 bg1">
     <view class="font26 color6">
-       <text>{{web_originData.content}}</text>
+       <text style="line-height: 20px;">{{web_originData.content}}</text>
     </view>
     <view class="quesition_user flex">
         <text class="font22 color96">{{web_originData.create_time}}</text>
@@ -44,7 +44,7 @@
             <view>
                 <view class="flexRowBetween">
                     <block  wx:for="{{item.mainImg}}" wx:for-item="c_item" wx:for-index="c_index">
-                        <view class="information_img" style="width:100%;" wx:if="{{item.mainImg.length==1}}" bindtap="previewImage"
+                        <view class="information_img" style="width:100%;text-align: center;" wx:if="{{item.mainImg.length==1}}" bindtap="previewImage"
 						data-index="{{index}}" data-id="{{c_index}}"> 
                             <image src="{{item.mainImg[0].url}}" mode="aspectFill"></image>
                         </view>
@@ -60,7 +60,7 @@
                     </block>
                 </view>
                 <view class="information_cont w690 font26 color6" bindtap="intoPath" data-path="/pages/indexAnswerComment/indexAnswerComment?id={{item.id}}">
-                    <text>{{item.content}}</text>
+                    <text class="avoidOverflow4" style="line-height: 20px;">{{item.content}}</text>
                 </view>
             </view>
            

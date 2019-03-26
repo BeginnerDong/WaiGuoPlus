@@ -185,21 +185,24 @@ Page({
 
 
 
-  submit(){
-    const self = this;
-    api.buttonCanClick(self);
-    const pass = api.checkComplete(self.data.submitData);
-    console.log('pass',pass);
-    if(pass){  
-        const callback = (user,res) =>{
-          self.messageAdd();
-        } 
-       api.getAuthSetting(callback);   
-    }else{
-			 api.buttonCanClick(self,true);
-      api.showToast('请补全信息','none')
-     
-    };
+  submit() {
+  	const self = this;
+  	api.buttonCanClick(self);
+  	const pass = api.checkComplete(self.data.submitData);
+  	console.log('self.data.submitData', self.data.submitData);
+  	if (pass) {
+  		const callback = (user, res) => {
+  			if (self.data.id) {
+  				self.messageUpdate()
+  			} else {
+  				self.messageAdd();
+  			}
+  		}
+  		api.getAuthSetting(callback);
+  	}else{
+		  api.buttonCanClick(self, true)
+  		api.showToast('请补全信息', 'none')
+  	};
   },
 
   upLoadImg(){
@@ -269,6 +272,15 @@ Page({
     })
   },
 
+	 delete(e) {
+		const self = this;
+		var index = api.getDataSet(e, 'index');
+		console.log('deleteImg', index)
+		self.data.submitData.mainImg.splice(index, 1);
+		self.setData({
+			web_submitData: self.data.submitData
+		})
+	},
 
   intoPath(e){
     const self = this;

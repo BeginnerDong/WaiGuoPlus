@@ -35,7 +35,7 @@ Page({
 		postData.paginate = api.cloneForm(self.data.paginate);
 		postData.searchItem = {
 			thirdapp_id: getApp().globalData.thirdapp_id,
-			type: ['in', [2, 4]],
+			type: ['in', [2, 4,5,6]],
 			user_no: self.data.user_no,
 			user_type: 0
 		};

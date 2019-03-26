@@ -1,5 +1,5 @@
 <view class="send w670 bg1">
-    <textarea placeholder="你想问什么？" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+    <textarea placeholder="你想问什么？" maxlength="2000" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
         </view>

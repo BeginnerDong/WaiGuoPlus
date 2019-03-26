@@ -23,7 +23,7 @@ Page({
 		postData.paginate = api.cloneForm(self.data.paginate);
     postData.searchItem = {
     	type:5,
-
+			user_no:wx.getStorageSync('info').user_no,
 		};
     postData.getAfter = {
       user:{

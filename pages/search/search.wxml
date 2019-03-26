@@ -17,7 +17,7 @@
         </view>
         <view class="w690">
             <view class="information_cont font26 color6 quesition_cont" style="height:auto;"  bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
-                {{item.content}}
+                <text class="avoidOverflow4">{{item.content}}</text>
             </view>
             <view class="quesition_handle flex">
                 <view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0">

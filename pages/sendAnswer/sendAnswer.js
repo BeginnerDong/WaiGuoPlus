@@ -40,9 +40,8 @@ Page({
   	postData.tokenFuncName = 'getProjectToken';
   	const callback = (res) => {
   		if (res.info.data.length > 0) {
-  			self.data.submitData.title = res.info.data[0].title;
   			self.data.submitData.content = res.info.data[0].content;
-  			self.data.submitData.video = res.info.data[0].video;
+
   			/* 		self.data.submitData.country = res.info.data[0].country; 
   					self.data.submitData.city = res.info.data[0].city; */
   		};
@@ -59,7 +58,7 @@ Page({
   	const self = this;
   	api.buttonCanClick(self);
   	const pass = api.checkComplete(self.data.submitData);
-  	console.log('pass', pass);
+  	console.log('self.data.submitData', self.data.submitData);
   	if (pass) {
   		const callback = (user, res) => {
   			if (self.data.id) {
@@ -161,21 +160,7 @@ Page({
   
 
 
-  submit(){
-    const self = this;
-    api.buttonCanClick(self);
-    const pass = api.checkComplete(self.data.submitData);
-    console.log('pass',pass);
-    if(pass){  
-        const callback = (user,res) =>{
-          self.messageAdd();
-        } 
-       api.getAuthSetting(callback);   
-    }else{
-      api.showToast('请补全信息','none')
-      api.buttonCanClick(self,true) 
-    };
-  },
+
 
 
 

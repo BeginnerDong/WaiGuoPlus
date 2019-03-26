@@ -14,7 +14,8 @@ Page({
 			video: [],
 			type: 2,
 			country: '',
-			city: ''
+			city: '',
+			mainImg:[],
 		},
 		isFirstLoadAllStandard: ['getLocation']
 
@@ -48,6 +49,7 @@ Page({
 				self.data.submitData.video = res.info.data[0].video;
 				/* 		self.data.submitData.country = res.info.data[0].country; 
 						self.data.submitData.city = res.info.data[0].city; */
+				self.data.submitData.mainImg = res.info.data[0].mainImg;		
 			};
 			self.data.mainData = res.info.data[0];
 			self.setData({
@@ -62,7 +64,7 @@ Page({
 		const self = this;
 		api.buttonCanClick(self);
 		const pass = api.checkComplete(self.data.submitData);
-		console.log('pass', pass);
+		console.log('self.data.submitData', self.data.submitData);
 		if (pass) {
 			const callback = (user, res) => {
 				if (self.data.id) {

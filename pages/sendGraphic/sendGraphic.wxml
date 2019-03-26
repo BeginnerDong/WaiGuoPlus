@@ -5,13 +5,15 @@
             <input class="font26" name="" placeholder="输入标题内容" placeholder-class="placeholder" data-key="title" bindblur="changeBind"  value="{{web_submitData.title}}"></input>
         </view>
     </view>
-    <textarea placeholder="这一刻的想法" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
+    <textarea placeholder="这一刻的想法" maxlength="2000" placeholder-class="placeholder" data-key="content" bindblur="changeBind"  value="{{web_submitData.content}}"></textarea>
     <view class="upload flex">
         <view class="upload_left flex flex_wrap">
             <block wx:for="{{web_submitData.mainImg}}" wx:key="index">
                 <view class="upload_item">
                     <image src="{{item.url}}"></image>
+					<image src="/images/delete.png" class="delete" bindtap="delete" style="width:40rpx;height:40rpx;" data-index="{{index}}"></image>
                 </view>
+				
             </block>
             <view class="upload_item" bindtap="upLoadImg">
                 <image src="/images/upload.png"></image>

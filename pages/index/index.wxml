@@ -65,7 +65,7 @@
 						</view>
 						<view class="w690">
 							<view class="information_cont font26 color6 quesition_cont" style="height:auto;" bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
-								<text>{{item.content}}</text>
+								<text style="line-height: 20px;" class="avoidOverflow4">{{item.content}}</text>
 							</view>
 							<view class="quesition_handle flex">
 								<view class="quesition_item flexCenter" style="border-right:solid 1px #b0b0b0">
@@ -100,8 +100,8 @@
 												<view class="font30 color3 avoidOverflow" style="width:60%;">{{c_item.answerUser[0].nickname}}</view>
 												<view class="user_right avoidOverflow font30 colorc9">{{c_item.create_time}}</view>
 											</view>
-											<view class="font26 color6 quesition_cont" style="border:none" bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
-												{{c_item.content}}
+											<view class="font26 color6 quesition_cont " style="border:none" bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.id}}">
+												<text class="avoidOverflow4">{{c_item.content}}</text>
 											</view>
 										</view>
 									</view>
@@ -163,8 +163,20 @@
 							</view>
 							<view class="information_img_box">
 								<view wx:if="{{item.video.length>0}}" class="video_cont">
-									<video src="{{item.video[0].url}}"></video>
-
+									
+									<block wx:for="{{item.video}}" wx:for-item="c_item" wx:for-index="c_index">
+									
+										<view class="video_cont">
+										<video custom-cache="{{false}}" data-index="{{index}}"  id="{{item.id+''+index+''+c_index}}" src="{{c_item.url}}" show-center-play-btn="{{false}}"  bindtap="vedioPlay" >
+											<view wx:if="{{web_playId!=item.id+''+index+''+c_index}}" style="width:100%;height:100%;">
+												<image src="{{item.mainImg[0].url}}"   style="width:100%;height:100%;display:block" mode="aspectFill"></image>
+												<view style="position:absolute;top:38%;width:100%;height:60rpx;">
+													<image id="{{item.id+''+index+''+c_index}}"  src="/images/play.png" style="margin:0 auto;width:60rpx;height:60rpx;display:block;"></image>
+												</view>
+											</view>
+										</video>
+										</view>
+									</block>
 								</view>
 								<view wx:else class="flexRowBetween">
 									<block wx:for="{{item.mainImg}}" wx:for-item="c_item" wx:for-index="c_index">
@@ -310,8 +322,8 @@
 									<view class="video_cont">
 									<video custom-cache="{{false}}" data-index="{{index}}"  id="{{item.id+''+index+''+c_index}}" src="{{c_item.url}}" show-center-play-btn="{{false}}"  bindtap="vedioPlay" >
 										<view wx:if="{{web_playId!=item.id+''+index+''+c_index}}" style="width:100%;height:100%;">
-											<image src="{{item.mainImg[0].url}}"   style="width:100%;height:100%;display:block"></image>
-											<view style="position:absolute;top:50%;width:100%;height:60rpx;">
+											<image src="{{item.mainImg[0].url}}"   style="width:100%;height:100%;display:block" mode="aspectFill"></image>
+											<view style="position:absolute;top:38%;width:100%;height:60rpx;">
 												<image id="{{item.id+''+index+''+c_index}}"  src="/images/play.png" style="margin:0 auto;width:60rpx;height:60rpx;display:block;"></image>
 											</view>
 										</view>

@@ -57,7 +57,7 @@
             </view>
             <view class="font28 color3 w690">
                 <view style="padding-bottom:32rpx">
-                    {{item.content}}
+						<text class="avoidOverflow4">{{item.content}}</text>
                 </view>
             </view>
         </view>
@@ -78,7 +78,7 @@
 <view style="width:100%;height:120rpx;"></view>
 <view class="w670 comment_bottom bg1 flex">
     <view class="search1">
-        <input placeholder="发表下看法吧" class="font28 color6" placeholder-class="placeholder" data-key="content" bindconfirm="changeBind"  value="{{web_submitData.content}}"></input>
+        <input placeholder="发表下看法吧" maxlength="2000" class="font28 color6" placeholder-class="placeholder" data-key="content" bindconfirm="changeBind"  value="{{web_submitData.content}}"></input>
     </view>
     <view class="comment_great flexCenter">
         <image src="/images/handle2.png"></image>

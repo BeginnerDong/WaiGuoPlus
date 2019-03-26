@@ -240,7 +240,15 @@ Page({
     })
   },
 
-
+	delete(e) {
+		const self = this;
+		var index = api.getDataSet(e, 'index');
+		console.log('deleteImg', index)
+		self.data.submitData.mainImg.splice(index, 1);
+		self.setData({
+			web_submitData: self.data.submitData
+		})
+	},
 
 
   intoPath(e){

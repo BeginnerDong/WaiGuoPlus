@@ -25,12 +25,12 @@
 	font-size:26rpx;
 	color:#c9c9c9;
 }
+
 .upload_video{
-	width:250rpx;
-	height:360rpx;
+	width:40%;
+	height:240rpx;
 	margin-right:16rpx;
 	margin-bottom:20rpx;
-	position: relative;
 }
 .upload_icon{
 	width:100%;

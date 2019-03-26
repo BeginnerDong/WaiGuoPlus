@@ -17,7 +17,7 @@
             <view class="user_right avoidOverflow font30 colorc9">{{item.original[0].create_time}}</view>
         </view>
         <view class="w690">
-            <view class="information_cont font26 color6 quesition_cont" style="height:auto;"  bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.original[0].id}}">
+            <view class="information_cont font26 color6 quesition_cont avoidOverflow4" style="height:auto;"  bindtap="intoPath" data-path="/pages/indexAnswerDetail/indexAnswerDetail?id={{item.original[0].id}}">
                 {{item.original[0].content}}
             </view>
             <view class="quesition_handle flex">
@@ -51,7 +51,7 @@
                                 <view class="font30 color3 avoidOverflow" style="width:60%;">{{c_item.original[0].answerUser[0].nickname}}</view>
                                 <view class="user_right avoidOverflow font30 colorc9">{{c_item.original[0].create_time}}</view>
                             </view>
-                            <view class="font26 color6 quesition_cont" style="border:none">
+                            <view class="font26 color6 quesition_cont avoidOverflow4" style="border:none">
                                 {{c_item.original[0].content}}
                             </view>
                         </view>

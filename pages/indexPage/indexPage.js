@@ -194,6 +194,7 @@ Page({
 		const postData = {};
 		postData.tokenFuncName = 'getProjectToken';
 		postData.searchItem = {
+			user_no:wx.getStorageSync('info').user_no,
 			type: 5,
 			pay_no: self.data.userData.people[0].user_no
 		};

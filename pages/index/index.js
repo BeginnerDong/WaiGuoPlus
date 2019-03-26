@@ -229,6 +229,9 @@ Page({
 				if(res.info.data[0].type==4){
 					
 					self.data.mainData[3] = [];
+					self.setData({
+						web_mainData:self.data.mainData
+					});
 					self.data.paginate[3] = {
 						count: 0,
 						currentPage: 1,

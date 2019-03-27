@@ -13,7 +13,7 @@ Page({
       type:5
     }, 
 		isOpen:false,
-		className:'avoidOverflow2',
+		className:'avoidOverflow4',
     isFirstLoadAllStandard:['getMainData']
   },
   //事件处理函数
@@ -26,7 +26,8 @@ Page({
 			web_className:self.data.className,
 			web_submitData:self.data.submitData
 		})
-    self.getMainData()
+    self.getMainData();
+	
   },
 
   getMainData(){
@@ -45,9 +46,25 @@ Page({
         api.showToast('数据错误','none',1000);
       };
       api.checkLoadAll(self.data.isFirstLoadAllStandard,'getMainData',self);
-      self.setData({
-        web_mainData:self.data.mainData,
-      });
+      
+		var query = wx.createSelectorQuery();
+		query.select('#test').boundingClientRect();
+		setTimeout(function(){
+		  query.exec(function (rect) {  
+		  	console.log(rect)
+		   	self.data.testHeight = rect[0].height;
+			self.setData({
+			  web_testHeight:self.data.testHeight
+			});
+		  })
+		  
+		},1000);
+		
+		self.setData({
+		  web_mainData:self.data.mainData,
+
+		});
+		
     };
     api.messageGet(postData,callback);
   },
@@ -98,7 +115,7 @@ Page({
 		const self = this;
 		self.data.isOpen = !self.data.isOpen;
 		if(!self.data.isOpen){
-			self.data.className = 'avoidOverflow2'
+			self.data.className = 'avoidOverflow4'
 		}else{
 			self.data.className = ''
 		};

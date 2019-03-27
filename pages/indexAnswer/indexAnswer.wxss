@@ -18,7 +18,6 @@ page{
 }
 .send_title{
 	margin-top:20rpx;
-
 	overflow:hidden;
 }
 .send_right input{

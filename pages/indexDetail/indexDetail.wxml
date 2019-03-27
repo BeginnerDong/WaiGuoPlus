@@ -17,7 +17,7 @@
 	    <view class="font28 color3" style="margin:30rpx 0;">
 	    	<text style="line-height:20px;">{{web_originData.content}}</text>
 	    </view>
-	    <block wx:for="{{web_originData.mainImg}}" wx:key="index" wx:if="{{web_originData.mainImg.length>0}}">
+	    <block wx:for="{{web_originData.mainImg}}" wx:key="index" wx:if="{{web_originData.mainImg.length>0&&web_originData.video.length==0}}">
 	    	<image src="{{item.url}}" mode="widthFix"></image>
 	    </block>					
 	    <block wx:for="{{web_originData.video}}" wx:key="index" wx:if="{{web_originData.video.length>0}}">

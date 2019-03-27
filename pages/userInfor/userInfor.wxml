@@ -10,11 +10,11 @@
         <view class="main" style="width:100%;">
             <view class="input_list1 font28 flex">
                 <view class="input_before color6">昵称:</view>
-                <view  class="color9">{{web_mainData.nickname}}</view>
+                <view  class="color9" style="margin-left: 7px;">{{web_mainData.nickname}}</view>
             </view>
             <view class="input_list1 font28 flex" style="justify-content:flex-start">
                 <text class="font30 input_before1 color6">性别:</text>
-                <view data-value="1" data-key="gender" bindtap="changeBind" style="display:flex;margin-left:100rpx;align-items:center">
+                <view data-value="1" data-key="gender" bindtap="changeBind" style="display:flex;margin-left:90rpx;align-items:center">
                     <image src="{{web_sForm.gender=='1'?'/images/male_a.png':'/images/male.jpg'}}" style="width:40rpx;height:40rpx;margin-right:10rpx;" ></image>
                     <view class="font28" style="{{web_sForm.gender=='1'?'color:#21c3d4':''}}">男</view>
                 </view>
@@ -37,22 +37,24 @@
                 <input class=""  data-key="language" bindblur="changeBind" value="{{web_sForm.language}}"></input>
             </view>
             <view class="input_list1 font28 flex">
-                <picker mode="date"  start="2000-01-01" end="2050-01-01" bindchange="bindDateChange" style="width:100%;">
+				<view class="input_before color6" style="float:left;">
+				    生日:
+				</view>
+                <picker mode="date"  start="2000-01-01" end="2050-01-01" bindchange="bindDateChange" 
+				style="width:76%;padding-left:2%;border-radius:16rpx;">
                   <view class="picker flex">
-                      <view class="input_before1 color6 font28 flex" style="width:22%;">
-                          生日:
-                      </view>
-                      <view class="things_right flexRowBetween font28" style="width:50%;">
-                          <view class="thing1  flexRowBetween" style="width:24%;text-align: center;">
-                              <view class="font28"  style="text-align: center;width:100%;">{{web_sForm.passage_array[0]}}</view>
+                      
+                      <view class="things_right flexRowBetween font28" style="width:78%;">
+                          <view class="thing1  flexRowBetween" style="width:24%;">
+                              <view class="font28"  style="width:100%;">{{web_sForm.passage_array[0]}}</view>
                           </view>
                           <view class="years font28 ">年</view>
                           <view class="thing1  flexRowBetween"  style="width:24%;text-align: center;">
-                              <view class="font28"  style="text-align: center;width:100%;">{{web_sForm.passage_array[1]}}</view>
+                              <view class="font28"  style="width:100%;">{{web_sForm.passage_array[1]}}</view>
                           </view>
                            <view class="years font28">月</view>
                           <view class="thing1  flexRowBetween"  style="width:24%;text-align: center;">
-                              <view class="font28" style="text-align: center;width:100%;">{{web_sForm.passage_array[2]}}</view>
+                              <view class="font28" style="width:100%;">{{web_sForm.passage_array[2]}}</view>
                           </view>
                            <view class="years font28 ">日</view>
                       </view>
